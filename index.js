@@ -1,3 +1,31 @@
+// initial state
+const initialState = [{
+  matchcount:0
+}]
+
+// create reducer function
+function matchReducer(state = initialState, action){
+  if(action.type === 'increment'){
+    return {
+      ...state,
+      matchcount : state.matchcount + action.payload
+
+    }
+  }else if(action.type === 'decrement'){
+    return {
+      ...state,
+      matchcount : state.matchcount - action.payload
+
+    }
+  }else {
+    return state
+  }
+}
+
+// create redux store
+const store = Redux.createStore(matchReducer)
+
+
 const testArray = [{id:1, name: 'match 1'},{id:2, name: "match 2"}]
 
 // // get elements
@@ -11,9 +39,11 @@ const allMatches = document.querySelector('.all-matches')
 const testAlert = (index)=> {
   alert(index)
 }
-
-
-
+const testinput = (index)=> {
+  if(event.key === 'Enter') {
+    alert(index.value);        
+}
+}
 
 
 
@@ -27,7 +57,7 @@ function allMatch() {
     matchHTML += `
       <div class="match">
         <div class="wrapper">
-          <button onclick="testAlert($)"  class="lws-delete">
+          <button onclick="testAlert(${index})"  class="lws-delete">
             <img src="./image/delete.svg" alt="" />
           </button>
           <h3 class="lws-matchName">${"Match " + (index+1 )}</h3>
@@ -39,7 +69,7 @@ function allMatch() {
           </form>
           <form class="decrementForm">
             <h4>Decrement</h4>
-            <input type="number" name="decrement" class="lws-decrement" />
+            <input type="number" name="decrement" class="lws-decrement" onkeydown="testinput(${index})/>
           </form>
         </div>
         <div class="numbers">
