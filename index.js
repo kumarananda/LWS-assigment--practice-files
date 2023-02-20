@@ -1,30 +1,52 @@
 const allMatches = document.querySelector('.all-matches')
+const addMatch =document.querySelector('.lws-addMatch')
+const reset =document.querySelector('.lws-reset')
 
 // initial state
 const initialState = {
-  matchcount:[0,2]
+  matchs:[{id:0,value:0}]
 }
 
 // create reducer function
-function matchReducer(state = initialState, {type, value, index}){
-  if(type === 'increment'){
-
-    return {
-      ...state,
-      matchcount : ''
-
-
-    }
-  }else if(type === 'decrement'){
-
-    return {
-      ...state,
-      matchcount : ''
-
-    }
-  }else {
-    return state
+function matchReducer(state = initialState, {type, payload}){
+  switch (type) {
+    case 'add-match':
+      return {
+        ...state,
+        matchs: [...state.matchs, {id: state.matchs[state.matchs.length-1].id +1, value: 0}]
+      }
+    case 'delete-match':
+      return {
+        ...state,
+        matchs: state.matchs.filter((match)=> match.id !== payload)
+      }
+    case 'reset':
+      return {
+        ...state,
+        matchs : state.matchs.map((match) => {
+          return {...match, value : 0 }
+        })
+      }
+    case 'increment':
+      console.log(payload);
+      return {
+        ...state,
+        matchs: state.matchs.map((match)=> 
+          match.id === payload.id ? {...match, value: match.value + payload.value} : {...match}
+        ) 
+      }
+    case 'decrement':
+      return {
+        ...state,
+        matchs: state.matchs.map((match)=> 
+          match.id === payload.id ? {...match, value: match.value - payload.value} : {...match}
+        ) 
+      }
+  
+    default:
+      return state
   }
+
 }
 
 // create redux store
@@ -32,7 +54,7 @@ const store = Redux.createStore(matchReducer)
 const rander =()=> {
   const state = store.getState()
   console.log(state);
-  allMatches.innerHTML = allMatch(state.matchcount) // ?
+  allMatches.innerHTML = allMatch(state.matchs) // ?
 }
 
 rander()
@@ -40,33 +62,44 @@ rander()
 store.subscribe(rander)
 
 
-const testArray = [{id:1, name: 'match 1'},{id:2, name: "match 2"}]
 
 
 
-function search(ele, index) {
+
+function matchValueCount(ele, id ) {
   if(event.keyCode == 13) {
     event.preventDefault()
 
+    console.log(ele.value);
     store.dispatch({
       type : ele.name,
-      payload : {
-        index: index,
-        value : Number(ele.value)
+      payload : { id,
+        value : +ele.value
       }
-    })
-    // console.log(index);
-
-    // if(ele.name === 'increment'){
-
-    // }else if(ele.name === 'decrement'){
-
-    // }
-    
-       
+    })      
   }
 }
 
+// add match
+addMatch.addEventListener('click', ()=> {
+  store.dispatch({
+    type : 'add-match'
+  })
+})
+
+// reset match 
+reset.addEventListener('click', ()=> {
+  store.dispatch({
+    type: 'reset'
+  })
+})
+
+const singleMatchDelete = (id) => {
+  store.dispatch({
+    type : "delete-match",
+    payload: id
+  })
+}
 
 
 
@@ -74,49 +107,36 @@ function search(ele, index) {
 function allMatch(array) {
 
   let matchHTML = "";
-  array.forEach(element => {
-    
-  });
 
-  array.forEach((item, index)=> {
+  array.forEach((item=> {
 
     matchHTML += `
     <div class="match">
           <div class="wrapper">
-            <button class="lws-delete">
+            <button onclick="singleMatchDelete(${item.id})" class="lws-delete">
               <img src="./image/delete.svg" alt="" />
             </button>
-            <h3 class="lws-matchName">Match 1</h3>
+            <h3 class="lws-matchName">Match ${item.id+1}</h3>
           </div>
           <div class="inc-dec">
             <form class="incrementForm">
               <h4>Increment</h4>
-              <input type="number" name="increment" class="lws-increment" onkeydown="search(this, ${index})" />
+              <input type="number" name="increment" class="lws-increment" onkeydown="matchValueCount(this, ${item.id})" />
             </form>
             <form class="decrementForm">
               <h4>Decrement</h4>
-              <input type="number" name="decrement" class="lws-decrement" onkeydown="search(this, ${index})" />
+              <input type="number" name="decrement" class="lws-decrement" onkeydown="matchValueCount(this, ${item.id})" />
             </form>
           </div>
           <div class="numbers">
-            <h2 class="lws-singleResult">${item}</h2>
+            <h2 class="lws-singleResult">${item.value}</h2>
           </div>
         </div>
 
     `
-  })
+  }))
   return matchHTML    
 
 }
-// allMatch()
 
 
-
-
-
-// // get elements
-// const lwsDelete = document.querySelector('.lws-delete')
-// const lwsMatchName = document.querySelector('.lws-matchName')
-// const lwsIncrement = document.querySelector('.lws-increment')
-// const lwsDecrement = document.querySelector('.lws-decrement')
-// const lwsSingleResult = document.querySelector('.lws-singleResult')
