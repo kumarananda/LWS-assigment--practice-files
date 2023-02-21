@@ -1,7 +1,14 @@
 // Get elements
-const allMatches = document.querySelector('.all-matches')
-const addMatch =document.querySelector('.lws-addMatch')
-const reset =document.querySelector('.lws-reset')
+const allMatches = document.querySelector('.all-matches');
+const addNewMatch =document.querySelector('.lws-addMatch');
+const reset =document.querySelector('.lws-reset');
+
+// action types
+const ADD_MATCH = "ADD_MATCH";
+const DELETE_MATCH = "DELETE_MATCH";
+const RESET_ALL_MATCHS = "RESET_ALL_MATCHS";
+const INCREMENT_MATCH = "INCREMENT_MATCH";
+const DECREMENT_MATCH = "DECREMENT_MATCH";
 
 // initial state
 const initialState = {
@@ -11,24 +18,24 @@ const initialState = {
 // create reducer function
 function matchReducer(state = initialState, {type, payload}){
   switch (type) {
-    case 'add-match':
+    case ADD_MATCH:
       return {
         ...state,
-        matchs: [...state.matchs, {id: state.matchs[state.matchs.length-1].id +1, value: 0}]
+        matchs: [...state.matchs, {id: state.matchs.length ? state.matchs[state.matchs.length-1].id +1 : 0, value: 0}]
       }
-    case 'delete-match':
+    case DELETE_MATCH:
       return {
         ...state,
         matchs: state.matchs.filter((match)=> match.id !== payload)
       }
-    case 'reset':
+    case RESET_ALL_MATCHS:
       return {
         ...state,
         matchs : state.matchs.map((match) => {
           return {...match, value : 0 }
         })
       }
-    case 'increment':
+    case INCREMENT_MATCH:
       console.log(payload);
       return {
         ...state,
@@ -36,7 +43,7 @@ function matchReducer(state = initialState, {type, payload}){
           match.id === payload.id ? {...match, value: match.value + payload.value} : {...match}
         ) 
       }
-    case 'decrement':
+    case DECREMENT_MATCH:
       return {
         ...state,
         matchs: state.matchs.map((match)=> 
@@ -58,53 +65,87 @@ function matchReducer(state = initialState, {type, payload}){
 // create redux store
 const store = Redux.createStore(matchReducer)
 
+// redux actions
+// add new match
+const add_match = () => {
+  store.dispatch({
+    type : ADD_MATCH
+  })
+}
+// delete single match
+const delete_match = (id) => {
+  store.dispatch({
+    type : DELETE_MATCH,
+    payload : id
+  })
+}
+// reset all match value
+const reset_all_matchs = () => {
+  store.dispatch({
+    type: RESET_ALL_MATCHS
+  })
+}
+// increment match value
+const increment_match = (matchID, value) => {
+  store.dispatch({
+    type : INCREMENT_MATCH,
+    payload : { id : matchID,
+      value : value
+    }
+  })
+}
+// decrement match value
+const decrement_match = (matchID, value) => {
+  store.dispatch({
+    type : DECREMENT_MATCH,
+    payload : { id : matchID,
+      value : value
+    }
+  })
+}
+
 // rander for state change
 const rander =()=> {
   const state = store.getState()
   console.log(state);
   allMatches.innerHTML = allMatch(state.matchs) // ?
 }
+
+// initial rander
 rander()
+
 // subscribe redux store
 store.subscribe(rander)
 
 
 // increment and increment match value
-function matchValueCount(ele, id ) {
+function matchValueCount( ele, id ) {
   if(event.keyCode == 13) {
     event.preventDefault()
 
-    console.log(ele.value);
-    store.dispatch({
-      type : ele.name,
-      payload : { id,
-        value : +ele.value
-      }
-    })      
+    console.log(ele.name);
+    if(ele.name === "increment"){
+      increment_match( id, +ele.value)
+    }else if(ele.name === "decrement"){
+      decrement_match( id, +ele.value)
+    }     
   }
 }
 
-// add match
-addMatch.addEventListener('click', ()=> {
-  store.dispatch({
-    type : 'add-match'
-  })
+// add match event
+addNewMatch.addEventListener('click', ()=> {
+  add_match()
 })
 
-// reset match 
-reset.addEventListener('click', ()=> {
-  store.dispatch({
-    type: 'reset'
-  })
-})
-
-// delete match
+// delete match event
 const singleMatchDelete = (id) => {
-  store.dispatch({
-    type : "delete-match",
-    payload: id
-  })
+  delete_match(id)
 }
+
+// reset match event
+reset.addEventListener('click', ()=> {
+  reset_all_matchs()
+})
 
 // create all match HTML element
 function allMatch(array) {
