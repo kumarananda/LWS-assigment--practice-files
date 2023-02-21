@@ -3,6 +3,8 @@ const allMatches = document.querySelector('.all-matches');
 const addNewMatch =document.querySelector('.lws-addMatch');
 const reset =document.querySelector('.lws-reset');
 
+
+
 // action types
 const ADD_MATCH = "ADD_MATCH";
 const DELETE_MATCH = "DELETE_MATCH";
@@ -117,6 +119,20 @@ rander()
 // subscribe redux store
 store.subscribe(rander)
 
+// @deprecated // event.keyCode
+// increment and increment match value
+// function matchValueCount( ele, id ) {
+//   if(event.keyCode == 13) {
+//     event.preventDefault()
+
+//     console.log(ele.name);
+//     if(ele.name === "increment"){
+//       increment_match( id, +ele.value)
+//     }else if(ele.name === "decrement"){
+//       decrement_match( id, +ele.value)
+//     }     
+//   }
+// }
 
 // increment and increment match value
 allMatches.addEventListener('submit', (e) => {
@@ -131,6 +147,7 @@ allMatches.addEventListener('submit', (e) => {
   }
 
 })
+
 
 
 // add match event
@@ -165,11 +182,11 @@ function allMatch(array) {
         <div class="inc-dec">
           <form class="incrementForm">
             <h4>Increment</h4>
-            <input data_id="${item.id}" type="number" name="increment" class="lws-increment"  />
+            <input data_id="${item.id}" type="number" name="increment" class="lws-increment" onkeydown="matchValueCount(this, ${item.id})" />
           </form>
           <form class="decrementForm">
             <h4>Decrement</h4>
-            <input data_id="${item.id}" type="number" name="decrement" class="lws-decrement"  />
+            <input data_id="${item.id}" type="number" name="decrement" class="lws-decrement" onkeydown="matchValueCount(this, ${item.id})" />
           </form>
         </div>
         <div class="numbers">
@@ -182,5 +199,4 @@ function allMatch(array) {
   return matchHTML    
 
 }
-
 
