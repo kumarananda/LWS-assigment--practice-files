@@ -6,8 +6,11 @@ import myLoger from "./middleware/myLoger";
 const medleware = [myLoger]
 
 
+// without composeWithDevTools for build
+const store = createStore(rootReducer, applyMiddleware(...medleware))
 
-const store = createStore(rootReducer, composeWithDevTools(applyMiddleware(...medleware)))
+// with composeWithDevTools for Debagging 
+// const store = createStore(rootReducer, composeWithDevTools(applyMiddleware(...medleware)))
 
 
 export default store;
