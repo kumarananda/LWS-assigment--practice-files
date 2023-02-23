@@ -29,6 +29,14 @@ const InputFlight = () => {
   const handleFlightSubmit = e => {
     e.preventDefault();
     dispatch(addFlight(flightform));
+    e.target.reset();
+    setFlightform({
+      from: "",
+      to: "",
+      date: "",
+      guests: "",
+      ticketClass: "",
+    });
   };
 
   return (
