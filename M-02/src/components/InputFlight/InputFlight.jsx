@@ -26,6 +26,8 @@ const InputFlight = () => {
     setFlightform(prev => ({ ...prev, [e.target.name]: e.target.value }));
   };
 
+  let mindate = new Date().toISOString().split("T")[0];
+
   const handleFlightSubmit = e => {
     e.preventDefault();
     dispatch(addFlight(flightform));
@@ -80,7 +82,15 @@ const InputFlight = () => {
             {/* <!-- Date --> */}
             <div className="des-from">
               <p>Journey Date</p>
-              <input onChange={handleFlightInput} type="date" className="outline-none px-2 py-2 w-full date" name="date" id="lws-date" required />
+              <input
+                min={mindate}
+                onChange={handleFlightInput}
+                type="date"
+                className="outline-none px-2 py-2 w-full date"
+                name="date"
+                id="lws-date"
+                required
+              />
             </div>
 
             {/* <!-- Guests --> */}
