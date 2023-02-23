@@ -3,6 +3,7 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { addFlight } from "../../redux/Flights/flightsActions";
+import createTost from "../../utility/tost";
 
 const InputFlight = () => {
   const dispatch = useDispatch();
@@ -30,15 +31,20 @@ const InputFlight = () => {
 
   const handleFlightSubmit = e => {
     e.preventDefault();
-    dispatch(addFlight(flightform));
-    e.target.reset();
-    setFlightform({
-      from: "",
-      to: "",
-      date: "",
-      guests: "",
-      ticketClass: "",
-    });
+
+    if (flights.length >= 3) {
+      createTost("Maximum 3 flights already booked", "warning");
+    } else {
+      dispatch(addFlight(flightform));
+      e.target.reset();
+      setFlightform({
+        from: "",
+        to: "",
+        date: "",
+        guests: "",
+        ticketClass: "",
+      });
+    }
   };
 
   return (
@@ -56,8 +62,10 @@ const InputFlight = () => {
                   <option value="" hidden>
                     Please Select
                   </option>
-                  {destination.map(item => (
-                    <option disabled={flightform.to === item ? true : false}>{item}</option>
+                  {destination.map((item, index) => (
+                    <option key={index} disabled={flightform.to === item ? true : false}>
+                      {item}
+                    </option>
                   ))}
                 </select>
               </div>
@@ -72,8 +80,10 @@ const InputFlight = () => {
                   <option value="" hidden>
                     Please Select
                   </option>
-                  {destination.map(item => (
-                    <option disabled={flightform.from === item ? true : false}>{item}</option>
+                  {destination.map((item, index) => (
+                    <option key={index} disabled={flightform.from === item ? true : false}>
+                      {item}
+                    </option>
                   ))}
                 </select>
               </div>
@@ -125,7 +135,7 @@ const InputFlight = () => {
               </div>
             </div>
 
-            <button disabled={flights.length >= 3 ? true : false} className="addCity" type="submit" id="lws-addCity">
+            <button className="addCity" type="submit" id="lws-addCity">
               <svg width="15px" height="15px" fill="none" viewBox="0 0 24 24" strokeWidth="2" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
               </svg>
