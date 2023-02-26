@@ -29,8 +29,15 @@ const AddProduct = () => {
   const handleProductAdd = e => {
     e.preventDefault();
 
-    console.log(porductForn);
-    return dispatch(addNewProduct(porductForn));
+    dispatch(addNewProduct(porductForn));
+    setProductForm({
+      name: "",
+      category: "",
+      image: "",
+      price: "",
+      quantity: "",
+    });
+    return;
   };
 
   return (
@@ -42,29 +49,69 @@ const AddProduct = () => {
           {/*  product name */}
           <div className="space-y-2">
             <label htmlFor="lws-inputName">Product Name</label>
-            <input onChange={handleFormData} name="name" className="addProductInput" id="lws-inputName" type="text" required />
+            <input
+              value={porductForn.name}
+              onChange={handleFormData}
+              name="name"
+              className="addProductInput"
+              id="lws-inputName"
+              type="text"
+              required
+            />
           </div>
           {/*  product category */}
           <div className="space-y-2">
             <label htmlFor="lws-inputCategory">Category</label>
-            <input onChange={handleFormData} name="category" className="addProductInput" id="lws-inputCategory" type="text" required />
+            <input
+              value={porductForn.category}
+              onChange={handleFormData}
+              name="category"
+              className="addProductInput"
+              id="lws-inputCategory"
+              type="text"
+              required
+            />
           </div>
           {/*  product image url */}
           <div className="space-y-2">
             <label htmlFor="lws-inputImage">Image Url</label>
-            <input onChange={handleFormData} name="image" className="addProductInput" id="lws-inputImage" type="text" required />
+            <input
+              value={porductForn.image}
+              onChange={handleFormData}
+              name="image"
+              className="addProductInput"
+              id="lws-inputImage"
+              type="text"
+              required
+            />
           </div>
           {/*  price & quantity container */}
           <div className="grid grid-cols-2 gap-8 pb-4">
             {/*  price */}
             <div className="space-y-2">
               <label htmlFor="lws-inputPrice">Price</label>
-              <input onChange={handleFormData} name="price" className="addProductInput" type="number" id="lws-inputPrice" required />
+              <input
+                value={porductForn.price}
+                onChange={handleFormData}
+                name="price"
+                className="addProductInput"
+                type="number"
+                id="lws-inputPrice"
+                required
+              />
             </div>
             {/*  quantity */}
             <div className="space-y-2">
               <label htmlFor="lws-inputQuantity">Quantity</label>
-              <input onChange={handleFormData} name="quantity" className="addProductInput" type="number" id="lws-inputQuantity" required />
+              <input
+                value={porductForn.quantity}
+                onChange={handleFormData}
+                name="quantity"
+                className="addProductInput"
+                type="number"
+                id="lws-inputQuantity"
+                required
+              />
             </div>
           </div>
           {/*  submit button */}

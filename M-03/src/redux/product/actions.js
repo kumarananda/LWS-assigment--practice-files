@@ -7,3 +7,4 @@ export const addNewProduct = (data) => {
         payload : data
     }
 }
+

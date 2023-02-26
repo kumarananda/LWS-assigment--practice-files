@@ -8,12 +8,10 @@ import logo from "../../images/logo.png";
 function Header() {
   const carts = useSelector(state => state.carts);
 
-  const totalCartCount = carts.reduce((initale, cart) => cart.count + initale, 0);
+  const totalCartCount = carts.reduce((accumulator, cart) => cart.count + accumulator, 0);
 
   // if same product count more then equal 10
   const cartGreen = carts.filter(cart => cart.count >= 10).length;
-
-  console.log(cartGreen);
 
   return (
     <>

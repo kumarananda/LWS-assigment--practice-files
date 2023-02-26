@@ -1,4 +1,4 @@
-import { ADD_CART } from "./actionTypes";
+import { CART_ADD, CART_DECREASE, CART_DELETE, CART_INCREASE } from "./actionTypes";
 import initialState from "./initialState";
 
 
@@ -10,7 +10,7 @@ const nextCartId = (carts) => {
 // create reucer
 const reducer = (state = initialState, action) => {
     switch (action.type) {
-        case ADD_CART:
+        case CART_ADD:
             const matchProduct = state.filter(CartProd => CartProd.productId === action.payload.productId )
 
             switch (matchProduct.length === 0) {
@@ -18,7 +18,7 @@ const reducer = (state = initialState, action) => {
                     return [
                         ...state,
                         {
-                            cartItem: action.payload.cartItem,
+                            // cartItem: action.payload.cartItem,
                             productId : action.payload.productId,
                             cartId : nextCartId(state),
                             count : 1,
@@ -36,9 +36,43 @@ const reducer = (state = initialState, action) => {
                             return cart
                         }
                     })
-            
+                default : 
+                    return state
                 
             }
+
+        case CART_DELETE:
+            return state.filter( cart => cart.cartId !== action.payload )
+
+        case CART_INCREASE:
+            return state.map( cart => {
+                if(cart.cartId === action.payload){
+                   return {
+                    ...cart,
+                    count : cart.count + 1
+                   } 
+                }else{
+                    return {
+                        ...cart
+                    }
+                }
+            } )
+ 
+
+        case CART_DECREASE:
+            return state.map( cart => {
+                if(cart.cartId === action.payload){
+                   return {
+                    ...cart,
+                    count : cart.count - 1
+                   } 
+                }else{
+                    return {
+                        ...cart
+                    }
+                }
+            } )
+ 
 
         default:
             return state;

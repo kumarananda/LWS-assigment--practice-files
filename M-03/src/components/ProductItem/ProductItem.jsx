@@ -1,7 +1,7 @@
 /** @format */
 
 import React from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { addToCart } from "../../redux/cart/actions";
 
 const ProductItem = ({ product, carts }) => {
@@ -15,7 +15,7 @@ const ProductItem = ({ product, carts }) => {
     dispatch(
       addToCart({
         productId,
-        cartItem: product,
+        // cartItem: product,
       })
     );
   };

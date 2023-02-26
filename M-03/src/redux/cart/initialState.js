@@ -4,4 +4,5 @@ const initialState = []
 
 export default initialState
 
-
+// key structure
+// [{ productId, cartId, count }]
