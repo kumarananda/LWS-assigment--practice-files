@@ -1,10 +1,20 @@
 /** @format */
 
 import React from "react";
+import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import logo from "../../images/logo.png";
 
 function Header() {
+  const carts = useSelector(state => state.carts);
+
+  const totalCartCount = carts.reduce((initale, cart) => cart.count + initale, 0);
+
+  // if same product count more then equal 10
+  const cartGreen = carts.filter(cart => cart.count >= 10).length;
+
+  console.log(cartGreen);
+
   return (
     <>
       {/* <!-- Navbar --> */}
@@ -21,9 +31,9 @@ function Header() {
               Home{" "}
             </Link>
             {/* <a href="cart.html" className="navCart" id="lws-cart"> */}
-            <Link to="/cart" className="navCart" id="lws-cart">
-              <i className="text-xl fa-sharp fa-solid fa-bag-shopping"></i>
-              <span id="lws-totalCart">0</span>
+            <Link to="/cart" className="navCart " id="lws-cart">
+              <i className="text-xl fa-sharp fa-solid fa-bag-shopping icon-relative">{cartGreen > 0 && <span>10</span>}</i>
+              <span id="lws-totalCart">{totalCartCount}</span>
             </Link>
           </div>
         </div>
