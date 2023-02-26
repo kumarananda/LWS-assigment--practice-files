@@ -1,11 +1,10 @@
 /** @format */
 
 import React, { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { addNewProduct } from "../../redux/product/actions";
 
 const AddProduct = () => {
-  const products = useSelector(state => state.products);
   const dispatch = useDispatch();
 
   // form data state
