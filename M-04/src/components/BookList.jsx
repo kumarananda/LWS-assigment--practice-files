@@ -1,8 +1,17 @@
 /** @format */
 
-import React from "react";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import fetchBooks from "../redux/books/thunk/fetchBooks";
 
 function BookList() {
+  const books = useSelector(state => state.books);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(fetchBooks);
+  }, [dispatch]);
+
   return (
     <>
       <div className="flex items-center justify-between mb-12">
@@ -19,6 +28,8 @@ function BookList() {
       </div>
       <div className="lws-bookContainer">
         {/* <!-- Card 1 --> */}
+
+        {}
         <div className="book-card">
           <img
             className="h-[240px] w-[170px] object-cover lws-bookThumbnail"
