@@ -11,10 +11,8 @@ const nextBookId = (books) => {
 const reducer = (state = initialState, action) => {
     switch (action.type) {
         case BOOK_LODED :
-            return [
-                ...action.payload,
-                
-            ]
+            return action.payload
+            
         case BOOK_ADD :
             return [
                 ...state, 

@@ -1,9 +1,20 @@
 /** @format */
 
-import React from "react";
+import React, { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import logo from "../assets/images/logo.svg";
+import { filterScarch } from "../redux/filters/actions";
 
 function Header() {
+  const dispatch = useDispatch();
+  // const filters = useSelector(state => state.search)
+
+  // const [search, setSearch ] = useState('')
+  const handleSetSearch = e => {
+    // setSearch(e.target.value)
+    dispatch(filterScarch(e.target.value));
+  };
+
   return (
     <>
       <nav className="py-4 2xl:px-6">
@@ -30,7 +41,7 @@ function Header() {
                   d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z"
                 ></path>
               </svg>
-              <input type="text" placeholder="Filter books..." className="search" id="lws-searchBook" />
+              <input onChange={handleSetSearch} type="text" placeholder="Filter books..." className="search" id="lws-searchBook" />
             </div>
           </form>
         </div>
