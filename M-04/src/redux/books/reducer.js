@@ -23,16 +23,23 @@ const reducer = (state = initialState, action) => {
                     ...action.payload
                 }                
             ]
-        case BOOK_Edit :
-            return [
-                ...state,
-                
-            ]
         case BOOK_DELETE :
-            return [
-                ...state,
-                
-            ]
+            return state.filter(book => book.id !== action.payload)
+
+        case BOOK_Edit :
+            return state.map(book => {
+                if(book.id === action.payload.id ){
+                    return {
+                        ...action.payload.updateBook,
+                        id : action.payload.id
+                    }
+                }else{
+                    return {
+                        ...book
+                        
+                    }
+                }
+            })
         default:
             return state;
     }

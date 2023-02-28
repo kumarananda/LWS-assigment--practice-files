@@ -16,12 +16,13 @@ export const added = (data) => {
 }
 
 // BOOK_EDIT
-export const edited = (data, id) => {
+export const edited = ( id , data) => {
     return {
         type : BOOK_Edit,
         payload : {
-            book : data,
-            id : id
+            id : id,
+            updateBook : data
+            
         }
     }
 }
