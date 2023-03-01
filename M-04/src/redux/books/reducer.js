@@ -3,7 +3,7 @@ import { BOOK_ADD, BOOK_DELETE, BOOK_Edit, BOOK_LODED } from '../books/actionTyp
 
 
 const nextBookId = (books) => {
-    const maxId = books.reduce((maxId, book) => Math.max(book.id, maxId), -1);
+    const maxId = books.reduce((maxId, book) => Math.max(book.id, maxId), 0);
     return maxId + 1;
 };
 
