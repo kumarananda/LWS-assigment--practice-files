@@ -29,7 +29,7 @@ function BookList({ setState }) {
   // file by status
   const filterByName = book => {
     if (!filters.search) {
-      return book;
+      return true;
     } else if (filters.search) {
       return book.name.toLowerCase().includes(filters.search.toLowerCase());
     }
