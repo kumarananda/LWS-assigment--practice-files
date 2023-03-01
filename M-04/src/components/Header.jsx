@@ -1,15 +1,12 @@
 /** @format */
 
-import React, { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import logo from "../assets/images/logo.svg";
 import { filterScarch } from "../redux/filters/actions";
 
 function Header() {
   const dispatch = useDispatch();
-  // const filters = useSelector(state => state.search)
 
-  // const [search, setSearch ] = useState('')
   const handleSetSearch = e => {
     // setSearch(e.target.value)
     dispatch(filterScarch(e.target.value));
@@ -19,7 +16,7 @@ function Header() {
     <>
       <nav className="py-4 2xl:px-6">
         <div className="container flex items-center justify-between">
-          <img src={logo} width="150px" className="object-contain" />
+          <img src={logo} width="150px" className="object-contain" alt="Book" />
 
           <ul className="hidden md:flex items-center space-x-6">
             <li className="font-semibold cursor-pointer">Book Store</li>

@@ -44,8 +44,6 @@ function AddEditForm({ editId, setEditId }) {
 
   const handleSetEditFormData = id => {
     let editBook = books.filter(book => book.id === id)[0];
-
-    // console.log(editBook);
     setFormData(editBook);
   };
 
