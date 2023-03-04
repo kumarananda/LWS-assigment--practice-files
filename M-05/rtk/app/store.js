@@ -10,9 +10,9 @@ const store = configureStore({
     reducer : {
         video : videoReducer,
     },
-    middleware : (getDefaultMiddlewares) => {
-        getDefaultMiddlewares.concat(logger)
-    }
+    middleware : (getDefaultMiddlewares) => 
+         getDefaultMiddlewares()
+    
 })
 
 module.exports = store
