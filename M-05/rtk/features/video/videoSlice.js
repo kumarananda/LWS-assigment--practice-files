@@ -1,19 +1,20 @@
-const { createSlice, createAsyncThunk } = require("@reduxjs/toolkit");
+const { createSlice, createAsyncThunk, createListenerMiddleware } = require("@reduxjs/toolkit");
 const fetch = require("node-fetch");
+const store = require("../../app/store");
+const {fetchRealtedVideos} = require('../relatedVideo/relatedViceoSlice')
 
 
 
 
-const fetchVideo = createAsyncThunk("video/fetchVideo", async () => {
+const fetchVideo = createAsyncThunk("video/fetchVideo", async (data, { dispatch }) => {
 
     const response = await fetch(
         "http://localhost:9000/videos"
         );
 
     const videodata = await response.json();
-
-    // console.log(videodata);
-    return videodata
+        dispatch(fetchRealtedVideos(videodata))
+    return videodata 
 
 });
 
