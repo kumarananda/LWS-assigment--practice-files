@@ -1,0 +1,58 @@
+{
+  "books": [
+    {
+      "name": "Slow Horses (Deluxe Edition)",
+      "author": "Mick Herron",
+      "thumbnail": "https://m.media-amazon.com/images/I/51Ga5GuElyL._SX331_BO1,204,203,200_.jpg",
+      "price": 14,
+      "rating": 3,
+      "featured": false,
+      "id": 1
+    },
+    {
+      "name": "The Last Thing He Told Me: A Novel",
+      "author": "Laura Dave",
+      "thumbnail": "https://m.media-amazon.com/images/P/1501171348.01._SCLZZZZZZZ_SX500_.jpg",
+      "price": 13.99,
+      "rating": 4,
+      "featured": true,
+      "id": 2
+    },
+    {
+      "name": "Eloquent JavaScript, 3rd Edition",
+      "author": "Marijn Haverbeke",
+      "thumbnail": "https://m.media-amazon.com/images/I/51InjRPaF7L._SX377_BO1,204,203,200_.jpg",
+      "price": 23.99,
+      "rating": 4,
+      "featured": true,
+      "id": 4
+    },
+    {
+      "name": "Bayshar Banna বাইশের বন্যা (হার্ডকভার)",
+      "author": "তাসরিফ খান",
+      "thumbnail": "https://ds.rokomari.store/rokomari110/ProductNew20190903/260X372/Baisher_Bonna-Tasrif_Khan-2c6fc-274727.jpg",
+      "price": "300",
+      "rating": "4",
+      "featured": true,
+      "id": 5
+    },
+    {
+      "name": "Sadhenetar Full স্বাধীনতার ফুল (হার্ডকভার)",
+      "author": "কামরুল ইসলাম বাচ্চু",
+      "thumbnail": "https://ds.rokomari.store/rokomari110/ProductNew20190903/260X372/Shadhinotar_Ful-Kamrul_Islam_Bacchu-20514-286583.jpg",
+      "price": "188",
+      "rating": "5",
+      "featured": false,
+      "id": 6
+    },
+    {
+      "name": "And Hemu এবং হিমু (হার্ডকভার)",
+      "author": "হুমায়ূন আহমেদ",
+      "thumbnail": "https://ds.rokomari.store/rokomari110/ProductNew20190903/260X372/89f032f8a_1323.jpg",
+      "price": "120",
+      "rating": "3",
+      "featured": true,
+      "id": 7
+    }
+  ]
+}

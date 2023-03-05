@@ -15,3 +15,4 @@ module.exports = (req, res, next) => {
   const singleVideo = videos[Math.floor(Math.random() * videos.length)];
   res.json(singleVideo);
 };
+

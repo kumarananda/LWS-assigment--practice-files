@@ -5,7 +5,9 @@ const fetch = require("node-fetch");
 
 
 
-const fetchRealtedVideos = createAsyncThunk("video/fetchRelatedVideo", async () => {
+const fetchRealtedVideos = createAsyncThunk("video/fetchRealtedVideos", async () => {
+
+    // console.log(store.getState().video.video.tags);
 
     const response = await fetch(
         `http://localhost:9000/videos?tags_like=javascript&tags_like=react`
@@ -26,7 +28,7 @@ const initialState = {
 };
 
 const relatedVideoSlice = createSlice({
-    name: "relatedVideo",
+    name: "relatedVideos",
     initialState,
     extraReducers : (builder) => {
         builder.addCase(fetchRealtedVideos.pending, (state, action) => {
@@ -41,7 +43,7 @@ const relatedVideoSlice = createSlice({
         })
         builder.addCase(fetchRealtedVideos.rejected, (state, action) => {
             state.loading = false;
-            state.video = [];
+            state.relatedVidios = [];
             state.error = action.error.message;
         })
 
