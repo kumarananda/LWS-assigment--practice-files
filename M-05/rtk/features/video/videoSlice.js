@@ -10,7 +10,8 @@ const fetchVideo = createAsyncThunk("video/fetchVideo", async (data, { dispatch,
         );
 
     const videodata = await response.json();
-        dispatch(fetchRealtedVideos(videodata))
+    
+    dispatch(fetchRealtedVideos(videodata))
 
     return videodata 
 
