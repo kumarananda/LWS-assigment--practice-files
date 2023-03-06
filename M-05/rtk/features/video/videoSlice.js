@@ -6,7 +6,7 @@ const {fetchRealtedVideos} = require('../relatedVideo/relatedViceoSlice')
 const fetchVideo = createAsyncThunk("video/fetchVideo", async (data, { dispatch,  }) => {
 
     const response = await fetch(
-        "http://localhost:9000/videos"
+        "http://localhost:90001/videos"
         );
 
     const videodata = await response.json();

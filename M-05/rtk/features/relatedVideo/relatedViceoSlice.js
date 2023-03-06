@@ -46,16 +46,16 @@ const fetchRealtedVideos = createAsyncThunk("video/fetchRealtedVideos", async (v
 
 
     }
-    // //  if tags array length is empty 
-    // else{
-    //     const response = await fetch(
-    //         `http://localhost:9000/videos?tags_like=`
-    //         );
+    // //  if tags array length/tags is empty 
+    else{
+        const response = await fetch(
+            `http://localhost:9000/videos?tags_like=`
+            );
     
-    //     const videodata = await response.json();
-    
-    //     return sortByviews(videodata, "descending")
-    // }
+        const videodata = await response.json();
+        // // if require aviod main product in realted videos data
+        return sortByviews(videodata, "descending").filter(v => v.id !== video.id, );
+    }
 
 });
 
