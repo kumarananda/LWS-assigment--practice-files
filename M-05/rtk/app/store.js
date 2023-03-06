@@ -13,7 +13,7 @@ const store = configureStore({
         relatedVideos : relatedVideoReducer,
     },
     middleware : (getDefaultMiddlewares) => 
-         getDefaultMiddlewares()
+         getDefaultMiddlewares().concat(logger)
     
 })
 

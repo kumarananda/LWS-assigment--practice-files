@@ -9,13 +9,16 @@ const { fetchVideo } = require("./features/video/videoSlice");
 // subscribe to state changes
 store.subscribe(() => {
     // console.log(store.getState());
-    console.log(store.getState().video.video);
-    console.log(store.getState().relatedVideos.videos);
+    // console.log(store.getState().video.video);
 
-    
+    // if(store.getState().relatedVideos.videos.length){
+    //     console.log("--devider--")
+    //     console.log(store.getState().relatedVideos.videos);
+    // }
     
 });
 
 // disptach actions
 store.dispatch(fetchVideo());
+
 

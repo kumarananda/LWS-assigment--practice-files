@@ -1,12 +1,9 @@
-const { createSlice, createAsyncThunk, createListenerMiddleware } = require("@reduxjs/toolkit");
+const { createSlice, createAsyncThunk } = require("@reduxjs/toolkit");
 const fetch = require("node-fetch");
-const store = require("../../app/store");
 const {fetchRealtedVideos} = require('../relatedVideo/relatedViceoSlice')
 
-
-
-
-const fetchVideo = createAsyncThunk("video/fetchVideo", async (data, { dispatch }) => {
+// create thunk 
+const fetchVideo = createAsyncThunk("video/fetchVideo", async (data, { dispatch,  }) => {
 
     const response = await fetch(
         "http://localhost:9000/videos"
@@ -14,20 +11,21 @@ const fetchVideo = createAsyncThunk("video/fetchVideo", async (data, { dispatch 
 
     const videodata = await response.json();
         dispatch(fetchRealtedVideos(videodata))
+
     return videodata 
 
 });
 
-
-
 // initial state
 const initialState = {
     loading: false,
-    video: {},
     error: "",
+    video: {},
 
 };
 
+
+// create slice
 const videoSlice = createSlice({
     name: "video",
     initialState,
@@ -52,6 +50,7 @@ const videoSlice = createSlice({
 });
 
 
+// exports
 module.exports = videoSlice.reducer
 module.exports.fetchVideo =  fetchVideo
 

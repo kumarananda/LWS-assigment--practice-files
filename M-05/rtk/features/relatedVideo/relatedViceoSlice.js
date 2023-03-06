@@ -1,19 +1,27 @@
 const { createSlice, createAsyncThunk } = require("@reduxjs/toolkit");
 const fetch = require("node-fetch");
 
+// sorting by views / descending 
+const sortByviews = (objects, order ="descending") => {
 
-const shortByviewD = (objects) => {
+    if(order === "ascending"){
+        return  objects.sort((a,b) =>  Number( a.views.replace("k", "")) - Number( b.views.replace("k", "")) )
+    }else{
+        return  objects.sort((a,b) =>  Number( b.views.replace("k", "")) - Number( a.views.replace("k", "")) )
 
-   return  objects.sort((a,b) =>  Number( b.views.replace("k", "")) - Number( a.views.replace("k", "")) )
+    }
 }
 
+// creat async thunk for related videos
+const fetchRealtedVideos = createAsyncThunk("video/fetchRealtedVideos", async (video) => {
 
-const fetchRealtedVideos = createAsyncThunk("video/fetchRealtedVideos", async (video, {getState}) => {
 
     if(!video.tags.length <= 0){
-        let lastIndex = video.tags[video.tags.length-1]
+        
 
         let quaryString = video.tags.reduce((i, tag)=> {
+            let lastIndex = video.tags[video.tags.length-1]
+            
             if(lastIndex=== tag){
                 if(video.tags[video.tags.lastIndexOf(lastIndex)] === tag ){
                     return i + "tags_like="+tag
@@ -31,21 +39,23 @@ const fetchRealtedVideos = createAsyncThunk("video/fetchRealtedVideos", async (v
     
         const videodata = await response.json();
     
-        return shortByviewD(videodata)
+        // return sortByviews(videodata, "descending")
+ 
+        // // if require aviod main product in realted videos data
+        return sortByviews(videodata).filter(v => v.id !== video.id, );
 
 
-    }else{
-        const response = await fetch(
-            `http://localhost:9000/videos?tags_like=`
-            );
-    
-        const videodata = await response.json();
-    
-        return shortByviewD(videodata)
     }
-
-
-
+    // //  if tags array length is empty 
+    // else{
+    //     const response = await fetch(
+    //         `http://localhost:9000/videos?tags_like=`
+    //         );
+    
+    //     const videodata = await response.json();
+    
+    //     return sortByviews(videodata, "descending")
+    // }
 
 });
 
@@ -57,6 +67,8 @@ const initialState = {
     videos : []
 };
 
+
+// create slice
 const relatedVideoSlice = createSlice({
     name: "relatedVideos",
     initialState,
@@ -81,6 +93,6 @@ const relatedVideoSlice = createSlice({
 });
 
 
+// exports
 module.exports = relatedVideoSlice.reducer
-
 module.exports.fetchRealtedVideos =  fetchRealtedVideos
