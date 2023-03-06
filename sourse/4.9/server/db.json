@@ -35,6 +35,15 @@
       "rating": "2",
       "featured": true,
       "id": 5
+    },
+    {
+      "name": "Cámara digital compacta HX400V",
+      "author": "Herron",
+      "thumbnail": "https://m.media-amazon.com/images/P/B07DZ86WP7.01._SCLZZZZZZZ_SX500_.jpg",
+      "price": "15000",
+      "rating": "4",
+      "featured": true,
+      "id": 6
     }
   ]
 }
