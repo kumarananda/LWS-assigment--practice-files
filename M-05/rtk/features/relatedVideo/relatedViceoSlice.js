@@ -1,6 +1,7 @@
 const { createSlice, createAsyncThunk } = require("@reduxjs/toolkit");
 const fetch = require("node-fetch");
 
+
 // sorting by views / descending 
 const sortByviews = (objects, order ="descending") => {
 
@@ -15,47 +16,24 @@ const sortByviews = (objects, order ="descending") => {
 // creat async thunk for related videos
 const fetchRealtedVideos = createAsyncThunk("video/fetchRealtedVideos", async (video) => {
 
+    let quaryString = video.tags.length > 0 ?  
+        video.tags.map(tag => "tags_like="+tag ).join("&")+ "&id_ne="+video.id : 
+        "id_ne="+video.id
 
-    if(!video.tags.length <= 0){
-        
+    const response = await fetch(
+        // server sorting
+        // `http://localhost:9000/videos?${quaryString}&_sort=views&_order=desc`
+        // Js Sorting
+        `http://localhost:9000/videos?${quaryString}`
+        );
 
-        let quaryString = video.tags.reduce((i, tag)=> {
-            let lastIndex = video.tags[video.tags.length-1]
-            
-            if(lastIndex=== tag){
-                if(video.tags[video.tags.lastIndexOf(lastIndex)] === tag ){
-                    return i + "tags_like="+tag
-                }else{
-                    return i + "tags_like="+tag+"&"
-                } 
-            }else{
-                return i + "tags_like="+tag+"&"
-            }
-        },"")
+    const videodata = await response.json();
 
-        const response = await fetch(
-            `http://localhost:9000/videos?${quaryString}`
-            );
+    // server sorting
+    // return videodata
     
-        const videodata = await response.json();
-    
-        // return sortByviews(videodata, "descending")
- 
-        // // if require aviod main product in realted videos data
-        return sortByviews(videodata).filter(v => v.id !== video.id, );
-
-
-    }
-    // //  if tags array length is empty 
-    // else{
-    //     const response = await fetch(
-    //         `http://localhost:9000/videos?tags_like=`
-    //         );
-    
-    //     const videodata = await response.json();
-    
-    //     return sortByviews(videodata, "descending")
-    // }
+    // Js Sorting
+    return sortByviews(videodata)
 
 });
 
