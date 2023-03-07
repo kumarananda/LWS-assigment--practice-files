@@ -2,7 +2,7 @@
 
 import React from "react";
 
-function AsideHome() {
+function AsideHomeFilter() {
   return (
     <>
       <aside>
@@ -35,4 +35,4 @@ function AsideHome() {
   );
 }
 
-export default AsideHome;
+export default AsideHomeFilter;
