@@ -3,7 +3,7 @@
 import React from "react";
 import AsideHomeFilter from "../../components/AsideHomeFilter/AsideHomeFilter.jsx";
 import cardImage from "../../assets/images/git.webp";
-import AllPostContainer from "../../components/PostContainer/AllPostContainer.jsx";
+import AllPostContainer from "../../components/AllPostContainer/AllPostContainer.jsx";
 
 const Home = () => {
   return (
