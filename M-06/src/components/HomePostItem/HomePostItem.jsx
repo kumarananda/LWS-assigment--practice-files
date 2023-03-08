@@ -3,14 +3,10 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import cardImage from "../../assets/images/git.webp";
+import Tags from "../ui/Tags";
 
 function HomePostItem({ post = {} }) {
   const { id, image, title, tags, likes, isSaved, createdAt } = post;
-
-  let tagContent;
-  if (tags.length > 0) {
-    tagContent = tags.map(tag => <span>{"#" + tag}</span>);
-  }
 
   return (
     <>
@@ -30,8 +26,7 @@ function HomePostItem({ post = {} }) {
             {title}
           </Link>
           <div className="lws-tags">
-            {tagContent}
-            {/* <span>#python,</span> <span>#tech,</span> <span>#git</span> */}
+            <Tags tags={tags} />
           </div>
           {/* <!-- Show this element if post is saved --> */}
           {isSaved && (
