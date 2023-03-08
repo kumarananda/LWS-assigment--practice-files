@@ -12,6 +12,13 @@ function PostDetiles() {
   const { sPost } = useSelector(state => state.sPost);
   const { id, image, title, tags, likes, isSaved, createdAt, description } = sPost;
 
+  const handleAddLike = () => {
+    dispatch(fatchSPost({ id: postId, type: "addLike" }));
+  };
+  const handleSaved = () => {
+    dispatch(fatchSPost({ id: postId, type: "saved" }));
+  };
+
   useEffect(() => {
     dispatch(fatchSPost({ id: postId }));
   }, [dispatch, postId]);
@@ -29,12 +36,12 @@ function PostDetiles() {
           </div>
           <div className="btn-group">
             {/* <!-- handle like on button click --> */}
-            <button className="like-btn" id="lws-singleLinks">
+            <button onClick={handleAddLike} className="like-btn" id="lws-singleLinks">
               <i className="fa-regular fa-thumbs-up"></i> {likes}
             </button>
             {/* <!-- handle save on button click --> */}
             {/* <!-- use ".active" class and "Saved" text  if a post is saved, other wise "Save" --> */}
-            <button className={`${isSaved ? "active" : ""} save-btn`} id="lws-singleSavedBtn">
+            <button onClick={handleSaved} className={`${isSaved ? "active" : ""} save-btn`} id="lws-singleSavedBtn">
               <i className="fa-regular fa-bookmark"></i> &nbsp;{isSaved ? "Saved" : "Save"}
             </button>
           </div>

@@ -1,12 +1,15 @@
 import { configureStore } from '@reduxjs/toolkit';
-import postsReducer from '../features/posts/postsSlice';
-import sPostReducer from '../features/sPost/sPostSlice.js';
-import rPostsReducer from '../features/rPosts/rPostsSlice.js';
+import allPostsReducer from '../features/posts/postsSlice';
+import singlePostReducer from '../features/sPost/sPostSlice.js';
+import relatedPostsReducer from '../features/rPosts/rPostsSlice.js';
+import filterReducer from '../features/filters/filtersSlice';
 
 export const store = configureStore({
   reducer: {
-    posts: postsReducer,
-    sPost : sPostReducer,
-    rPosts : rPostsReducer,
+    posts: allPostsReducer,
+    sPost : singlePostReducer,
+    rPosts : relatedPostsReducer,
+    filter : filterReducer,
   },
+  devTools: process.env.NODE_ENV !== 'production'
 });

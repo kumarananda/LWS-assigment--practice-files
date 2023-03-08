@@ -1,7 +1,7 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit"
 import { rPostsApi } from "../rPosts/rPostsApi"
 import { fatchRPosts } from "../rPosts/rPostsSlice"
-import { sPostApi } from "./sPostApi"
+import { sPostApi, addLikeReq, toggoleSavedReq } from "./sPostApi"
 
 
 // initial state
@@ -13,12 +13,23 @@ const initialState = {
 }
 
 // fatch single post
-export const fatchSPost = createAsyncThunk("sPost/fatchSPost", async ({id},{dispatch}) => {
+export const fatchSPost = createAsyncThunk("sPost/fatchSPost", async ({id, type=""},{dispatch, getState}) => {
 
-    const sPost = await sPostApi(id)
-    dispatch(fatchRPosts(sPost))
-    
-    return sPost
+    if(type ===""){
+        const sPost = await sPostApi(id)
+        dispatch(fatchRPosts(sPost))
+        
+        return sPost
+    }else if(type === "addLike"){
+        let prevLike = getState().sPost.sPost.likes
+        const newPost = await addLikeReq(id, prevLike);
+        return newPost
+    }else if(type === "saved"){
+        let previsSaved = getState().sPost.sPost.isSaved;
+        const newPost = await toggoleSavedReq(id, previsSaved)
+        return newPost
+    }
+
 })
 
 const sPostSlice = createSlice({
@@ -30,6 +41,7 @@ const sPostSlice = createSlice({
                 state.isLoading = true;
                 state.error = '';
                 state.isError = false;
+                state.sPost = {}
             })
             .addCase(fatchSPost.fulfilled, (state, action) => {
                 state.isLoading = false;

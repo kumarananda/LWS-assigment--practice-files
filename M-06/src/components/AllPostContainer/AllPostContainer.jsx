@@ -10,6 +10,29 @@ import Loading from "../ui/Loading";
 function AllPostContainer() {
   const dispatch = useDispatch();
   const { posts, isLoading, isError, error } = useSelector(state => state.posts);
+  const { filterBy, sortBy } = useSelector(state => state.filter);
+
+  const handlefilter = data => {
+    if (filterBy === "all") {
+      return true;
+    } else if (filterBy === "saved") {
+      return data.isSaved;
+    }
+  };
+
+  const timestamp = date => {
+    return new Date(date).getTime();
+  };
+
+  const handleSort = (item1, item2) => {
+    if (sortBy === "") {
+      return true;
+    } else if (sortBy === "newest") {
+      return timestamp(item2.createdAt) - timestamp(item1.createdAt);
+    } else if (sortBy === "most_liked") {
+      return item2.likes - item1.likes;
+    }
+  };
 
   let content;
 
@@ -23,7 +46,10 @@ function AllPostContainer() {
     content = <div>No post found</div>;
   }
   if (!isLoading && !isError && posts.length > 0) {
-    content = posts.map(post => <HomePostItem post={post} key={post.id} />);
+    content = posts
+      .filter(handlefilter)
+      .sort(handleSort)
+      .map(post => <HomePostItem post={post} key={post.id} />);
   }
 
   useEffect(() => {

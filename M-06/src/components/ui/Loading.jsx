@@ -3,7 +3,7 @@
 import React from "react";
 
 function Loading() {
-  return <div>Loading...</div>;
+  return <div style={{ width: "100%" }}>Loading...</div>;
 }
 
 export default Loading;
