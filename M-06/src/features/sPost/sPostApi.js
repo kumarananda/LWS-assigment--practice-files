@@ -17,7 +17,7 @@ export const patchsPostApi = async (update={}, prevPost) => {
 
     // console.log(prevPost.likes);
 
-    if(updateKey == "likes"){
+    if(updateKey === "likes"){
         // add/ likes
         const response = await axios.patch(`/blogs/${prevPost.id}`, {
             likes: prevPost.likes +1
@@ -25,7 +25,7 @@ export const patchsPostApi = async (update={}, prevPost) => {
          // console.log(response.data);
         return response.data
     }
-    if(updateKey == "isSaved"){
+    if(updateKey === "isSaved"){
         // add/ likes
         const response = await axios.patch(`/blogs/${prevPost.id}`, {
             isSaved: !prevPost.isSaved

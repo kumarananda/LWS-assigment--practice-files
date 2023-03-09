@@ -4,7 +4,6 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fatchPosts } from "../../features/posts/postsSlice";
 import HomePostItem from "../HomePostItem/HomePostItem";
-
 import Loading from "../ui/Loading";
 import NetError from "../ui/NetError";
 import NotFound from "../ui/NotFound";

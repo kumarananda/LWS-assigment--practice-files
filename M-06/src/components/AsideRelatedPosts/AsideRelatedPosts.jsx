@@ -19,16 +19,13 @@ function AsideRelatedPosts() {
 
   if (isLoading) {
     content = <Loading />;
-  }
-  if (!isLoading && isError) {
+  } else if (!isLoading && isError) {
     content = <NetError>{error}</NetError>;
-  }
-  if (!isLoading && !isError && rPosts.length === 0) {
-    setTimeout(() => {
-      content = <NotFound>No post found</NotFound>;
-    }, 500);
-  }
-  if (!isLoading && !isError && rPosts.length > 0) {
+  } else if (!isLoading && !isError && rPosts.length === 0) {
+    // setTimeout(() => {
+    content = <NotFound>No post found</NotFound>;
+    // }, 500);
+  } else if (!isLoading && !isError && rPosts.length > 0) {
     content = rPosts.map(rPost => {
       if (rPost.id !== sPost.id) {
         return <RelatedPosts rPost={rPost} key={rPost.id} />;

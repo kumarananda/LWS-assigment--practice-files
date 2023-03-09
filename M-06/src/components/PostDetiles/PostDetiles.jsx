@@ -13,7 +13,7 @@ function PostDetiles() {
   const { postId } = useParams();
   const dispatch = useDispatch();
   const { sPost = {}, isLoading, isError, error } = useSelector(state => state.sPost);
-  const { id, image, title, tags, likes, isSaved, createdAt, description } = sPost;
+  const { image, title, tags, likes, isSaved, createdAt, description } = sPost;
 
   const handleAddLike = () => {
     dispatch(patchSPost({ updateKey: "likes" }));

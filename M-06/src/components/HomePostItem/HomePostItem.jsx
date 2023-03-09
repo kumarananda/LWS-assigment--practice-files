@@ -2,7 +2,6 @@
 
 import React from "react";
 import { Link } from "react-router-dom";
-import cardImage from "../../assets/images/git.webp";
 import Tags from "../ui/Tags";
 
 function HomePostItem({ post = {} }) {

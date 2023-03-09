@@ -1,14 +1,11 @@
 /** @format */
 
-import React, { useEffect } from "react";
-import { useDispatch } from "react-redux";
+import React from "react";
 import { Link } from "react-router-dom";
-import cardImage from "../../assets/images/git.webp";
-import { fatchSPost } from "../../features/sPost/sPostSlice";
 import Tags from "../ui/Tags";
 
 function RelatedPosts({ rPost = {} }) {
-  const { id, image, title, tags, likes, isSaved, createdAt, description } = rPost;
+  const { id, image, title, tags, createdAt } = rPost;
 
   return (
     <>
