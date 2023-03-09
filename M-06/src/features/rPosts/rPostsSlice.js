@@ -1,5 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit"
-import { rPostsApi } from "./rPostsApi"
+import { rPostsApi } from "./rPostsApi";
+
 
 
 // initial state

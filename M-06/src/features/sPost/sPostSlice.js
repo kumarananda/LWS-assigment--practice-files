@@ -1,7 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit"
-import { rPostsApi } from "../rPosts/rPostsApi"
 import { fatchRPosts } from "../rPosts/rPostsSlice"
-import { sPostApi, addLikeReq, toggoleSavedReq } from "./sPostApi"
+import { getsPostApi, patchsPostApi } from "./sPostApi"
 
 
 // initial state
@@ -13,23 +12,23 @@ const initialState = {
 }
 
 // fatch single post
-export const fatchSPost = createAsyncThunk("sPost/fatchSPost", async ({id, type=""},{dispatch, getState}) => {
-
-    if(type ===""){
-        const sPost = await sPostApi(id)
+export const fatchSPost = createAsyncThunk("sPost/fatchSPost", 
+    async ({id},{dispatch}) => {
+        const sPost = await getsPostApi(id)
         dispatch(fatchRPosts(sPost))
-        
         return sPost
-    }else if(type === "addLike"){
-        let prevLike = getState().sPost.sPost.likes
-        const newPost = await addLikeReq(id, prevLike);
-        return newPost
-    }else if(type === "saved"){
-        let previsSaved = getState().sPost.sPost.isSaved;
-        const newPost = await toggoleSavedReq(id, previsSaved)
-        return newPost
-    }
-
+})
+// patch req 
+export const patchSPost = createAsyncThunk("sPost/patchSPost", 
+    async (update, {getState, dispatch}) => {
+        let prevPost = getState().sPost.sPost
+        
+        const new_sPost = await patchsPostApi(update, prevPost)
+        // if(update.updateKey=== "tags"){
+        //     dispatch(fatchRPosts(new_sPost))
+        // }
+        
+        return new_sPost
 })
 
 const sPostSlice = createSlice({
@@ -52,7 +51,20 @@ const sPostSlice = createSlice({
                 state.isLoading = false;
                 state.error = action.error.message;
                 state.isError = true;
-                state.sPost = {};
+                state.sPost = {}
+    
+            })
+            .addCase(patchSPost.fulfilled, (state, action) => {
+                state.isLoading = false;
+                state.sPost = action.payload;
+                state.isError =false
+            })
+            .addCase(patchSPost.rejected, (state, action) => {
+                state.isLoading = false;
+                state.error = action.error.message;
+                state.isError = true;
+                state.sPost = {}
+    
             })
     }
 })

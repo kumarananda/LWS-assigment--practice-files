@@ -3,23 +3,39 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import RelatedPosts from "../RelatedPosts/RelatedPosts.jsx";
+import Loading from "../ui/Loading.jsx";
 
 function AsideRelatedPosts() {
-  const { rPosts } = useSelector(state => state.rPosts);
+  const { rPosts, isLoading, isError, error } = useSelector(state => state.rPosts);
   const { sPost } = useSelector(state => state.sPost);
 
   // data fetch filter by main post id  is used.
   // but if not use server filter by main post id
   //    then filter will be applied with Array.map return with !== ondition
-  const content =
-    rPosts.length > 0 &&
-    rPosts.map(rPost => {
+
+  let content;
+
+  if (isLoading) {
+    content = <Loading />;
+  }
+  if (!isLoading && isError) {
+    content = <div>{error}</div>;
+  }
+  if (!isLoading && !isError && rPosts.length === 0) {
+    setTimeout(() => {
+      content = <div>No post found</div>;
+    }, 500);
+  }
+  if (!isLoading && !isError && rPosts.length > 0) {
+    content = rPosts.map(rPost => {
       if (rPost.id !== sPost.id) {
         return <RelatedPosts rPost={rPost} key={rPost.id} />;
       } else {
         return false;
       }
     });
+  }
+  // Object.keys(myObj).length
 
   return (
     <>
