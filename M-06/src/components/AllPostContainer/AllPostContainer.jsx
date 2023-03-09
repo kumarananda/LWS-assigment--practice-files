@@ -6,6 +6,8 @@ import { fatchPosts } from "../../features/posts/postsSlice";
 import HomePostItem from "../HomePostItem/HomePostItem";
 
 import Loading from "../ui/Loading";
+import NetError from "../ui/NetError";
+import NotFound from "../ui/NotFound";
 
 function AllPostContainer() {
   const dispatch = useDispatch();
@@ -40,10 +42,10 @@ function AllPostContainer() {
     content = <Loading />;
   }
   if (!isLoading && isError) {
-    content = <div>{error}</div>;
+    content = <NetError>{error}</NetError>;
   }
   if (!isLoading && !isError && posts.length === 0) {
-    content = <div>No post found</div>;
+    content = <NotFound>No post found</NotFound>;
   }
   if (!isLoading && !isError && posts.length > 0) {
     content = posts

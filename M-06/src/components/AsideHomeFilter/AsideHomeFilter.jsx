@@ -21,16 +21,16 @@ function AsideHomeFilter() {
         <div className="sidebar-items">
           <div className="sidebar-content">
             <h4>Sort</h4>
-            <select onChange={handleSortUpdate} name="sort" id="lws-sort" className="w-full max-w-[150px] border-2 rounded-md text-gray-500">
-              <option selected={sortBy === ""} value="">
-                Default
-              </option>
-              <option selected={sortBy === "newest"} value="newest">
-                Newest
-              </option>
-              <option selected={sortBy === "msot_liked"} value="most_liked">
-                Most Liked
-              </option>
+            <select
+              defaultValue={sortBy}
+              onChange={handleSortUpdate}
+              name="sort"
+              id="lws-sort"
+              className="w-full max-w-[150px] border-2 rounded-md text-gray-500"
+            >
+              <option value="">Default</option>
+              <option value="newest">Newest</option>
+              <option value="most_liked">Most Liked</option>
             </select>
           </div>
           <div className="sidebar-content">

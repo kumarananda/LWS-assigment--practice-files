@@ -5,6 +5,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { fatchSPost, patchSPost } from "../../features/sPost/sPostSlice";
 import Loading from "../ui/Loading";
+import NetError from "../ui/NetError";
+import NotFound from "../ui/NotFound";
 import Tags from "../ui/Tags";
 
 function PostDetiles() {
@@ -30,11 +32,11 @@ function PostDetiles() {
     content = <Loading />;
   }
   if (!isLoading && isError) {
-    content = <div>{error}</div>;
+    content = <NetError>{error}</NetError>;
   }
   if (!isLoading && !isError && Object.keys(sPost).length === 0) {
     setTimeout(() => {
-      content = <div>Data not found</div>;
+      content = <NotFound>Data not found</NotFound>;
     }, 500);
   }
   if (!isLoading && !isError && Object.keys(sPost).length > 0) {

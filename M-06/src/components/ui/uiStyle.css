@@ -1,0 +1,20 @@
+/** @format */
+
+.net-error {
+  width: 100%;
+  background-color: #fde2dc;
+  min-height: 50vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: red;
+}
+.not-found {
+  width: 100%;
+  background-color: #d8d8d8;
+  min-height: 50vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: black;
+}

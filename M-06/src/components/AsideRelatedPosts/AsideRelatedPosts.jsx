@@ -4,6 +4,8 @@ import React from "react";
 import { useSelector } from "react-redux";
 import RelatedPosts from "../RelatedPosts/RelatedPosts.jsx";
 import Loading from "../ui/Loading.jsx";
+import NetError from "../ui/NetError.jsx";
+import NotFound from "../ui/NotFound.jsx";
 
 function AsideRelatedPosts() {
   const { rPosts, isLoading, isError, error } = useSelector(state => state.rPosts);
@@ -19,11 +21,11 @@ function AsideRelatedPosts() {
     content = <Loading />;
   }
   if (!isLoading && isError) {
-    content = <div>{error}</div>;
+    content = <NetError>{error}</NetError>;
   }
   if (!isLoading && !isError && rPosts.length === 0) {
     setTimeout(() => {
-      content = <div>No post found</div>;
+      content = <NotFound>No post found</NotFound>;
     }, 500);
   }
   if (!isLoading && !isError && rPosts.length > 0) {
