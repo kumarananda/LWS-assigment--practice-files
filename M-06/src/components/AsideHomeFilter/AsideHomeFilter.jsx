@@ -9,7 +9,9 @@ function AsideHomeFilter() {
   const { filterBy, sortBy } = useSelector(state => state.filter);
 
   const handleFilterUpdate = e => {
-    dispatch(filterUpdate(e.target.value));
+    if (e.target.value !== filterBy) {
+      dispatch(filterUpdate(e.target.value));
+    }
   };
   const handleSortUpdate = e => {
     dispatch(sortUpdate(e.target.value));
@@ -36,30 +38,34 @@ function AsideHomeFilter() {
           <div className="sidebar-content">
             <h4>Filter</h4>
             <div className="radio-group">
-              {/* <!-- handle filter on button click --> */}
+              {/*  handle filter on button click */}
               <div>
-                <input
-                  onChange={handleFilterUpdate}
-                  value="all"
-                  type="radio"
-                  name="filter"
-                  id="lws-all"
-                  checked={filterBy === "all"}
-                  className="radio"
-                />
-                <label htmlFor="lws-all">All</label>
+                <label htmlFor="lws-all">
+                  <input
+                    onChange={handleFilterUpdate}
+                    value="all"
+                    type="radio"
+                    name="filter"
+                    id="lws-all"
+                    defaultChecked={filterBy === "all"}
+                    className="radio"
+                  />
+                  All
+                </label>
               </div>
               <div>
-                <input
-                  onChange={handleFilterUpdate}
-                  value="saved"
-                  type="radio"
-                  name="filter"
-                  id="lws-saved"
-                  checked={filterBy === "saved"}
-                  className="radio"
-                />
-                <label htmlFor="lws-saved">Saved</label>
+                <label htmlFor="lws-saved">
+                  <input
+                    onChange={handleFilterUpdate}
+                    value="saved"
+                    type="radio"
+                    name="filter"
+                    id="lws-saved"
+                    defaultChecked={filterBy === "saved"}
+                    className="radio"
+                  />
+                  Saved
+                </label>
               </div>
             </div>
           </div>

@@ -21,10 +21,12 @@ function AllPostContainer() {
     }
   };
 
+  // convart time string to timestamp
   const timestamp = date => {
     return new Date(date).getTime();
   };
 
+  // handle sorting data by newest, most_liked & not sorted
   const handleSort = (item1, item2) => {
     if (sortBy === "") {
       return true;
@@ -34,6 +36,10 @@ function AllPostContainer() {
       return item2.likes - item1.likes;
     }
   };
+
+  const saveCount = posts?.filter(post => post.isSaved).length;
+
+  console.log(saveCount);
 
   let content;
 
@@ -47,10 +53,14 @@ function AllPostContainer() {
     content = <NotFound>No post found</NotFound>;
   }
   if (!isLoading && !isError && posts.length > 0) {
-    content = posts
-      .filter(handlefilter)
-      .sort(handleSort)
-      .map(post => <HomePostItem post={post} key={post.id} />);
+    if (saveCount === 0 && filterBy === "saved") {
+      content = <NotFound>No save post found</NotFound>;
+    } else {
+      content = posts
+        .filter(handlefilter)
+        .sort(handleSort)
+        .map(post => <HomePostItem post={post} key={post.id} />);
+    }
   }
 
   useEffect(() => {
@@ -58,7 +68,7 @@ function AllPostContainer() {
   }, [dispatch]);
   return (
     <>
-      {/* <!-- posts container  --> */}
+      {/*  posts container  */}
       <main className="post-container" id="lws-postContainer">
         {content}
       </main>

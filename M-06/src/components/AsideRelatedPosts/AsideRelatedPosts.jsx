@@ -15,23 +15,19 @@ function AsideRelatedPosts() {
   // but if not use server filter by main post id
   //    then filter will be applied with Array.map return with !== ondition
 
+  const idFilteredRPosts = rPosts.filter(rPost => rPost.id !== sPost.id);
+
   let content;
 
   if (isLoading) {
     content = <Loading />;
   } else if (!isLoading && isError) {
     content = <NetError>{error}</NetError>;
-  } else if (!isLoading && !isError && rPosts.length === 0) {
-    // setTimeout(() => {
-    content = <NotFound>No post found</NotFound>;
-    // }, 500);
-  } else if (!isLoading && !isError && rPosts.length > 0) {
-    content = rPosts.map(rPost => {
-      if (rPost.id !== sPost.id) {
-        return <RelatedPosts rPost={rPost} key={rPost.id} />;
-      } else {
-        return false;
-      }
+  } else if (!isLoading && !isError && idFilteredRPosts.length === 0) {
+    content = <NotFound>No related post found</NotFound>;
+  } else if (!isLoading && !isError && idFilteredRPosts.length > 0) {
+    content = idFilteredRPosts.map(rPost => {
+      return <RelatedPosts rPost={rPost} key={rPost.id} />;
     });
   }
   // Object.keys(myObj).length

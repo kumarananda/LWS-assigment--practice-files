@@ -39,10 +39,5 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  },
-  "onlyNote": {
-    "scripts": {
-      "build": "GENERATE_SOURCEMAP=false react-scripts build"
-    }
   }
 }
