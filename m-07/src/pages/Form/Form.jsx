@@ -1,10 +1,31 @@
 /** @format */
 
-import React from "react";
+import React, { useState } from "react";
+import { useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
+import { addJob } from "../../features/jobs/jobsSlice";
 
-function Form({}) {
+function Form() {
+  const dispatch = useDispatch();
   const { edit, id } = useParams();
+
+  const [title, setTitle] = useState("");
+  const [type, setType] = useState("");
+  const [salary, setSalary] = useState("");
+  const [deadline, setDeadline] = useState("");
+  const reset = () => {
+    setTitle("");
+    setType("");
+    setSalary("");
+    setDeadline("");
+  };
+
+  const handleAddJob = e => {
+    e.preventDefault();
+    dispatch(addJob({ title, type, salary, deadline }));
+    reset();
+    e.target.reset();
+  };
 
   return (
     <>
@@ -13,12 +34,12 @@ function Form({}) {
           <h1 className="mb-10 text-center lws-section-title">{edit === "edit" ? "Edit" : "Add New"} Job</h1>
 
           <div className="max-w-3xl mx-auto">
-            <form className="space-y-6">
+            <form onSubmit={handleAddJob} className="space-y-6">
               <div className="fieldContainer">
                 <label htmlFor="lws-JobTitle" className="text-sm font-medium text-slate-300">
                   Job Title
                 </label>
-                <select defaultValue={""} id="lws-JobTitle" name="lwsJobTitle" required>
+                <select onChange={e => setTitle(e.target.value)} defaultValue={title} id="lws-JobTitle" name="lwsJobTitle" required>
                   <option value="" hidden>
                     Select Job
                   </option>
@@ -41,7 +62,7 @@ function Form({}) {
 
               <div className="fieldContainer">
                 <label htmlFor="lws-JobType">Job Type</label>
-                <select defaultValue={""} id="lws-JobType" name="lwsJobType" required>
+                <select onChange={e => setType(e.target.value)} defaultValue={type} id="lws-JobType" name="lwsJobType" required>
                   <option value="" hidden>
                     Select Job Type
                   </option>
@@ -56,6 +77,8 @@ function Form({}) {
                 <div className="flex border rounded-md shadow-sm border-slate-600">
                   <span className="input-tag">BDT</span>
                   <input
+                    onChange={e => setSalary(e.target.value)}
+                    value={salary}
                     type="number"
                     name="lwsJobSalary"
                     id="lws-JobSalary"
@@ -68,7 +91,14 @@ function Form({}) {
 
               <div className="fieldContainer">
                 <label htmlFor="lws-JobDeadline">Deadline</label>
-                <input type="date" name="lwsJobDeadline" id="lws-JobDeadline" required />
+                <input
+                  defaultValue={deadline}
+                  onChange={e => setDeadline(e.target.value)}
+                  type="date"
+                  name="lwsJobDeadline"
+                  id="lws-JobDeadline"
+                  required
+                />
               </div>
 
               <div className="text-right">
