@@ -40,32 +40,28 @@ function AsideHomeFilter() {
             <div className="radio-group">
               {/*  handle filter on button click */}
               <div>
-                <label htmlFor="lws-all">
-                  <input
-                    onChange={handleFilterUpdate}
-                    value="all"
-                    type="radio"
-                    name="filter"
-                    id="lws-all"
-                    defaultChecked={filterBy === "all"}
-                    className="radio"
-                  />
-                  All
-                </label>
+                <input
+                  onChange={handleFilterUpdate}
+                  value="all"
+                  type="radio"
+                  name="filter"
+                  id="lws-all"
+                  defaultChecked={filterBy === "all"}
+                  className="radio"
+                />
+                <label htmlFor="lws-all"> All</label>
               </div>
               <div>
-                <label htmlFor="lws-saved">
-                  <input
-                    onChange={handleFilterUpdate}
-                    value="saved"
-                    type="radio"
-                    name="filter"
-                    id="lws-saved"
-                    defaultChecked={filterBy === "saved"}
-                    className="radio"
-                  />
-                  Saved
-                </label>
+                <input
+                  onChange={handleFilterUpdate}
+                  value="saved"
+                  type="radio"
+                  name="filter"
+                  id="lws-saved"
+                  defaultChecked={filterBy === "saved"}
+                  className="radio"
+                />
+                <label htmlFor="lws-saved"> Saved</label>
               </div>
             </div>
           </div>

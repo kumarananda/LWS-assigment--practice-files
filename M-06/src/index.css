@@ -11,20 +11,3 @@ body {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace;
 }
-
-.radio-group div {
-  padding-top: 0rem;
-  padding-bottom: 0rem;
-  padding-left: 0rem;
-  padding-right: 0rem;
-}
-
-.radio-group div label {
-  padding-top: 0.6rem;
-  padding-bottom: 0.6rem;
-  padding-left: 0.8rem;
-  padding-right: 0.8rem;
-}
-.radio-group div label input {
-  margin-right: 0.6rem;
-}
