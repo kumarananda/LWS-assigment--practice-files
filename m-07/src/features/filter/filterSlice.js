@@ -4,7 +4,7 @@ import {  createSlice } from "@reduxjs/toolkit"
 
 // initial state
 const initialState = {
-    jobType : "all",
+    jobType : "All Available",
     titleQuary : "",
     salaryValue : ""
 }

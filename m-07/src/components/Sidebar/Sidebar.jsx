@@ -25,23 +25,23 @@ function Sidebar() {
         <nav>
           <ul className="space-y-4">
             <li>
-              <a onClick={e => handleSetFilterByJobType(e, "all")} href="/" className="main-menu menu-active" id="lws-alljobs-menu">
+              <a onClick={e => handleSetFilterByJobType(e, "All Available")} href="/" className="main-menu menu-active" id="lws-alljobs-menu">
                 <i className="fa-solid fa-briefcase"></i>
                 <span> All Available Jobs</span>
               </a>
               <ul className="space-y-6 lg:space-y-2 ">
                 <li>
-                  <a onClick={e => handleSetFilterByJobType(e, "internship")} className="sub-menu" href="/" id="lws-internship-menu">
-                    <i className="fa-solid fa-stop !text-[#FF5757]"></i> Internship
+                  <a onClick={e => handleSetFilterByJobType(e, "Internship")} className="sub-menu" href="/" id="lws-internship-menu">
+                    <i className="fa-solid fa-stop !text-[#FF5757]"></i>Internship
                   </a>
                 </li>
                 <li>
-                  <a onClick={e => handleSetFilterByJobType(e, "fulltime")} className="sub-menu" href="/" id="lws-fulltime-menu">
+                  <a onClick={e => handleSetFilterByJobType(e, "Full Time")} className="sub-menu" href="/" id="lws-fulltime-menu">
                     <i className="fa-solid fa-stop !text-[#FF8A00]"></i> Full Time
                   </a>
                 </li>
                 <li>
-                  <a onClick={e => handleSetFilterByJobType(e, "remote")} className="sub-menu" href="/" id="lws-remote-menu">
+                  <a onClick={e => handleSetFilterByJobType(e, "Remote")} className="sub-menu" href="/" id="lws-remote-menu">
                     <i className="fa-solid fa-stop !text-[#56E5C4]"></i> Remote
                   </a>
                 </li>
