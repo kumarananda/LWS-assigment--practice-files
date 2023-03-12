@@ -1,4 +1,5 @@
 const store = require("./app/store");
+const { fetchRealtedVideos } = require("./features/relatedVideo/relatedViceoSlice");
 const { videoActions } = require("./features/video/videoSlice");
 
 const { fetchVideo } = require("./features/video/videoSlice");
@@ -19,6 +20,14 @@ store.subscribe(() => {
 });
 
 // disptach actions
-store.dispatch(fetchVideo());
+// store.dispatch(fetchVideo())
+
+
+// solve by live class
+store.dispatch(fetchVideo())
+.unwrap()
+.then((video)=> {
+    store.dispatch(fetchRealtedVideos(video))
+})
 
 

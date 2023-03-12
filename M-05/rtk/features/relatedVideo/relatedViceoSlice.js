@@ -6,12 +6,17 @@ const fetch = require("node-fetch");
 const sortByviews = (objects, order ="descending") => {
 
     if(order === "ascending"){
-        return  objects.sort((a,b) =>  Number( a.views.replace("k", "")) - Number( b.views.replace("k", "")) )
+        return  objects.sort((a,b) =>  parseFloat( a.views) - parseFloat( b.views) )
+        // return  objects.sort((a,b) =>  Number( a.views.replace("k", "")) - Number( b.views.replace("k", "")) )
     }else{
-        return  objects.sort((a,b) =>  Number( b.views.replace("k", "")) - Number( a.views.replace("k", "")) )
+        return  objects.sort((a,b) =>  parseFloat( b.views) - parseFloat( a.views) )
+        // return  objects.sort((a,b) =>  Number( b.views.replace("k", "")) - Number( a.views.replace("k", "")) )
 
     }
 }
+
+// parseFloat(data) // number
+
 
 // creat async thunk for related videos
 const fetchRealtedVideos = createAsyncThunk("video/fetchRealtedVideos", async (video) => {
