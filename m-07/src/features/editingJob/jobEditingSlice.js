@@ -5,7 +5,6 @@ import { editJobApi } from "./jobEditingApi"
 // initial state
 const initialState = {
     jobEdit : {},
-    isEdit : false,
     isLoading : false,
     isError : false,
     error : '',
@@ -22,6 +21,9 @@ const edtingjobSlice = createSlice({
     name : "jobEdit",
     initialState,
     reducers : {
+        addEdit : (state, action)=> {
+            state.jobEdit = action.payload
+        },
         clearEdit : (state)=> {
             state.jobEdit = {}
         }
@@ -30,11 +32,9 @@ const edtingjobSlice = createSlice({
         builder
             
             .addCase(jobEditing.pending, (state) => {
-                state.isLoading = true;
+                // state.isLoading = true;
                 state.error = '';
                 state.isError = false;
-                state.jobEdit = {}
-                state.isEdit = false
             })
             .addCase(jobEditing.fulfilled, (state, action) => {
                 state.isLoading = false;
@@ -55,4 +55,4 @@ const edtingjobSlice = createSlice({
 
 export default edtingjobSlice.reducer;
 
-export const {clearEdit} = edtingjobSlice.actions
+export const {clearEdit, addEdit} = edtingjobSlice.actions

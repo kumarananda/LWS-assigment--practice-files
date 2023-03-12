@@ -4,7 +4,8 @@ import { Route, Routes } from 'react-router-dom';
 import Header from './components/Header/Header';
 import Sidebar from './components/Sidebar/Sidebar.jsx';
 import { fatchJobs } from './features/jobs/jobsSlice';
-import Form from './pages/Form/Form';
+import EditForm from './pages/Form/EditForm';
+import AddForm from './pages/Form/AddForm';
 import Home from './pages/Home/Home';
 
 
@@ -22,8 +23,8 @@ function App() {
       <Sidebar/>
       <Routes>
         <Route path='/' element={<Home/>}/>
-        <Route path='/form' element={<Form/>}/>
-        <Route path='/form/:edit/:id' element={<Form/>}/>
+        <Route path='/form' element={<AddForm/>}/>
+        <Route path='/form/:edit/:id' element={<EditForm/>}/>
       </Routes>
       
     </div>

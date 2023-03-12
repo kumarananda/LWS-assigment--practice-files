@@ -3,7 +3,9 @@
 import React from "react";
 import { useDispatch } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
+import { addEdit, jobEditing } from "../../features/editingJob/jobEditingSlice";
 import { editActive, removeJob } from "../../features/jobs/jobsSlice";
+import { numberWithCommas } from "../../utils/numberWithCommas";
 
 function Job({ job }) {
   const dispatch = useDispatch();
@@ -25,7 +27,8 @@ function Job({ job }) {
   };
 
   const handleeditForm = data => {
-    navigate(`/form/edit/${data}`);
+    dispatch(addEdit(data));
+    navigate(`/form/edit/${data.id}`);
   };
 
   return (
@@ -43,7 +46,7 @@ function Job({ job }) {
             </div>
             <div className="lws-salary">
               <i className="fa-solid fa-bangladeshi-taka-sign text-slate-400 text-lg mr-1.5"></i>
-              BDT {salary}
+              BDT {numberWithCommas(salary)}
             </div>
             <div className="lws-deadline">
               <i className="fa-regular fa-calendar text-slate-400 text-lg mr-1.5"></i>
@@ -53,7 +56,7 @@ function Job({ job }) {
         </div>
         <div className="mt-5 flex lg:mt-0 lg:ml-4">
           <span className="hidden sm:block">
-            <button onClick={() => handleeditForm(id)} type="button" className="lws-edit btn btn-primary">
+            <button onClick={() => handleeditForm(job)} type="button" className="lws-edit btn btn-primary">
               <i className="fa-solid fa-pen text-gray-300 -ml-1 mr-2"></i>
               Edit
             </button>

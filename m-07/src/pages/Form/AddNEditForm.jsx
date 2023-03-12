@@ -1,14 +1,15 @@
 /** @format */
 
-import React, { useEffect, useMemo, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 import { jobEditing } from "../../features/editingJob/jobEditingSlice";
 import { addJob, editJob } from "../../features/jobs/jobsSlice";
 
-function Form() {
+function AddNEditForm() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const { jobs } = useSelector(state => state.jobs);
   const { jobEdit, isEdit, isLoading, isError, error } = useSelector(state => state.jobEditing);
 
   const { edit, id } = useParams();
@@ -35,7 +36,7 @@ function Form() {
     dispatch(editJob({ id, data: { title, type, salary, deadline } }));
     reset();
     e.target.reset();
-    // navigate('/')
+    navigate("/");
   };
 
   const setEditFormData = edit => {
@@ -149,4 +150,4 @@ function Form() {
   );
 }
 
-export default Form;
+export default AddNEditForm;
