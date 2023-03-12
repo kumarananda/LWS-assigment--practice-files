@@ -7,6 +7,8 @@ import { fatchJobs } from './features/jobs/jobsSlice';
 import EditForm from './pages/Form/EditForm';
 import AddForm from './pages/Form/AddForm';
 import Home from './pages/Home/Home';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 
 function App() {
@@ -18,6 +20,20 @@ function App() {
 
   return (
     <>
+          <ToastContainer
+          position="top-center"
+          autoClose={2000}
+          hideProgressBar={false}
+          newestOnTop
+          closeOnClick
+          rtl={false}
+          limit={1}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+          theme="light"
+          style={{zIndex: 999999999999999}}
+          />
     <Header/>
     <div className="max-w-[90rem] mx-auto px-4 sm:px-6 md:px-8 ">
       <Sidebar/>

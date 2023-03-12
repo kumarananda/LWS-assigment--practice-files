@@ -1,7 +1,7 @@
 /** @format */
 
-import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import React, {  useState } from "react";
+import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { addJob } from "../../features/jobs/jobsSlice";
 
@@ -23,9 +23,20 @@ function AddForm() {
 
   const handleAddJob = e => {
     e.preventDefault();
-    dispatch(addJob({ title, type, salary, deadline }));
-    reset();
-    e.target.reset();
+    dispatch(addJob({ title, type, salary, deadline })).then(res => {
+      console.log(res.meta.arg);
+      reset();
+      e.target.reset();
+      navigate("/");
+    });
+    // .unwrap()
+    // .than(res => {
+    //   console.log(res);
+    // });
+
+    // reset();
+    // e.target.reset();
+    // navigate("/");
   };
 
   return (

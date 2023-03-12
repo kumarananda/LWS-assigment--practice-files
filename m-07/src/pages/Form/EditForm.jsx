@@ -9,8 +9,7 @@ import { addJob, editJob } from "../../features/jobs/jobsSlice";
 function EditForm() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { jobs } = useSelector(state => state.jobs);
-  const { jobEdit, isEdit, isLoading, isError, error } = useSelector(state => state.jobEditing);
+  const { jobEdit,  } = useSelector(state => state.jobEditing);
 
   const { edit, id } = useParams();
 
@@ -33,10 +32,11 @@ function EditForm() {
   };
   const handleEditJob = e => {
     e.preventDefault();
-    dispatch(editJob({ id, data: { title, type, salary, deadline } }));
-    reset();
-    e.target.reset();
-    navigate("/");
+    dispatch(editJob({ id, data: { title, type, salary, deadline } })).then(res => {
+      reset();
+      e.target.reset();
+      navigate("/");
+    });
   };
 
   const setEditFormData = edit => {

@@ -9,8 +9,7 @@ import { addJob, editJob } from "../../features/jobs/jobsSlice";
 function AddNEditForm() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { jobs } = useSelector(state => state.jobs);
-  const { jobEdit, isEdit, isLoading, isError, error } = useSelector(state => state.jobEditing);
+  const { jobEdit } = useSelector(state => state.jobEditing);
 
   const { edit, id } = useParams();
 

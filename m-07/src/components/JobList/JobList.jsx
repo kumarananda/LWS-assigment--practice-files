@@ -2,6 +2,9 @@
 
 import React from "react";
 import { useSelector } from "react-redux";
+import Loading from "../../components/ui/Loading.js";
+import NetError from "../../components/ui/NetError.js";
+import NotFound from "../../components/ui/NotFound.js";
 
 import Job from "../Job/Job";
 
@@ -33,16 +36,41 @@ function JobList() {
     }
   };
 
+  let content;
+
+  if (isLoading) {
+    content = <Loading />;
+  }
+  if (!isLoading && isError) {
+    content = <NetError>{error}</NetError>;
+  }
+  if (!isLoading && !isError && jobs.length === 0) {
+    content = <NotFound>No post found</NotFound>;
+  }
+  if (!isLoading && !isError && jobs.length > 0) {
+    const filtered = jobs.filter(filterByJobType).filter(filterByTitle).sort(sortBySalaryValue).length;
+    if (filtered === 0) {
+      content = <NotFound>No jobs to show</NotFound>;
+    } else {
+      content = jobs
+        .filter(filterByJobType)
+        .filter(filterByTitle)
+        .sort(sortBySalaryValue)
+        .map((job, i) => <Job job={job} key={i} />);
+    }
+  }
+
   return (
     <>
       <div className="jobs-list">
-        {jobs
+        {content}
+        {/* {jobs
           .filter(filterByJobType)
           .filter(filterByTitle)
           .sort(sortBySalaryValue)
           .map((job, i) => (
             <Job job={job} key={i} />
-          ))}
+          ))} */}
       </div>
     </>
   );

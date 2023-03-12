@@ -2,7 +2,7 @@
 
 import React from "react";
 import { useDispatch } from "react-redux";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { clearEdit } from "../../features/editingJob/jobEditingSlice";
 import { filterbyType } from "../../features/filter/filterSlice";
 

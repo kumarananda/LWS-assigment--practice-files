@@ -8,7 +8,6 @@ const initialState = {
     isLoading : false,
     isError : false,
     error : '',
-    editing : {}
 }
 
 export const fatchJobs = createAsyncThunk("jobs/fatchJobs", async () => {
@@ -18,7 +17,7 @@ export const fatchJobs = createAsyncThunk("jobs/fatchJobs", async () => {
 })
 export const addJob = createAsyncThunk("jobs/addJob", async (data) => {
     const job = await addJobApi(data)
-
+    
     return job
 })
 
@@ -36,14 +35,7 @@ export const removeJob = createAsyncThunk("jobs/removeJob", async (id) => {
 const jobsSlice = createSlice({
     name : "jobs",
     initialState,
-    // reducers : {
-    //     editActive: (state, action) => {
-    //         state.editing = action.payload;
-    //     },
-    //     editCancle: (state) => {
-    //         state.editing = {};
-    //     },
-    // },
+
     extraReducers : (builder) => {
         builder
             .addCase(fatchJobs.pending, (state) => {
@@ -96,14 +88,13 @@ const jobsSlice = createSlice({
             })
             // 
             .addCase(removeJob.pending, (state) => {
-                state.isLoading = true;
                 state.error = '';
                 state.isError = false;
             })
             .addCase(removeJob.fulfilled, (state, action) => {
                 state.isLoading = false;
-                state.jobs = state.jobs.filter(job => job.id !== action.meta.arg);
                 state.isError =false
+                state.jobs = state.jobs.filter(job => job.id !== action.meta.arg);
             })
             .addCase(removeJob.rejected, (state, action) => {
                 state.isLoading = false;
@@ -114,4 +105,3 @@ const jobsSlice = createSlice({
 })
 
 export default jobsSlice.reducer
-// export const { editActive, editCancle } = jobsSlice.actions

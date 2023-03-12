@@ -2,9 +2,9 @@
 
 import React from "react";
 import { useDispatch } from "react-redux";
-import { Link, useNavigate } from "react-router-dom";
-import { addEdit, jobEditing } from "../../features/editingJob/jobEditingSlice";
-import { editActive, removeJob } from "../../features/jobs/jobsSlice";
+import { useNavigate } from "react-router-dom";
+import { addEdit } from "../../features/editingJob/jobEditingSlice";
+import { removeJob } from "../../features/jobs/jobsSlice";
 import { numberWithCommas } from "../../utils/numberWithCommas";
 
 function Job({ job }) {
@@ -12,10 +12,12 @@ function Job({ job }) {
   const navigate = useNavigate();
   const { id, title, type, salary, deadline } = job || {};
 
+  // delete job
   const handleJobDelete = id => {
     dispatch(removeJob(id));
   };
 
+  // color code
   const makeColor = type => {
     if (type === "Full Time") {
       return "#FF8A00";
@@ -25,7 +27,7 @@ function Job({ job }) {
       return "#56E5C4";
     }
   };
-
+  // set edit data and navigate to edit form
   const handleeditForm = data => {
     dispatch(addEdit(data));
     navigate(`/form/edit/${data.id}`);
