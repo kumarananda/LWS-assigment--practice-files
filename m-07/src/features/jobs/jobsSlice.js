@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit"
-import { addJobApi, jobsApi, removeJobApi } from "./jobsApi.js"
+import { addJobApi, jobsApi, editJobApi, removeJobApi, editJobJobApi } from "./jobsApi.js"
 
 
 // initial state
@@ -9,7 +9,6 @@ const initialState = {
     isError : false,
     error : '',
     editing : {}
-
 }
 
 export const fatchJobs = createAsyncThunk("jobs/fatchJobs", async () => {
@@ -20,6 +19,12 @@ export const fatchJobs = createAsyncThunk("jobs/fatchJobs", async () => {
 export const addJob = createAsyncThunk("jobs/addJob", async (data) => {
     const job = await addJobApi(data)
 
+    return job
+})
+
+export const editJob = createAsyncThunk("jobs/editJob", async ({id, data}) => {
+
+    const job = await editJobApi(id, data)
     return job
 })
 export const removeJob = createAsyncThunk("jobs/removeJob", async (id) => {
@@ -35,7 +40,7 @@ const jobsSlice = createSlice({
         editActive: (state, action) => {
             state.editing = action.payload;
         },
-        editInActive: (state) => {
+        editCancle: (state) => {
             state.editing = {};
         },
     },
@@ -72,6 +77,23 @@ const jobsSlice = createSlice({
                 state.error = action.error?.message;
                 state.isError = true;
             })
+            //
+            .addCase(editJob.pending, (state) => {
+                state.isLoading = true;
+                state.error = '';
+                state.isError = false;
+            })
+            .addCase(editJob.fulfilled, (state, action) => {
+                state.isLoading = false;
+                const editIndex = state.jobs.findIndex(job => job.id=== action.payload.id)
+                state.jobs[editIndex] = action.payload
+                state.isError =false
+            })
+            .addCase(editJob.rejected, (state, action) => {
+                state.isLoading = false;
+                state.error = action.error?.message;
+                state.isError = true;
+            })
             // 
             .addCase(removeJob.pending, (state) => {
                 state.isLoading = true;
@@ -92,4 +114,4 @@ const jobsSlice = createSlice({
 })
 
 export default jobsSlice.reducer
-export const { editActive, editInActive } = jobsSlice.actions
+export const { editActive, editCancle } = jobsSlice.actions

@@ -11,6 +11,16 @@ export const addJobApi = async (data ={}) =>  {
 
     return response.data
 }
+export const editJobJobApi = async (id) =>  {
+    const response = await axios.get(`/jobs/${id}`)
+
+    return response.data
+}
+export const editJobApi = async (id, data ={}) =>  {
+    const response = await axios.patch(`/jobs/${id}`, data)
+
+    return response.data
+}
 export const removeJobApi = async (id) =>  {
     const response = await axios.delete(`/jobs/${id}` )
     

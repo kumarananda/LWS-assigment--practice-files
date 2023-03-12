@@ -1,9 +1,18 @@
 /** @format */
 
 import React from "react";
-import { Link } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { Link, useNavigate } from "react-router-dom";
+import { clearEdit } from "../../features/editingJob/jobEditingSlice";
 
 function Sidebar() {
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+
+  const goAddProduct = () => {
+    dispatch(clearEdit());
+    navigate("/form");
+  };
   return (
     <>
       <div className="sidebar">
@@ -33,10 +42,10 @@ function Sidebar() {
               </ul>
             </li>
             <li>
-              <Link to="/form" className="main-menu" id="lws-addJob-menu">
+              <button onClick={goAddProduct} className="main-menu" id="lws-addJob-menu">
                 <i className="fa-solid fa-file-circle-plus"></i>
                 <span>Add NewJob</span>
-              </Link>
+              </button>
             </li>
           </ul>
         </nav>

@@ -1,17 +1,12 @@
 /** @format */
 
-import React, { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { fatchJobs } from "../../features/jobs/jobsSlice";
+import React from "react";
+import { useSelector } from "react-redux";
+
 import Job from "../Job/Job";
 
 function JobList() {
-  const dispatch = useDispatch();
   const { jobs = [], isLoading, isError, error } = useSelector(state => state.jobs);
-
-  useEffect(() => {
-    dispatch(fatchJobs());
-  }, [dispatch]);
 
   return (
     <>

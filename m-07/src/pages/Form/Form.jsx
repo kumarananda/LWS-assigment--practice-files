@@ -1,12 +1,16 @@
 /** @format */
 
-import React, { useState } from "react";
-import { useDispatch } from "react-redux";
-import { useParams } from "react-router-dom";
-import { addJob } from "../../features/jobs/jobsSlice";
+import React, { useEffect, useMemo, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate, useParams } from "react-router-dom";
+import { jobEditing } from "../../features/editingJob/jobEditingSlice";
+import { addJob, editJob } from "../../features/jobs/jobsSlice";
 
 function Form() {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const { jobEdit, isEdit, isLoading, isError, error } = useSelector(state => state.jobEditing);
+
   const { edit, id } = useParams();
 
   const [title, setTitle] = useState("");
@@ -26,6 +30,36 @@ function Form() {
     reset();
     e.target.reset();
   };
+  const handleEditJob = e => {
+    e.preventDefault();
+    dispatch(editJob({ id, data: { title, type, salary, deadline } }));
+    reset();
+    e.target.reset();
+    // navigate('/')
+  };
+
+  const setEditFormData = edit => {
+    setTitle(edit.title);
+    setType(edit.type);
+    setSalary(edit.salary);
+    setDeadline(edit.deadline);
+  };
+  useEffect(() => {
+    if (edit === "edit") {
+      setEditFormData(jobEdit);
+    } else {
+      reset();
+    }
+  }, [jobEdit]);
+
+  // watch edit form data
+  useEffect(() => {
+    if (edit === "edit") {
+      dispatch(jobEditing(id));
+    } else {
+      reset();
+    }
+  }, [dispatch]);
 
   return (
     <>
@@ -34,12 +68,12 @@ function Form() {
           <h1 className="mb-10 text-center lws-section-title">{edit === "edit" ? "Edit" : "Add New"} Job</h1>
 
           <div className="max-w-3xl mx-auto">
-            <form onSubmit={handleAddJob} className="space-y-6">
+            <form onSubmit={edit === "edit" ? handleEditJob : handleAddJob} className="space-y-6">
               <div className="fieldContainer">
                 <label htmlFor="lws-JobTitle" className="text-sm font-medium text-slate-300">
                   Job Title
                 </label>
-                <select onChange={e => setTitle(e.target.value)} defaultValue={title} id="lws-JobTitle" name="lwsJobTitle" required>
+                <select onChange={e => setTitle(e.target.value)} value={title} id="lws-JobTitle" name="lwsJobTitle" required>
                   <option value="" hidden>
                     Select Job
                   </option>
@@ -50,6 +84,7 @@ function Form() {
                   <option>DevOps Engineer</option>
                   <option>QA Engineer</option>
                   <option>Product Manager</option>
+
                   <option>Social Media Manager</option>
                   <option>Senior Executive</option>
                   <option>Junior Executive</option>
@@ -62,7 +97,7 @@ function Form() {
 
               <div className="fieldContainer">
                 <label htmlFor="lws-JobType">Job Type</label>
-                <select onChange={e => setType(e.target.value)} defaultValue={type} id="lws-JobType" name="lwsJobType" required>
+                <select onChange={e => setType(e.target.value)} value={type} id="lws-JobType" name="lwsJobType" required>
                   <option value="" hidden>
                     Select Job Type
                   </option>

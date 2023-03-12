@@ -1,12 +1,20 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
 import { Route, Routes } from 'react-router-dom';
 import Header from './components/Header/Header';
 import Sidebar from './components/Sidebar/Sidebar.jsx';
+import { fatchJobs } from './features/jobs/jobsSlice';
 import Form from './pages/Form/Form';
 import Home from './pages/Home/Home';
 
 
 function App() {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(fatchJobs());
+  }, [dispatch]);
+
   return (
     <>
     <Header/>
