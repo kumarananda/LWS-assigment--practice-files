@@ -1,9 +1,10 @@
 /** @format */
 
-import React, {  useState } from "react";
+import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { addJob } from "../../features/jobs/jobsSlice";
+import createTost from "../../utils/tost";
 
 function AddForm() {
   const dispatch = useDispatch();
@@ -24,19 +25,15 @@ function AddForm() {
   const handleAddJob = e => {
     e.preventDefault();
     dispatch(addJob({ title, type, salary, deadline })).then(res => {
-      console.log(res.meta.arg);
-      reset();
-      e.target.reset();
-      navigate("/");
+      if (res.type === "jobs/addJob/fulfilled") {
+        reset();
+        e.target.reset();
+        createTost("Data add successful", "success");
+        navigate("/");
+      } else if (res.type === "jobs/addJob/rejected") {
+        createTost(res.error?.message);
+      }
     });
-    // .unwrap()
-    // .than(res => {
-    //   console.log(res);
-    // });
-
-    // reset();
-    // e.target.reset();
-    // navigate("/");
   };
 
   return (

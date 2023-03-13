@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 import { addEdit } from "../../features/editingJob/jobEditingSlice";
 import { removeJob } from "../../features/jobs/jobsSlice";
 import { numberWithCommas } from "../../utils/numberWithCommas";
+import createTost from "../../utils/tost";
 
 function Job({ job }) {
   const dispatch = useDispatch();
@@ -14,7 +15,13 @@ function Job({ job }) {
 
   // delete job
   const handleJobDelete = id => {
-    dispatch(removeJob(id));
+    dispatch(removeJob(id)).then(res => {
+      if (res.type === "jobs/removeJob/fulfilled") {
+        createTost("Data delete successful", "info");
+      } else if (res.type === "jobs/removeJob/rejected") {
+        createTost(res.error?.message);
+      }
+    });
   };
 
   // color code

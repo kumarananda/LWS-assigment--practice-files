@@ -32,7 +32,6 @@ const edtingjobSlice = createSlice({
         builder
             
             .addCase(jobEditing.pending, (state) => {
-                // state.isLoading = true;
                 state.error = '';
                 state.isError = false;
             })
@@ -40,14 +39,14 @@ const edtingjobSlice = createSlice({
                 state.isLoading = false;
                 state.jobEdit= action.payload
                 state.isError =false
-                state.isEdit = true
+
             })
             .addCase(jobEditing.rejected, (state, action) => {
                 state.isLoading = false;
                 state.error = action.error?.message;
                 state.isError = true;
                 state.jobEdit = {}
-                state.isEdit = false
+
             })
 
     }

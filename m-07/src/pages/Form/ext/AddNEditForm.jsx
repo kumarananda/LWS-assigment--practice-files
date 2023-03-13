@@ -3,8 +3,8 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
-import { jobEditing } from "../../features/editingJob/jobEditingSlice";
-import { addJob, editJob } from "../../features/jobs/jobsSlice";
+import { jobEditing } from "../../../features/editingJob/jobEditingSlice";
+import { addJob, editJob } from "../../../features/jobs/jobsSlice";
 
 function AddNEditForm() {
   const dispatch = useDispatch();

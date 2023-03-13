@@ -5,11 +5,12 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 import { jobEditing } from "../../features/editingJob/jobEditingSlice";
 import { addJob, editJob } from "../../features/jobs/jobsSlice";
+import createTost from "../../utils/tost";
 
 function EditForm() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { jobEdit,  } = useSelector(state => state.jobEditing);
+  const { jobEdit } = useSelector(state => state.jobEditing);
 
   const { edit, id } = useParams();
 
@@ -33,11 +34,19 @@ function EditForm() {
   const handleEditJob = e => {
     e.preventDefault();
     dispatch(editJob({ id, data: { title, type, salary, deadline } })).then(res => {
-      reset();
-      e.target.reset();
-      navigate("/");
+      console.log(res.error?.message);
+      if (res.type === "jobs/editJob/fulfilled") {
+        reset();
+        e.target.reset();
+        createTost("Data edit successful", "success");
+        navigate("/");
+      } else if (res.type === "jobs/editJob/rejected") {
+        createTost(res.error?.message);
+      }
     });
   };
+
+  // useEffect(() => {}, []);
 
   const setEditFormData = edit => {
     setTitle(edit.title);
