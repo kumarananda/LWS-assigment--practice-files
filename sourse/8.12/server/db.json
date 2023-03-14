@@ -6,7 +6,7 @@
       "thumbnail": "https://m.media-amazon.com/images/I/51Ga5GuElyL._SX331_BO1,204,203,200_.jpg",
       "price": 14,
       "rating": 3,
-      "featured": false,
+      "featured": true,
       "id": 1
     },
     {
@@ -26,6 +26,114 @@
       "rating": 4,
       "featured": true,
       "id": 4
+    },
+    {
+      "name": "Ananda kumar saha",
+      "author": "Ananda",
+      "thumbnail": "https://m.media-amazon.com/images/I/51InjRPaF7L._SX377_BO1,204,203,200_.jpg",
+      "price": "14562",
+      "rating": "5",
+      "featured": true,
+      "id": 8
+    },
+    {
+      "name": "Ananda kumar saha",
+      "author": "Ananda",
+      "thumbnail": "https://m.media-amazon.com/images/I/51InjRPaF7L._SX377_BO1,204,203,200_.jpg",
+      "price": "14562",
+      "rating": "5",
+      "featured": true,
+      "id": 9
+    },
+    {
+      "name": "Ananda kumar saha",
+      "author": "Ananda",
+      "thumbnail": "https://m.media-amazon.com/images/I/51InjRPaF7L._SX377_BO1,204,203,200_.jpg",
+      "price": "14562",
+      "rating": "5",
+      "featured": true,
+      "id": 10
+    },
+    {
+      "name": "Ananda kumar saha",
+      "author": "Ananda",
+      "thumbnail": "https://m.media-amazon.com/images/I/51InjRPaF7L._SX377_BO1,204,203,200_.jpg",
+      "price": "14562",
+      "rating": "5",
+      "featured": true,
+      "id": 11
+    },
+    {
+      "name": "Ananda kumar saha",
+      "author": "Ananda",
+      "thumbnail": "https://m.media-amazon.com/images/I/51InjRPaF7L._SX377_BO1,204,203,200_.jpg",
+      "price": "14562",
+      "rating": "5",
+      "featured": true,
+      "id": 12
+    },
+    {
+      "name": "Ananda kumar saha",
+      "author": "Ananda",
+      "thumbnail": "https://m.media-amazon.com/images/I/51InjRPaF7L._SX377_BO1,204,203,200_.jpg",
+      "price": "14562",
+      "rating": "5",
+      "featured": true,
+      "id": 13
+    },
+    {
+      "name": "Ananda kumar saha",
+      "author": "Ananda",
+      "thumbnail": "https://m.media-amazon.com/images/I/51InjRPaF7L._SX377_BO1,204,203,200_.jpg",
+      "price": "14562",
+      "rating": "4",
+      "featured": true,
+      "id": 14
+    },
+    {
+      "name": "Ananda kumar saha",
+      "author": "Ananda",
+      "thumbnail": "https://m.media-amazon.com/images/I/51InjRPaF7L._SX377_BO1,204,203,200_.jpg",
+      "price": "14562",
+      "rating": "4",
+      "featured": true,
+      "id": 15
+    },
+    {
+      "name": "Ananda kumar saha",
+      "author": "Ananda",
+      "thumbnail": "https://m.media-amazon.com/images/I/51InjRPaF7L._SX377_BO1,204,203,200_.jpg",
+      "price": "14562",
+      "rating": "4",
+      "featured": true,
+      "id": 16
+    },
+    {
+      "name": "Ananda kumar saha",
+      "author": "Ananda",
+      "thumbnail": "https://m.media-amazon.com/images/I/51InjRPaF7L._SX377_BO1,204,203,200_.jpg",
+      "price": "14562",
+      "rating": "5",
+      "featured": false,
+      "id": 17
+    },
+    {
+      "name": "Ananda kumar saha",
+      "author": "Ananda",
+      "thumbnail": "https://m.media-amazon.com/images/I/51InjRPaF7L._SX377_BO1,204,203,200_.jpg",
+      "price": "14562",
+      "rating": "5",
+      "featured": false,
+      "id": 18
+    },
+    {
+      "name": "Ananda kumar saha",
+      "author": "Ananda",
+      "thumbnail": "https://m.media-amazon.com/images/I/51InjRPaF7L._SX377_BO1,204,203,200_.jpg",
+      "price": "14562",
+      "rating": "5",
+      "featured": true,
+      "id": 19
     }
   ]
 }
