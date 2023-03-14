@@ -8,6 +8,9 @@ import Form from "./Form.jsx";
 function EditBook() {
   const { editId } = useParams();
   const { data: book, isLoading, isSuccess, isError } = useGetBookQuery(editId);
+  // const { data: book, isLoading, isSuccess, isError } = useGetBookQuery(editId, {
+  //   // refetchOnMountOrArgChange: 10,
+  // });
 
   let content;
   if (isLoading) {

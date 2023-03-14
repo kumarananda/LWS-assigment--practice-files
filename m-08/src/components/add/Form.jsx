@@ -1,9 +1,11 @@
 /** @format */
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { useAddBookMutation } from "../../features/api/apiSlice";
 
 function Form() {
+  const navigate = useNavigate();
   const [addBook, { isError, isLoading, isSuccess }] = useAddBookMutation();
 
   const [bookData, setBookData] = useState({
@@ -15,7 +17,7 @@ function Form() {
     featured: false,
   });
   const { name, author, thumbnail, price, rating, featured } = bookData;
-  console.log(name + " " + author + " " + thumbnail + " " + price + " " + rating + " " + featured);
+
   const handleSetBookData = e => {
     if (e.target.type === "checkbox") {
       setBookData(prev => ({
@@ -33,6 +35,12 @@ function Form() {
     e.preventDefault();
     addBook(bookData);
   };
+  console.log(isSuccess);
+  useEffect(() => {
+    if (isSuccess) {
+      navigate("/");
+    }
+  }, [isSuccess]);
 
   return (
     <>

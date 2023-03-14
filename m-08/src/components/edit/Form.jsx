@@ -1,9 +1,12 @@
 /** @format */
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { useEditBookMutation } from "../../features/api/apiSlice";
 
 function Form({ book = {} }) {
+  const navigate = useNavigate();
+
   const [bookData, setBookData] = useState({
     name: book?.name,
     author: book?.author,
@@ -13,7 +16,8 @@ function Form({ book = {} }) {
     featured: book?.featured,
   });
 
-  const [editBook, {}] = useEditBookMutation();
+  const [editBook, { isSuccess, isError }] = useEditBookMutation();
+
   const { name, author, thumbnail, price, rating, featured, id } = bookData;
 
   const handleSetBookData = e => {
@@ -33,6 +37,12 @@ function Form({ book = {} }) {
     e.preventDefault();
     editBook({ id: book.id, data: bookData });
   };
+
+  // useEffect(() => {
+  //   if (isSuccess) {
+  //     navigate("/");
+  //   }
+  // }, [isSuccess]);
 
   return (
     <>
@@ -85,6 +95,20 @@ function Form({ book = {} }) {
           Edit Book
         </button>
       </form>
+      {isSuccess && (
+        <>
+          <div style={{ background: "#D3FE6D", color: "#1E16FE", padding: "10px", width: "100%", textAlign: "center", marginTop: "8px" }}>
+            Data Edit Successful
+          </div>
+        </>
+      )}
+      {isError && (
+        <>
+          <div style={{ background: "#FB8FBA", color: "#FE0808", padding: "10px", width: "100%", textAlign: "center", marginTop: "8px" }}>
+            There was an error
+          </div>
+        </>
+      )}
     </>
   );
 }
