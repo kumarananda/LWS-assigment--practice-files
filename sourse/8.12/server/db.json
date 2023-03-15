@@ -6,7 +6,7 @@
       "thumbnail": "https://m.media-amazon.com/images/I/51Ga5GuElyL._SX331_BO1,204,203,200_.jpg",
       "price": "140005",
       "rating": 3,
-      "featured": true,
+      "featured": false,
       "id": 1
     },
     {
@@ -46,13 +46,13 @@
       "id": 6
     },
     {
-      "name": "book The Last Thing He .. Novel",
-      "author": "Herron",
-      "thumbnail": "https://m.media-amazon.com/images/P/B07DZ86WP7.01._SCLZZZZZZZ_SX500_.jpg",
-      "price": "563",
-      "rating": "2",
-      "featured": true,
-      "id": 7
+      "name": "Ananda kumar saha",
+      "author": "Ananda",
+      "thumbnail": "https://m.media-amazon.com/images/I/51Ga5GuElyL._SX331_BO1,204,203,200_.jpg",
+      "price": "14562",
+      "rating": "4",
+      "featured": false,
+      "id": 10
     }
   ]
 }

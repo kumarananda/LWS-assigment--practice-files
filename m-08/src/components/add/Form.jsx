@@ -3,10 +3,13 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAddBookMutation } from "../../features/api/apiSlice";
+import { Updating, Error } from "../ui/InfoPopups";
 
 function Form() {
   const navigate = useNavigate();
   const [addBook, { isError, isLoading, isSuccess }] = useAddBookMutation();
+
+  console.log(isError);
 
   const [bookData, setBookData] = useState({
     name: "",
@@ -35,7 +38,7 @@ function Form() {
     e.preventDefault();
     addBook(bookData);
   };
-  console.log(isSuccess);
+
   useEffect(() => {
     if (isSuccess) {
       navigate("/");
@@ -93,6 +96,8 @@ function Form() {
           Add Book
         </button>
       </form>
+      {isLoading && <Updating>Data Updating...</Updating>}
+      {isError && <Error>Theare Was an Error</Error>}
     </>
   );
 }

@@ -1,10 +1,13 @@
 /** @format */
 
 import React from "react";
+import { useSelector } from "react-redux";
 import { useGetBooksQuery } from "../features/api/apiSlice";
 import Book from "./Book";
+import { Empty, Error, Updating } from "./ui/InfoPopups";
 
 function BookList() {
+  const { featuredShow, searchValue } = useSelector(state => state.filter);
   const {
     data: books,
     isError,
@@ -19,21 +22,43 @@ function BookList() {
   });
   // use refetch  for refetch data with event as on click or etc.
 
+  const filterByFeatured = item => {
+    if (featuredShow === "All") {
+      return true;
+    } else if (featuredShow === "Featured") {
+      return item.featured;
+    }
+  };
+  const filterBySearchValue = item => {
+    console.log(searchValue);
+    if (!searchValue) {
+      return true;
+    } else if (searchValue) {
+      return item.name.toLowerCase().includes(searchValue.toLowerCase());
+    }
+  };
+
+  const showCount = books?.filter(filterByFeatured).filter(filterBySearchValue).length;
+
   let content = null;
   if (isLoading) {
-    content = "Loading...";
+    content = <Updating>LOADING....</Updating>;
   }
   if (!isLoading && isError) {
-    content = "error";
+    content = <Error />;
   }
   if (!isLoading && !isError && books?.length === 0) {
-    content = "No books found";
-  }
-  if (!isLoading && !isError && books?.length === 0) {
-    content = "No books found";
+    content = <Empty />;
   }
   if (!isLoading && !isError && books?.length > 0) {
-    content = books?.map(book => <Book book={book} key={book.id} refetch={refetch} />);
+    if (showCount === 0) {
+      content = <Updating>No item to show</Updating>;
+    } else {
+      content = books
+        ?.filter(filterByFeatured)
+        .filter(filterBySearchValue)
+        .map(book => <Book book={book} key={book.id} refetch={refetch} />);
+    }
   }
 
   return (

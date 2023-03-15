@@ -8,7 +8,7 @@ import FiveStarCount from "./ui/FiveStarCount";
 function Book({ book = {}, refetch }) {
   const { id, name, author, thumbnail, price, rating, featured } = book;
 
-  const [deleteBook, {}] = useDeleteBookMutation();
+  const [deleteBook, { isError, isSuccess }] = useDeleteBookMutation();
 
   const handleDelete = id => {
     deleteBook(id);
@@ -46,11 +46,10 @@ function Book({ book = {}, refetch }) {
           </div>
 
           <div className="space-y-2 mt-4 h-full">
-            <h4 onClick={refetch} className="lws-book-name">
-              {name}
-            </h4>
+            {/* <h4 onClick={refetch} className="lws-book-name">  */} {/* skiping refetch */}
+            <h4 className="lws-book-name">{name}</h4>
             <p className="lws-author">{author}</p>
-            <FiveStarCount rating={rating} key={"FiveStar" + id.toString()} />
+            <FiveStarCount rating={rating} key={"FS" + id.toString()} />
             <p className="lws-price">BDT {price}</p>
           </div>
         </div>
