@@ -14,7 +14,7 @@
       "author": "Laura Dave",
       "thumbnail": "https://m.media-amazon.com/images/P/1501171348.01._SCLZZZZZZZ_SX500_.jpg",
       "price": "1300888",
-      "rating": "5",
+      "rating": "1",
       "featured": true,
       "id": 2
     },
@@ -40,19 +40,10 @@
       "name": "Short sleeve foodpanda t-shirt",
       "author": "jgklsdgl",
       "thumbnail": "https://images-na.ssl-images-amazon.com/images/I/8144Vic9C5L._AC_UL210_SR195,210_.jpg",
-      "price": "40000",
+      "price": "40088",
       "rating": "4",
       "featured": true,
       "id": 6
-    },
-    {
-      "name": "Ananda kumar saha",
-      "author": "Ananda",
-      "thumbnail": "https://m.media-amazon.com/images/I/51Ga5GuElyL._SX331_BO1,204,203,200_.jpg",
-      "price": "14562",
-      "rating": "4",
-      "featured": false,
-      "id": 10
     }
   ]
 }

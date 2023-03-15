@@ -5,6 +5,7 @@ import { useSelector } from "react-redux";
 import { useGetBooksQuery } from "../features/api/apiSlice";
 import Book from "./Book";
 import { Empty, Error, Updating } from "./ui/InfoPopups";
+import BookLoader from "./ui/loaders/BookLoader";
 
 function BookList() {
   const { featuredShow, searchValue } = useSelector(state => state.filter);
@@ -41,8 +42,17 @@ function BookList() {
   const showCount = books?.filter(filterByFeatured).filter(filterBySearchValue).length;
 
   let content = null;
+
   if (isLoading) {
-    content = <Updating>LOADING....</Updating>;
+    // content = <Updating>LOADING....</Updating>;
+    content = (
+      <>
+        <BookLoader />
+        <BookLoader />
+        <BookLoader />
+        <BookLoader />
+      </>
+    );
   }
   if (!isLoading && isError) {
     content = <Error />;

@@ -1,10 +1,12 @@
 /** @format */
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { useEditBookMutation } from "../../features/api/apiSlice";
-import { Error, Success, Updating } from "../ui/InfoPopups";
+import { Error, Updating } from "../ui/InfoPopups";
 
 function Form({ book = {} }) {
+  const navigate = useNavigate();
   const [bookData, setBookData] = useState({
     name: book?.name,
     author: book?.author,
@@ -37,11 +39,11 @@ function Form({ book = {} }) {
   };
 
   // afetr success navigate to home
-  // useEffect(() => {
-  //   if (isSuccess) {
-  //     navigate("/");
-  //   }
-  // }, [isSuccess]);
+  useEffect(() => {
+    if (isSuccess) {
+      navigate("/");
+    }
+  }, [isSuccess]);
 
   return (
     <>
@@ -96,7 +98,6 @@ function Form({ book = {} }) {
       </form>
       {isLoading && <Updating />}
       {isError && <Error />}
-      {isSuccess && <Success />}
     </>
   );
 }

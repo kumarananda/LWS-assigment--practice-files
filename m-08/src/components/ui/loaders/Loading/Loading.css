@@ -1,0 +1,37 @@
+/** @format */
+
+.loading {
+  border-radius: 5px;
+  background: rgb(231, 231, 237);
+  background: -moz-linear-gradient(
+    90deg,
+    rgba(231, 231, 237, 1) 0%,
+    rgba(162, 164, 207, 1) 26%,
+    rgba(158, 165, 221, 1) 49%,
+    rgba(124, 183, 232, 1) 80%,
+    rgba(210, 229, 233, 1) 100%
+  );
+  background: -webkit-linear-gradient(
+    90deg,
+    rgba(231, 231, 237, 1) 0%,
+    rgba(162, 164, 207, 1) 26%,
+    rgba(158, 165, 221, 1) 49%,
+    rgba(124, 183, 232, 1) 80%,
+    rgba(210, 229, 233, 1) 100%
+  );
+  background: linear-gradient(
+    90deg,
+    rgba(231, 231, 237, 1) 0%,
+    rgba(162, 164, 207, 1) 26%,
+    rgba(158, 165, 221, 1) 49%,
+    rgba(124, 183, 232, 1) 80%,
+    rgba(210, 229, 233, 1) 100%
+  );
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#e7e7ed",endColorstr="#d2e5e9",GradientType=1);
+}
+
+/* .custom {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+} */
