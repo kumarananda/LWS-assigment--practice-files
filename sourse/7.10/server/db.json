@@ -3,16 +3,9 @@
     {
       "title": "DevOps Engineer",
       "type": "Internship",
-      "salary": "250022",
+      "salary": "25",
       "deadline": "2024-12-31",
       "id": 2
-    },
-    {
-      "title": "Senior Executive",
-      "type": "Remote",
-      "salary": "18000",
-      "deadline": "2023-01-07",
-      "id": 4
     },
     {
       "title": "Social Media Manager",
@@ -29,39 +22,32 @@
       "id": 7
     },
     {
-      "title": "MERN Stack Developer",
-      "type": "Internship",
-      "salary": "40500",
-      "deadline": "2023-03-31",
-      "id": 8
-    },
-    {
-      "title": "QA Engineer",
-      "type": "Full Time",
-      "salary": "52000",
-      "deadline": "2023-03-18",
-      "id": 9
-    },
-    {
       "title": "Full Stack Developer",
       "type": "Full Time",
-      "salary": "100000",
+      "salary": "10000",
       "deadline": "2023-03-22",
       "id": 10
     },
     {
-      "title": "Social Media Manager",
-      "type": "Internship",
-      "salary": "4566",
-      "deadline": "2023-03-25",
+      "title": "Software Engineer",
+      "type": "Remote",
+      "salary": "500000",
+      "deadline": "2023-03-30",
       "id": 11
     },
     {
-      "title": "Full Stack Developer",
+      "title": "Software Developer",
       "type": "Internship",
-      "salary": "25",
-      "deadline": "2023-03-23",
+      "salary": "1",
+      "deadline": "2023-03-16",
       "id": 12
+    },
+    {
+      "title": "Software Developer",
+      "type": "Internship",
+      "salary": "2",
+      "deadline": "2023-03-30",
+      "id": 13
     }
   ]
 }

@@ -9,6 +9,7 @@ import AddForm from './pages/Form/AddForm';
 import Home from './pages/Home/Home';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import JobList from './components/JobList/JobList';
 
 
 function App() {
@@ -38,7 +39,12 @@ function App() {
     <div className="max-w-[90rem] mx-auto px-4 sm:px-6 md:px-8 ">
       <Sidebar/>
       <Routes>
-        <Route path='/' element={<Home/>}/>
+        <Route path='/' element={<Home/>}>
+          <Route path='/' element={<JobList/>}/>
+          <Route path='/jobs-internship' element={<JobList/>}/>
+          <Route path='/jobs-full-time' element={<JobList/>}/>
+          <Route path='/jobs-remote' element={<JobList/>}/>
+        </Route>
         <Route path='/form' element={<AddForm/>}/>
         <Route path='/form/:edit/:id' element={<EditForm/>}/>
       </Routes>

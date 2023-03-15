@@ -4,6 +4,7 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 import { jobEditing } from "../../features/editingJob/jobEditingSlice";
+import { clearSalarySort } from "../../features/filter/filterSlice";
 import { addJob, editJob } from "../../features/jobs/jobsSlice";
 import createTost from "../../utils/tost";
 
@@ -31,6 +32,9 @@ function EditForm() {
     reset();
     e.target.reset();
   };
+  const handleclearSalarySort = () => {
+    dispatch(clearSalarySort());
+  };
   const handleEditJob = e => {
     e.preventDefault();
     dispatch(editJob({ id, data: { title, type, salary, deadline } })).then(res => {
@@ -39,14 +43,13 @@ function EditForm() {
         reset();
         e.target.reset();
         createTost("Data edit successful", "success");
+        handleclearSalarySort();
         navigate("/");
       } else if (res.type === "jobs/editJob/rejected") {
         createTost(res.error?.message);
       }
     });
   };
-
-  // useEffect(() => {}, []);
 
   const setEditFormData = edit => {
     setTitle(edit.title);

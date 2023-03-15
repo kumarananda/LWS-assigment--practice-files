@@ -3,6 +3,7 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { clearSalarySort } from "../../features/filter/filterSlice";
 import { addJob } from "../../features/jobs/jobsSlice";
 import createTost from "../../utils/tost";
 
@@ -22,6 +23,10 @@ function AddForm() {
     setDeadline("");
   };
 
+  const handleclearSalarySort = () => {
+    dispatch(clearSalarySort());
+  };
+
   const handleAddJob = e => {
     e.preventDefault();
     dispatch(addJob({ title, type, salary, deadline })).then(res => {
@@ -29,6 +34,7 @@ function AddForm() {
         reset();
         e.target.reset();
         createTost("Data add successful", "success");
+        handleclearSalarySort();
         navigate("/");
       } else if (res.type === "jobs/addJob/rejected") {
         createTost(res.error?.message);

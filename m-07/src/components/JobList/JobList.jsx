@@ -2,6 +2,7 @@
 
 import React from "react";
 import { useSelector } from "react-redux";
+import { useLocation } from "react-router-dom";
 import Loading from "../../components/ui/Loading.js";
 import NetError from "../../components/ui/NetError.js";
 import NotFound from "../../components/ui/NotFound.js";
@@ -9,8 +10,24 @@ import NotFound from "../../components/ui/NotFound.js";
 import Job from "../Job/Job";
 
 function JobList() {
+  const locate = useLocation();
+
   const { jobs = [], isLoading, isError, error } = useSelector(state => state.jobs);
-  const { salaryValue, titleQuary, jobType } = useSelector(state => state.filter);
+  const { salaryValue, titleQuary } = useSelector(state => state.filter);
+
+  let jobType = "All Available";
+  if (locate.pathname === "/") {
+    jobType = "All Available";
+  }
+  if (locate.pathname === "/jobs-internship") {
+    jobType = "Internship";
+  }
+  if (locate.pathname === "/jobs-remote") {
+    jobType = "Remote";
+  }
+  if (locate.pathname === "/jobs-full-time") {
+    jobType = "Full Time";
+  }
 
   const filterByJobType = item => {
     if (jobType === "All Available") {
@@ -62,16 +79,7 @@ function JobList() {
 
   return (
     <>
-      <div className="jobs-list">
-        {content}
-        {/* {jobs
-          .filter(filterByJobType)
-          .filter(filterByTitle)
-          .sort(sortBySalaryValue)
-          .map((job, i) => (
-            <Job job={job} key={i} />
-          ))} */}
-      </div>
+      <div className="jobs-list">{content}</div>
     </>
   );
 }

@@ -2,9 +2,8 @@
 
 import React from "react";
 import { useDispatch } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { clearEdit } from "../../features/editingJob/jobEditingSlice";
-import { filterbyType } from "../../features/filter/filterSlice";
 
 function Sidebar() {
   const navigate = useNavigate();
@@ -15,35 +14,31 @@ function Sidebar() {
     navigate("/form");
   };
 
-  const handleSetFilterByJobType = (e, type) => {
-    e.preventDefault();
-    dispatch(filterbyType(type));
-  };
   return (
     <>
       <div className="sidebar">
         <nav>
           <ul className="space-y-4">
             <li>
-              <a onClick={e => handleSetFilterByJobType(e, "All Available")} href="/" className="main-menu menu-active" id="lws-alljobs-menu">
+              <Link to="/" className="main-menu menu-active" id="lws-alljobs-menu">
                 <i className="fa-solid fa-briefcase"></i>
                 <span> All Available Jobs</span>
-              </a>
+              </Link>
               <ul className="space-y-6 lg:space-y-2 ">
                 <li>
-                  <a onClick={e => handleSetFilterByJobType(e, "Internship")} className="sub-menu" href="/" id="lws-internship-menu">
+                  <Link className="sub-menu" to="/jobs-internship" id="lws-internship-menu">
                     <i className="fa-solid fa-stop !text-[#FF5757]"></i>Internship
-                  </a>
+                  </Link>
                 </li>
                 <li>
-                  <a onClick={e => handleSetFilterByJobType(e, "Full Time")} className="sub-menu" href="/" id="lws-fulltime-menu">
+                  <Link className="sub-menu" to="/jobs-full-time" id="lws-fulltime-menu">
                     <i className="fa-solid fa-stop !text-[#FF8A00]"></i> Full Time
-                  </a>
+                  </Link>
                 </li>
                 <li>
-                  <a onClick={e => handleSetFilterByJobType(e, "Remote")} className="sub-menu" href="/" id="lws-remote-menu">
+                  <Link className="sub-menu" to="/jobs-remote" id="lws-remote-menu">
                     <i className="fa-solid fa-stop !text-[#56E5C4]"></i> Remote
-                  </a>
+                  </Link>
                 </li>
               </ul>
             </li>
