@@ -23,7 +23,7 @@ function App() {
                         </PublicRoute>
                     }
                 />
-                >
+
                 <Route
                     path="/register"
                     element={

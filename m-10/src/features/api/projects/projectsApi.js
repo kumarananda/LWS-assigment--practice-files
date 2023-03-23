@@ -1,5 +1,6 @@
 import apiSlice from "../apiSlice";
-import projectsSlice from "./projectsSlice";
+import { getProductShowItems } from "./projectsSlice";
+
 
 export const projectsApi = apiSlice.injectEndpoints({
     endpoints : (builder) => ({
@@ -15,17 +16,13 @@ export const projectsApi = apiSlice.injectEndpoints({
                     const projectsdata = await queryFulfilled;
                     if (projectsdata?.data?.length > 0) {
                         // update conversation cache pessimistically start
-                   
+                        const shows = projectsdata.data.map(proj => {
+                            return proj.projectName
+                        })
+                        // console.log(shows);
                         dispatch(
-                            projectsSlice.util.update(
-                                "getProductShowItems",
-                                arg,
-                                () => {
-                                    return {
-                                        data: projectsdata.data
-                                    };
-                                }
-                            )
+                            getProductShowItems(shows)                  
+                            
                         );
                         // update messages cache pessimistically end
                     }

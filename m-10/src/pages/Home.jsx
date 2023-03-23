@@ -9,7 +9,7 @@ import TeskList from "../components/TeskList";
 function Home() {
   return (
     <>
-      <body className="text-[#111827]">
+      <div className="text-[#111827]">
         <div className="container relative">
           <div className="sidebar">
             <ProjectsList />
@@ -25,7 +25,7 @@ function Home() {
             </main>
           </div>
         </div>
-      </body>
+      </div>
     </>
   );
 }
