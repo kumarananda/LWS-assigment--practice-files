@@ -9,6 +9,13 @@ export const tesksApi = apiSlice.injectEndpoints({
             }),
            
         }), 
+        getSingleTask : builder.query({
+            query: (id) => ({
+                url: `/tasks/${id}`,
+                method: "GET",
+            }),
+           
+        }), 
         deleteTask : builder.mutation({
             query: (id) => ({
                 url: `/tasks/${id}`,
@@ -24,8 +31,16 @@ export const tesksApi = apiSlice.injectEndpoints({
             }),
            
         }), 
+        editTask : builder.mutation({
+            query: ({id, body}) => ({
+                url: `/tasks/${id}`,
+                method: "PATCH",
+                body 
+            }),
+           
+        }), 
     })
 })
 
 
-export const { useGetTasksQuery, useDeleteTaskMutation, useAddTasksMutation,  } = tesksApi 
+export const { useGetTasksQuery, useDeleteTaskMutation, useAddTasksMutation, useEditTaskMutation ,useGetSingleTaskQuery } = tesksApi 
