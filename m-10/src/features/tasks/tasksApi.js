@@ -17,9 +17,10 @@ export const tesksApi = apiSlice.injectEndpoints({
            
         }), 
         addTasks : builder.mutation({
-            query: () => ({
+            query: (body) => ({
                 url: "/tasks",
                 method: "POST",
+                body 
             }),
            
         }), 
@@ -27,4 +28,4 @@ export const tesksApi = apiSlice.injectEndpoints({
 })
 
 
-export const { useGetTasksQuery, useDeleteTaskMutation, useAddTasksMutation  } = tesksApi 
+export const { useGetTasksQuery, useDeleteTaskMutation, useAddTasksMutation,  } = tesksApi 

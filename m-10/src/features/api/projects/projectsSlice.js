@@ -13,16 +13,10 @@ const projectsShowSlice = createSlice({
         },
 
         removeProductShowItems : (state, action) => {
-            // let update = state.shows.filter(item => item !== action.payload);
-            // state.shows = update
-
             state.shows = state.shows.filter(item => item !== action.payload);
-    
         },
         addProductShowItems : (state, action) => {
-            let update = state.shows.push(action.payload);
-            console.log(update);
-            // state.shows = update
+            state.shows.push(action.payload);
         }
     },
 });

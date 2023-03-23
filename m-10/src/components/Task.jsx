@@ -13,8 +13,8 @@ function Task({ task }) {
   const [deleteTasks, {}] = useDeleteTaskMutation(taskId);
 
   const handleDeleteTask = id => {
-    alert(id);
-    // deleteTasks(id);
+    // alert(id);
+    deleteTasks(id);
   };
   return (
     <>
