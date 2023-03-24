@@ -70,7 +70,7 @@
   ],
   "tasks": [
     {
-      "taskName": "Task One",
+      "taskName": "Task One gsdgs",
       "teamMember": {
         "name": "Saad Hasan",
         "avatar": "/images/avatars/sadh.png",
@@ -99,7 +99,7 @@
       },
       "deadline": "2023-03-23",
       "id": 2,
-      "status": ""
+      "status": "completed"
     },
     {
       "taskName": "Task Three",
@@ -115,7 +115,7 @@
       },
       "deadline": "2023-03-03",
       "id": 3,
-      "status": ""
+      "status": "completed"
     },
     {
       "taskName": "New Task",
@@ -146,6 +146,38 @@
         "colorClass": "color-bookstore"
       },
       "id": 5,
+      "status": "inProgress"
+    },
+    {
+      "deadline": "2023-03-25",
+      "project": {
+        "id": 4,
+        "projectName": "Book Store",
+        "colorClass": "color-bookstore"
+      },
+      "teamMember": {
+        "name": "Md Salahuddin",
+        "avatar": "/images/avatars/salahuddin.png",
+        "id": 4
+      },
+      "taskName": "added task ananda",
+      "id": 6,
+      "status": "inProgress"
+    },
+    {
+      "deadline": "2023-03-25",
+      "project": {
+        "id": 3,
+        "projectName": "Product Cart",
+        "colorClass": "color-productCart"
+      },
+      "teamMember": {
+        "name": "Md Salahuddin",
+        "avatar": "/images/avatars/salahuddin.png",
+        "id": 4
+      },
+      "taskName": "updte",
+      "id": 7,
       "status": "completed"
     }
   ]

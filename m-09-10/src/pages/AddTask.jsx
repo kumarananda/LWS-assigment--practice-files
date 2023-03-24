@@ -1,17 +1,17 @@
 /** @format */
 
 import React, { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import { useGetProjectsQuery } from "../features/api/projects/projectsApi";
 import { useGetMembersQuery } from "../features/members/membersApi";
 import { useAddTasksMutation } from "../features/tasks/tasksApi";
 
 function AddTask() {
-  const dispatch = useDispatch();
+  const navigate = useNavigate();
   const { data: projects, isLoading: projectsLoading, isError: projectsError, isSuccess: projectsSuccess } = useGetProjectsQuery();
   const { data: team, isLoading: teamLoading, isError: teamError, isSuccess: teamSuccess } = useGetMembersQuery();
 
-  const [addTasks, { isLoading, isSuccess, isError, error }] = useAddTasksMutation();
+  const [addTasks, { isLoading, isError }] = useAddTasksMutation();
 
   let teamOptions = null;
   if (!teamLoading && !teamError && teamSuccess) {
@@ -63,6 +63,7 @@ function AddTask() {
           teamMember: "",
           taskName: "",
         });
+        navigate("/");
       }
     });
   };
@@ -121,6 +122,7 @@ function AddTask() {
                   </button>
                 </div>
                 {isError && <div style={{ color: "red" }}>Thare was an error</div>}
+                {isLoading && <div style={{ color: "green" }}>Data Updating...</div>}
               </form>
             </div>
           </main>

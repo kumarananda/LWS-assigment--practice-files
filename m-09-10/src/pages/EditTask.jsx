@@ -2,12 +2,13 @@
 
 import React, { useEffect, useState } from "react";
 // import { useDispatch } from "react-redux";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useGetProjectsQuery } from "../features/api/projects/projectsApi";
 import { useGetMembersQuery } from "../features/members/membersApi";
 import { useEditTaskMutation, useGetSingleTaskQuery } from "../features/tasks/tasksApi";
 
 function EditTask() {
+  const navigate = useNavigate();
   const { editId } = useParams();
   // const dispatch = useDispatch();
   const { data: projects, isLoading: projectsLoading, isError: projectsError, isSuccess: projectsSuccess } = useGetProjectsQuery();
@@ -16,7 +17,7 @@ function EditTask() {
   const { data: singleTask, isSuccess, isLoading } = useGetSingleTaskQuery(editId);
   const { project, teamMember } = singleTask || {};
 
-  const [editTask, {}] = useEditTaskMutation();
+  const [editTask, { isLoading: editLoding, isError: editError }] = useEditTaskMutation();
 
   //deadline, project, teamMember, taskName,
   const [taskForm, setTaskForm] = useState({
@@ -59,7 +60,7 @@ function EditTask() {
         project: project.id,
       });
     }
-  }, [isSuccess]);
+  }, [isSuccess, teamMember.id, project.id, singleTask]);
 
   // console.log(taskForm);
 
@@ -83,15 +84,16 @@ function EditTask() {
       console.log(updateData);
       editTask({ id: singleTask.id, body: updateData }).then(res => {
         console.log(res);
-        // if (res.data.id) {
-        //   e.target.reset();
-        //   setTaskForm({
-        //     deadline: "",
-        //     project: "",
-        //     teamMember: "",
-        //     taskName: "",
-        //   });
-        // }
+        if (res.data.id) {
+          e.target.reset();
+          setTaskForm({
+            deadline: "",
+            project: "",
+            teamMember: "",
+            taskName: "",
+          });
+          navigate("/");
+        }
       });
     }
   };
@@ -151,7 +153,8 @@ function EditTask() {
                       Update
                     </button>
                   </div>
-                  {/* {isError && <div style={{ color: "red" }}>Thare was an error</div>} */}
+                  {editLoding && <div style={{ color: "green" }}>Data Updating...</div>}
+                  {editError && <div style={{ color: "red" }}>Thare was an error</div>}
                 </form>
               )}
             </div>

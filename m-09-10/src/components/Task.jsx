@@ -1,17 +1,16 @@
 /** @format */
 
 import React from "react";
-import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
-import { useEditTaskMutation, useDeleteTaskMutation } from "../features/tasks/tasksApi";
+import { useDeleteTaskMutation, useEditTaskStatusMutation } from "../features/tasks/tasksApi";
 import { getMonthName } from "../utils/date";
 
 function Task({ task }) {
   const { id: taskId, taskName, deadline, project, teamMember, status } = task || {};
-  const { id: memberId, avatar, name } = teamMember || {};
-  const { id: projectId, projectName, colorClass } = project || {};
+  const { avatar, name } = teamMember || {};
+  const { projectName, colorClass } = project || {};
   const [deleteTasks, {}] = useDeleteTaskMutation(taskId);
-  const [editTask, { isSuccess: statusUpdate, isError: statusUpdateError }] = useEditTaskMutation();
+  const [editTaskStatus, {}] = useEditTaskStatusMutation();
 
   const handleDeleteTask = id => {
     deleteTasks(id);
@@ -20,7 +19,7 @@ function Task({ task }) {
   const handleStatusChange = e => {
     let status = e.target.value;
 
-    editTask({
+    editTaskStatus({
       id: taskId,
       body: {
         ...task,
@@ -81,7 +80,7 @@ function Task({ task }) {
               </Link>
             </button>
           )}
-          <select onChange={handleStatusChange} defaultValue={status} className="lws-status">
+          <select onChange={handleStatusChange} value={status} className="lws-status">
             <option value={""}>Pending</option>
             <option value="inProgress">In Progress</option>
             <option value="completed">Completed</option>
