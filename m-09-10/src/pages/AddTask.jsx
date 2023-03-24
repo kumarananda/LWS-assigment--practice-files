@@ -117,7 +117,7 @@ function AddTask() {
                 </div>
 
                 <div className="text-right">
-                  <button type="submit" className="lws-submit">
+                  <button disabled={isLoading} type="submit" className="lws-submit">
                     Save
                   </button>
                 </div>

@@ -1,6 +1,6 @@
 /** @format */
 
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { useDeleteTaskMutation, useEditTaskStatusMutation } from "../features/tasks/tasksApi";
 import { getMonthName } from "../utils/date";
@@ -9,7 +9,7 @@ function Task({ task }) {
   const { id: taskId, taskName, deadline, project, teamMember, status } = task || {};
   const { avatar, name } = teamMember || {};
   const { projectName, colorClass } = project || {};
-  const [deleteTasks, {}] = useDeleteTaskMutation(taskId);
+  const [deleteTasks, { isError }] = useDeleteTaskMutation();
   const [editTaskStatus, {}] = useEditTaskStatusMutation();
 
   const handleDeleteTask = id => {
@@ -27,10 +27,9 @@ function Task({ task }) {
       },
     });
   };
+
   return (
     <>
-      {/* {statusUpdate && <div>Status update Done</div>}
-        {statusUpdateError && <div>Status update error</div>} */}
       <div className="lws-task">
         <div className="flex items-center gap-2 text-slate">
           <h2 className="lws-date">{deadline.split("-")[2]}</h2>

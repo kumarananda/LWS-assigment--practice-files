@@ -24,6 +24,7 @@ export const tesksApi = apiSlice.injectEndpoints({
             }),
             // if cache stored for single Task
             invalidatesTags : (result, error, id) => [{ type: 'Task', id }],
+
             async onQueryStarted(arg, { queryFulfilled, dispatch }) {
                 // optimistic cache update start
                 const allTaskTarget = dispatch(
@@ -31,14 +32,19 @@ export const tesksApi = apiSlice.injectEndpoints({
                         "getTasks",
                         undefined,
                         (draft) => {
-                            const deleteIndex = draft.findIndex(item => item.id == arg) 
-                            draft.splice(deleteIndex, 1)
+                            // done
+                            // const deleteIndex = draft.findIndex(item => item.id == arg) 
+                            // draft.splice(deleteIndex, 1)
+
+                            //done
+                            return draft.filter(item => item.id !== arg) 
+                            
                         }
                     )
                 );
                 // optimistic cache update end
                 try {
-                    const conversation = await queryFulfilled;
+                     await queryFulfilled;
                 } catch (err) {
                     allTaskTarget.undo();
                 }
@@ -108,6 +114,7 @@ export const tesksApi = apiSlice.injectEndpoints({
                                 "getSingleTask",
                                 arg.id.toString(),
                                 (draft) => {
+                                    console.log(typeof arg.id);
                                     draft = task.data
                                 }
                                 

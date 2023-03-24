@@ -60,7 +60,7 @@ function EditTask() {
         project: project.id,
       });
     }
-  }, [isSuccess, teamMember.id, project.id, singleTask]);
+  }, [isSuccess]);
 
   // console.log(taskForm);
 
@@ -149,7 +149,7 @@ function EditTask() {
                   </div>
 
                   <div className="text-right">
-                    <button type="submit" className="lws-submit">
+                    <button disabled={editLoding} type="submit" className="lws-submit">
                       Update
                     </button>
                   </div>
