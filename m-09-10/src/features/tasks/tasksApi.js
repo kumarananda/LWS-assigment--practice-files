@@ -107,15 +107,16 @@ export const tesksApi = apiSlice.injectEndpoints({
                                 }
                                 
                             )
-                        );
-                        // single cache data update
+                        )
+
                         dispatch(
                             apiSlice.util.updateQueryData(
                                 "getSingleTask",
                                 arg.id.toString(),
                                 (draft) => {
-                                    console.log(typeof arg.id);
-                                    draft = task.data
+                                //    return draft = task.data
+                                //    return task.data
+                                    Object.assign(draft, task.data)
                                 }
                                 
                             )

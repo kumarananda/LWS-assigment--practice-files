@@ -10,11 +10,11 @@ import { useEditTaskMutation, useGetSingleTaskQuery } from "../features/tasks/ta
 function EditTask() {
   const navigate = useNavigate();
   const { editId } = useParams();
-  // const dispatch = useDispatch();
+
   const { data: projects, isLoading: projectsLoading, isError: projectsError, isSuccess: projectsSuccess } = useGetProjectsQuery();
   const { data: team, isLoading: teamLoading, isError: teamError, isSuccess: teamSuccess } = useGetMembersQuery();
 
-  const { data: singleTask, isSuccess, isLoading } = useGetSingleTaskQuery(editId);
+  const { data: singleTask, isSuccess, isLoading, isError: singleTaskError } = useGetSingleTaskQuery(editId);
   const { project, teamMember } = singleTask || {};
 
   const [editTask, { isLoading: editLoding, isError: editError }] = useEditTaskMutation();
@@ -62,8 +62,6 @@ function EditTask() {
     }
   }, [isSuccess]);
 
-  // console.log(taskForm);
-
   const selectedProject = projects?.find(item => item.id === +taskForm.project);
   const selectedMember = team?.find(item => item.id === +taskForm.teamMember);
 
@@ -79,9 +77,9 @@ function EditTask() {
       singleTask.project.id === updateData.project.id &&
       singleTask.teamMember.id === updateData.teamMember.id
     ) {
-      alert("Data is same");
+      alert("Update at least one data");
     } else {
-      console.log(updateData);
+      // console.log(updateData);
       editTask({ id: singleTask.id, body: updateData }).then(res => {
         console.log(res);
         if (res.data.id) {
@@ -106,7 +104,8 @@ function EditTask() {
             <h1 className="mt-4 mb-8 text-3xl font-bold text-center text-gray-800">Edit Task</h1>
 
             <div className="justify-center mb-10 space-y-2 md:flex md:space-y-0">
-              {isLoading && <div>Loadind...</div>}
+              {isLoading && <div>Loading...</div>}
+              {singleTaskError && <div>Task is not found or deleted!</div>}
               {isSuccess && (
                 <form onSubmit={handleEditTaskSubmit} className="space-y-6">
                   <div className="fieldContainer">
@@ -153,6 +152,7 @@ function EditTask() {
                       Update
                     </button>
                   </div>
+
                   {editLoding && <div style={{ color: "green" }}>Data Updating...</div>}
                   {editError && <div style={{ color: "red" }}>Thare was an error</div>}
                 </form>

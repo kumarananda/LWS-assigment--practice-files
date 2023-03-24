@@ -83,42 +83,10 @@
       },
       "deadline": "2023-03-15",
       "id": 1,
-      "status": "inProgress"
-    },
-    {
-      "taskName": "Task Two",
-      "teamMember": {
-        "name": "Akash Ahmed",
-        "avatar": "/images/avatars/akash.png",
-        "id": 3
-      },
-      "project": {
-        "id": 2,
-        "projectName": "Flight Booking",
-        "colorClass": "color-flight"
-      },
-      "deadline": "2023-03-23",
-      "id": 2,
       "status": "completed"
     },
     {
-      "taskName": "Task Three",
-      "teamMember": {
-        "name": "Sumit Saha",
-        "avatar": "/images/avatars/sumit.png",
-        "id": 1
-      },
-      "project": {
-        "id": 3,
-        "projectName": "Product Cart",
-        "colorClass": "color-productCart"
-      },
-      "deadline": "2023-03-03",
-      "id": 3,
-      "status": "completed"
-    },
-    {
-      "taskName": "New Task",
+      "taskName": "Task Two rrr ggg",
       "teamMember": {
         "name": "Sumit Saha",
         "avatar": "/images/avatars/sumit.png",
@@ -129,7 +97,23 @@
         "projectName": "Scoreboard",
         "colorClass": "color-scoreboard"
       },
-      "deadline": "2023-03-11",
+      "deadline": "2023-03-25",
+      "id": 2,
+      "status": "inProgress"
+    },
+    {
+      "taskName": "New Task ",
+      "teamMember": {
+        "name": "Sumit Saha",
+        "avatar": "/images/avatars/sumit.png",
+        "id": 1
+      },
+      "project": {
+        "id": 1,
+        "projectName": "Scoreboard",
+        "colorClass": "color-scoreboard"
+      },
+      "deadline": "2023-03-31",
       "id": 4
     },
     {
@@ -141,28 +125,12 @@
       },
       "deadline": "2023-03-18",
       "project": {
-        "id": 4,
-        "projectName": "Book Store",
-        "colorClass": "color-bookstore"
+        "id": 5,
+        "projectName": "Blog Application",
+        "colorClass": "color-blog"
       },
       "id": 5,
-      "status": "inProgress"
-    },
-    {
-      "deadline": "2023-03-25",
-      "project": {
-        "id": 4,
-        "projectName": "Book Store",
-        "colorClass": "color-bookstore"
-      },
-      "teamMember": {
-        "name": "Md Salahuddin",
-        "avatar": "/images/avatars/salahuddin.png",
-        "id": 4
-      },
-      "taskName": "added task ananda",
-      "id": 6,
-      "status": "inProgress"
+      "status": "completed"
     },
     {
       "deadline": "2023-03-25",
@@ -176,9 +144,9 @@
         "avatar": "/images/avatars/salahuddin.png",
         "id": 4
       },
-      "taskName": "updte",
+      "taskName": "update update",
       "id": 7,
-      "status": "completed"
+      "status": "inProgress"
     }
   ]
 }

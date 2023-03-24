@@ -9,7 +9,7 @@ import Task from "./Task.jsx";
 function TeskList() {
   const { search } = useSelector(state => state.filter);
 
-  const { data: tasks, isError, isLoading, isSuccess } = useGetTasksQuery();
+  const { data: tasks, isError, isLoading, isSuccess } = useGetTasksQuery(undefined, { refetchOnMountOrArgChange: 600 });
   const { shows } = useSelector(state => state.projectShows);
 
   const filterProject = item => {
