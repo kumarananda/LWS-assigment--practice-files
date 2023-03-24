@@ -21,6 +21,7 @@ export const tesksApi = apiSlice.injectEndpoints({
                 url: `/tasks/${id}`,
                 method: "DELETE",
             }),
+            
            
         }), 
         addTasks : builder.mutation({
@@ -37,6 +38,7 @@ export const tesksApi = apiSlice.injectEndpoints({
                 method: "PATCH",
                 body 
             }),
+            
            
         }), 
     })

@@ -5,7 +5,7 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { useGetProjectsQuery } from "../features/api/projects/projectsApi";
 import { useGetMembersQuery } from "../features/members/membersApi";
-import { useGetSingleTaskQuery } from "../features/tasks/tasksApi";
+import { useEditTaskMutation, useGetSingleTaskQuery } from "../features/tasks/tasksApi";
 
 function EditTask() {
   const { editId } = useParams();
@@ -16,6 +16,8 @@ function EditTask() {
   const { data: singleTask, isSuccess, isLoading } = useGetSingleTaskQuery(editId);
   const { project, teamMember } = singleTask || {};
 
+  const [editTask, {}] = useEditTaskMutation();
+
   //deadline, project, teamMember, taskName,
   const [taskForm, setTaskForm] = useState({
     deadline: "",
@@ -23,6 +25,7 @@ function EditTask() {
     teamMember: "",
     taskName: "",
   });
+
   const handleTaskData = e => {
     setTaskForm(prev => ({
       ...prev,
@@ -33,7 +36,7 @@ function EditTask() {
   let teamOptions = null;
   if (!teamLoading && !teamError && teamSuccess) {
     teamOptions = team.map(item => (
-      <option selected={taskForm.teamMember === item.id} value={item.id} key={item.id}>
+      <option value={item.id} key={item.id}>
         {item.name}
       </option>
     ));
@@ -42,7 +45,7 @@ function EditTask() {
   let projectOptions = null;
   if (!projectsLoading && !projectsError && projectsSuccess) {
     projectOptions = projects.map(item => (
-      <option selected={taskForm.project === item.id} value={item.id} key={item.id}>
+      <option value={item.id} key={item.id}>
         {item.projectName}
       </option>
     ));
@@ -58,29 +61,39 @@ function EditTask() {
     }
   }, [isSuccess]);
 
-  console.log(taskForm);
+  // console.log(taskForm);
+
+  const selectedProject = projects?.find(item => item.id === +taskForm.project);
+  const selectedMember = team?.find(item => item.id === +taskForm.teamMember);
+
+  let updateData = { ...singleTask, ...taskForm, project: selectedProject, teamMember: selectedMember };
 
   const handleEditTaskSubmit = async e => {
     e.preventDefault();
+    //deadline, project, teamMember, taskName,
 
-    const selectedProject = projects.find(item => item.id === +taskForm.project);
-    const selectedMember = team?.find(item => item.id === +taskForm.teamMember);
-
-    // addTasks({
-    //   ...taskForm,
-    //   project: selectedProject,
-    //   teamMember: selectedMember,
-    // }).then(res => {
-    //   if (res.data.id) {
-    //     e.target.reset();
-    //     setTaskForm({
-    //       deadline: "",
-    //       project: "",
-    //       teamMember: "",
-    //       taskName: "",
-    //     });
-    //   }
-    // });
+    if (
+      singleTask.taskName === updateData.taskName &&
+      singleTask.deadline === updateData.deadline &&
+      singleTask.project.id === updateData.project.id &&
+      singleTask.teamMember.id === updateData.teamMember.id
+    ) {
+      alert("Data is same");
+    } else {
+      console.log(updateData);
+      editTask({ id: singleTask.id, body: updateData }).then(res => {
+        console.log(res);
+        // if (res.data.id) {
+        //   e.target.reset();
+        //   setTaskForm({
+        //     deadline: "",
+        //     project: "",
+        //     teamMember: "",
+        //     taskName: "",
+        //   });
+        // }
+      });
+    }
   };
 
   return (
@@ -109,7 +122,7 @@ function EditTask() {
 
                   <div className="fieldContainer">
                     <label htmlFor="lws-teamMember">Assign To</label>
-                    <select defaultValue={taskForm.teamMember} onChange={handleTaskData} name="teamMember" id="lws-teamMember" required>
+                    <select value={taskForm.teamMember} onChange={handleTaskData} name="teamMember" id="lws-teamMember" required>
                       <option value="" hidden>
                         Select Job
                       </option>
@@ -119,7 +132,7 @@ function EditTask() {
                   </div>
                   <div className="fieldContainer">
                     <label htmlFor="lws-projectName">Project Name</label>
-                    <select defaultValue={taskForm.project} onChange={handleTaskData} id="lws-projectName" name="project" required>
+                    <select value={taskForm.project} onChange={handleTaskData} id="lws-projectName" name="project" required>
                       <option value="" hidden>
                         Select Project
                       </option>
