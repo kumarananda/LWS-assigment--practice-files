@@ -86,7 +86,7 @@
       "status": "completed"
     },
     {
-      "taskName": "Task Two rrr ggg",
+      "taskName": "Task Two",
       "teamMember": {
         "name": "Sumit Saha",
         "avatar": "/images/avatars/sumit.png",
@@ -135,16 +135,16 @@
     {
       "deadline": "2023-03-25",
       "project": {
-        "id": 3,
-        "projectName": "Product Cart",
-        "colorClass": "color-productCart"
+        "id": 1,
+        "projectName": "Scoreboard",
+        "colorClass": "color-scoreboard"
       },
       "teamMember": {
         "name": "Md Salahuddin",
         "avatar": "/images/avatars/salahuddin.png",
         "id": 4
       },
-      "taskName": "update update",
+      "taskName": "update updateggg",
       "id": 7,
       "status": "inProgress"
     }

@@ -38,10 +38,18 @@ function AddTask() {
     taskName: "",
   });
   const handleTaskData = e => {
-    setTaskForm(prev => ({
-      ...prev,
-      [e.target.name]: e.target.value,
-    }));
+    // back to input name="projectName" for LWS Rules
+    if (e.target.name === "projectName") {
+      setTaskForm(prev => ({
+        ...prev,
+        project: e.target.value,
+      }));
+    } else {
+      setTaskForm(prev => ({
+        ...prev,
+        [e.target.name]: e.target.value,
+      }));
+    }
   };
 
   const handleAddTaskSubmit = async e => {
@@ -102,7 +110,7 @@ function AddTask() {
                 </div>
                 <div className="fieldContainer">
                   <label htmlFor="lws-projectName">Project Name</label>
-                  <select defaultValue={taskForm.project} onChange={handleTaskData} id="lws-projectName" name="project" required>
+                  <select defaultValue={taskForm.project} onChange={handleTaskData} id="lws-projectName" name="projectName" required>
                     <option value="" hidden>
                       Select Project
                     </option>

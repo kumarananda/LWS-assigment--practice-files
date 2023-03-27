@@ -28,10 +28,18 @@ function EditTask() {
   });
 
   const handleTaskData = e => {
-    setTaskForm(prev => ({
-      ...prev,
-      [e.target.name]: e.target.value,
-    }));
+    // back to input name="projectName" for LWS Rules
+    if (e.target.name === "projectName") {
+      setTaskForm(prev => ({
+        ...prev,
+        project: e.target.value,
+      }));
+    } else {
+      setTaskForm(prev => ({
+        ...prev,
+        [e.target.name]: e.target.value,
+      }));
+    }
   };
 
   let teamOptions = null;
@@ -133,7 +141,7 @@ function EditTask() {
                   </div>
                   <div className="fieldContainer">
                     <label htmlFor="lws-projectName">Project Name</label>
-                    <select value={taskForm.project} onChange={handleTaskData} id="lws-projectName" name="project" required>
+                    <select value={taskForm.project} onChange={handleTaskData} id="lws-projectName" name="projectName" required>
                       <option value="" hidden>
                         Select Project
                       </option>
