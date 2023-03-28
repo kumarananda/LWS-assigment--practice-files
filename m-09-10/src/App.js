@@ -7,12 +7,11 @@ import EditTask from './pages/EditTask';
 import Home from './pages/Home';
 
 function App() {
-  const location = useLocation()
-  const {pathname} = location || {}
+
 
   return (
     <>
-
+    <Header/>
       <Routes>
         <Route path='/' element={<Home/>}/>
         <Route path='/add-task' element={<AddTask/>}/>

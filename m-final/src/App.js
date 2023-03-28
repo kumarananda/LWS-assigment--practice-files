@@ -1,5 +1,5 @@
 import React from 'react';
-import { Route, Routes } from 'react-router-dom';
+import { Route, Routes, useLocation } from 'react-router-dom';
 import './assets/style/output.css'
 import AuthHeader from './components/Header/AuthHeader';
 import AdminLogin from './pages/admin/AdminLogin/AdminLogin';
@@ -16,11 +16,14 @@ import StudentRegistration from './pages/student/StudentRegistration/StudentRegi
 
 
 function App() {
+  const location = useLocation()
+  const {pathname} = location || {}
+
   return (
     <>
       {pathname=== "/" && <Header /> }
       {pathname=== "/admin" &&  <AuthHeader/> }
-
+      
       <Routes>
         <Route path='/' element={<StudentLogin/>}/>
         <Route path='/registration' element={<StudentRegistration/>}/>
