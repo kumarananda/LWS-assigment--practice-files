@@ -1,5 +1,5 @@
 import React from 'react';
-import { Route, Routes } from 'react-router-dom';
+import { Route, Routes, useLocation } from 'react-router-dom';
 import './App.css';
 import Header from './components/Header';
 import AddTask from './pages/AddTask';
@@ -7,9 +7,13 @@ import EditTask from './pages/EditTask';
 import Home from './pages/Home';
 
 function App() {
+  const location = useLocation()
+  const {pathname} = location || {}
+
   return (
     <>
-      <Header />
+      {pathname=== "/"? <Header /> : <AuthHeader/>}
+      {pathname=== "/admin"? <AuthHeader/> : <Header /> }
       <Routes>
         <Route path='/' element={<Home/>}/>
         <Route path='/add-task' element={<AddTask/>}/>
