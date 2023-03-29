@@ -2,7 +2,7 @@
 
 import React from "react";
 import learningportalImg from "../../../assets/image/learningportal.svg";
-import AdminLoginForm from "../../../components/AdminLoginForm/AdminLoginForm";
+import AdminLoginForm from "../../../components/AdminPortal/AdminLoginForm/AdminLoginForm";
 
 const AdminLogin = () => {
   return (

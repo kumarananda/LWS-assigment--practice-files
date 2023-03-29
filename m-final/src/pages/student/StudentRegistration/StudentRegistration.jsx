@@ -2,7 +2,7 @@
 
 import React from "react";
 import learningportalImg from "../../../assets/image/learningportal.svg";
-import StudentRegForm from "../../../components/StudentRegForm/StudentRegForm";
+import StudentRegForm from "../../../components/StudentPortal/StudentRegForm/StudentRegForm";
 
 const StudentRegistration = () => {
   return (

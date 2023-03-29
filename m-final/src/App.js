@@ -4,11 +4,11 @@ import './assets/style/output.css'
 import AuthHeader from './components/Header/AuthHeader';
 import Header from './components/Header/Header';
 import AdminLogin from './pages/admin/AdminLogin/AdminLogin';
-import Assignment from './pages/admin/Assignment/Assignment';
+import AssignmentPage from './pages/admin/Assignment/AssignmentPage';
 import AssignmentMark from './pages/admin/AssignmentMark/AssignmentMark';
 import Dashboard from './pages/admin/Dashboard/Dashboard';
 import Quizzes from './pages/admin/Quizzes/Quizzes';
-import Videos from './pages/admin/Videos/Videos';
+import VideosPage from './pages/admin/Videos/VideosPage';
 import CoursePlayer from './pages/student/CoursePlayer/CoursePlayer';
 import Leaderboard from './pages/student/Leaderboard/Leaderboard';
 import Quiz from './pages/student/Quiz/Quiz';
@@ -34,8 +34,8 @@ function App() {
           <Route path='/admin/' element={<AdminLogin/>} />
           <Route path='/admin/dashbord' element={<Dashboard/>} />
           <Route path='/admin/quizzes' element={<Quizzes/>} />
-          <Route path='/admin/videos' element={<Videos/>} />
-          <Route path='/admin/assignment' element={<Assignment/>} />
+          <Route path='/admin/videos' element={<VideosPage/>} />
+          <Route path='/admin/assignment' element={<AssignmentPage/>} />
           <Route path='/admin/assignment-mark' element={<AssignmentMark/>} />
         </Route>
       </Routes>
