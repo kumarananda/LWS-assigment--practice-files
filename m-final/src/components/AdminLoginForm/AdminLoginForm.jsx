@@ -1,11 +1,27 @@
 /** @format */
 
-import React from "react";
+import React, { useState } from "react";
 
 const AdminLoginForm = () => {
+  // Form data state // Admin login form
+  const [formData, setFormData] = useState({ email: "", password: "" });
+  // Handle form data
+  const handleFormData = e => {
+    setFormData(prev => ({
+      ...prev,
+      [e.target.name]: e.target.value,
+    }));
+  };
+
+  //Handle form submit // Admin login form
+  const HandleLoginSubmit = e => {
+    e.preventDefault();
+    alert(JSON.stringify(formData));
+  };
+
   return (
     <>
-      <form className="mt-8 space-y-6" action="#" method="POST">
+      <form onSubmit={HandleLoginSubmit} className="mt-8 space-y-6" method="POST">
         <input type="hidden" name="remember" value="true" />
         <div className="rounded-md shadow-sm -space-y-px">
           <div>
@@ -13,6 +29,7 @@ const AdminLoginForm = () => {
               Email address
             </label>
             <input
+              onChange={handleFormData}
               id="email-address"
               name="email"
               type="email"
@@ -27,6 +44,7 @@ const AdminLoginForm = () => {
               Password
             </label>
             <input
+              onChange={handleFormData}
               id="password"
               name="password"
               type="password"

@@ -1,30 +1,70 @@
 /** @format */
 
-import React from "react";
+import React, { useState } from "react";
 
 const StudentRegForm = () => {
+  // Form data state // Registration
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    password: "",
+    confirmPassword: "",
+  });
+  // Handle form data //Registration
+  const handleFormData = e => {
+    setFormData(prev => ({
+      ...prev,
+      [e.target.name]: e.target.value,
+    }));
+  };
+
+  //Handle form submit / Registration
+  const HandleRegSubmit = e => {
+    e.preventDefault();
+    alert(JSON.stringify(formData));
+  };
+
   return (
     <>
-      <form className="mt-8 space-y-6" action="#" method="POST">
+      <form onSubmit={HandleRegSubmit} className="mt-8 space-y-6" action="#" method="POST">
         <input type="hidden" name="remember" value="true" />
         <div className="rounded-md shadow-sm -space-y-px">
           <div>
             <label htmlFor="name" className="sr-only">
               Name
             </label>
-            <input id="name" name="name" type="name" autoComplete="name" required className="login-input rounded-t-md" placeholder="Student Name" />
+            <input
+              onChange={handleFormData}
+              id="name"
+              name="name"
+              type="name"
+              autoComplete="name"
+              required
+              className="login-input rounded-t-md"
+              placeholder="Student Name"
+            />
           </div>
           <div>
             <label htmlFor="email-address" className="sr-only">
               Email address
             </label>
-            <input id="email-address" name="email" type="email" autoComplete="email" required className="login-input " placeholder="Email address" />
+            <input
+              onChange={handleFormData}
+              id="email-address"
+              name="email"
+              type="email"
+              autoComplete="email"
+              required
+              className="login-input "
+              placeholder="Email address"
+            />
           </div>
           <div>
             <label htmlFor="password" className="sr-only">
               Password
             </label>
             <input
+              onChange={handleFormData}
               id="password"
               name="password"
               type="password"
@@ -39,8 +79,9 @@ const StudentRegForm = () => {
               Confirm Password
             </label>
             <input
+              onChange={handleFormData}
               id="confirm-password"
-              name="confirm-password"
+              name="confirmPassword"
               type="password"
               autoComplete="confirm-password"
               required

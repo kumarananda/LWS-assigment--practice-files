@@ -2,6 +2,7 @@ import React from 'react';
 import { Route, Routes, useLocation } from 'react-router-dom';
 import './assets/style/output.css'
 import AuthHeader from './components/Header/AuthHeader';
+import Header from './components/Header/Header';
 import AdminLogin from './pages/admin/AdminLogin/AdminLogin';
 import Assignment from './pages/admin/Assignment/Assignment';
 import AssignmentMark from './pages/admin/AssignmentMark/AssignmentMark';
@@ -21,9 +22,6 @@ function App() {
 
   return (
     <>
-      {pathname=== "/" && <Header /> }
-      {pathname=== "/admin" &&  <AuthHeader/> }
-      
       <Routes>
         <Route path='/' element={<StudentLogin/>}/>
         <Route path='/registration' element={<StudentRegistration/>}/>

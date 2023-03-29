@@ -1,11 +1,28 @@
 /** @format */
 
-import React from "react";
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
 
 const StudentLoginForm = () => {
+  // Form data state // Login form
+  const [formData, setFormData] = useState({ email: "", password: "" });
+  // Handle form data
+  const handleFormData = e => {
+    setFormData(prev => ({
+      ...prev,
+      [e.target.name]: e.target.value,
+    }));
+  };
+
+  //Handle form submit
+  const HandleLoginSubmit = e => {
+    e.preventDefault();
+    alert(JSON.stringify(formData));
+  };
+
   return (
     <>
-      <form className="mt-8 space-y-6" action="#" method="POST">
+      <form onSubmit={HandleLoginSubmit} className="mt-8 space-y-6" action="#" method="POST">
         <input type="hidden" name="remember" value="true" />
         <div className="rounded-md shadow-sm -space-y-px">
           <div>
@@ -13,6 +30,7 @@ const StudentLoginForm = () => {
               Email address
             </label>
             <input
+              onChange={handleFormData}
               id="email-address"
               name="email"
               type="email"
@@ -27,6 +45,7 @@ const StudentLoginForm = () => {
               Password
             </label>
             <input
+              onChange={handleFormData}
               id="password"
               name="password"
               type="password"
@@ -40,9 +59,9 @@ const StudentLoginForm = () => {
 
         <div className="flex items-center justify-end">
           <div className="text-sm">
-            <a href="./StudentReistration.html" className="font-medium text-violet-600 hover:text-violet-500">
+            <Link to="/registration" className="font-medium text-violet-600 hover:text-violet-500">
               Create New Account
-            </a>
+            </Link>
           </div>
         </div>
 

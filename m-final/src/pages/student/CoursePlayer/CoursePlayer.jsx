@@ -1,6 +1,7 @@
 /** @format */
 
 import React from "react";
+import { Link } from "react-router-dom";
 import Header from "../../../components/Header/Header";
 
 const CoursePlayer = () => {
@@ -28,16 +29,13 @@ const CoursePlayer = () => {
                 <h2 className=" pb-4 text-sm leading-[1.7142857] text-slate-400">Uploaded on 23 February 2020</h2>
 
                 <div className="flex gap-4">
-                  <a href="#" className="px-3 font-bold py-1 border border-cyan text-cyan rounded-full text-sm hover:bg-cyan hover:text-primary">
+                  <a href="/" className="px-3 font-bold py-1 border border-cyan text-cyan rounded-full text-sm hover:bg-cyan hover:text-primary">
                     এসাইনমেন্ট
                   </a>
 
-                  <a
-                    href="./Quiz.html"
-                    className="px-3 font-bold py-1 border border-cyan text-cyan rounded-full text-sm hover:bg-cyan hover:text-primary"
-                  >
+                  <Link to="/quiz" className="px-3 font-bold py-1 border border-cyan text-cyan rounded-full text-sm hover:bg-cyan hover:text-primary">
                     কুইজে অংশগ্রহণ করুন
-                  </a>
+                  </Link>
                 </div>
                 <p className="mt-4 text-sm text-slate-400 leading-6">
                   আপনারা যারা বিগিনার হিসেবে রিয়্যাক্ট জেস নিয়ে কাজ করা শুরু করেছেন, তারা রিয়্যাক্ট এর বেশ কিছু কনসেপ্ট ঠিক মতো আয়ত্ত না করতে
@@ -85,7 +83,7 @@ const CoursePlayer = () => {
                 </svg>
                 {/*  Description */}
                 <div clas="flex flex-col w-full">
-                  <a href="#">
+                  <a href="/">
                     <p className="text-slate-50 text-sm font-medium">Introduction to Couse</p>
                   </a>
                   <div>
@@ -108,7 +106,7 @@ const CoursePlayer = () => {
                 </svg>
                 {/*  Description */}
                 <div clas="flex flex-col w-full">
-                  <a href="#">
+                  <a href="/">
                     <p className="text-slate-50 text-sm font-medium">Introduction to Couse</p>
                   </a>
                   <div>
