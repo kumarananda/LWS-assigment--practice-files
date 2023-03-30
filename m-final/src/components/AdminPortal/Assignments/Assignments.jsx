@@ -1,13 +1,21 @@
 /** @format */
 
-import React from "react";
-import SingleAssignment from "../SingleAssignment/SingleAssignment.jsx";
+import React, { useState } from "react";
 import AssignmentAddForm from "../AssignmentForm/AssignmentAddForm.jsx";
 import AssignmentEditForm from "../AssignmentForm/AssignmentEditForm.jsx";
 import { useGetAssignmentsQuery } from "../../../features/api/assignments/assignmentsApi.js";
+import SingleAssignment from "./SingleAssignment.jsx";
+import Modal from "../../ui/Modal/Modal.jsx";
 
 const Assignments = () => {
   const { data: assignments, isLoading, isSuccess, isError } = useGetAssignmentsQuery();
+
+  // edit modal status and data state
+  const [editStatus, setEditStatus] = useState(false);
+  const [editVideo, setEditvideo] = useState({});
+
+  // add modal status
+  const [addStatus, setAddStatus] = useState(false);
 
   let content = null;
   if (isLoading) {
@@ -46,6 +54,14 @@ const Assignments = () => {
           </table>
         </div>
       </div>
+
+      {/* Assigment add and edit modals */}
+      <Modal modalOpen={editStatus} setModalOpen={setEditStatus} MBoxWidth={900} outCickHide={false}>
+        <AssignmentEditForm editVideo={editVideo} setEditvideo={setEditvideo} setStatus={setEditStatus} />
+      </Modal>
+      <Modal modalOpen={addStatus} setModalOpen={setAddStatus} MBoxWidth={900} outCickHide={false}>
+        <AssignmentAddForm setStatus={setAddStatus} />
+      </Modal>
     </>
   );
 };

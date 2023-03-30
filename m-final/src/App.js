@@ -28,8 +28,7 @@ function App() {
         <Route path='/leaderboard' element={<Leaderboard/>} />
         <Route path='/course-player' element={<CoursePlayer/>} />
         <Route path='/quiz' element={<Quiz/>} />
-      </Routes>
-      <Routes>
+        // admin portal
         <Route path='/admin' >
           <Route path='/admin/' element={<AdminLogin/>} />
           <Route path='/admin/dashbord' element={<Dashboard/>} />

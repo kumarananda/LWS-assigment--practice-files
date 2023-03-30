@@ -69,7 +69,7 @@ const VideoEditForm = ({ editVideo, setEditvideo, setStatus }) => {
               <input value={formData.createdAt} onChange={handleFormData} id="video-createdAt" type="text" name="createdAt" />
             </div>
             <div className="action_box">
-              <button type="reset" className="cancelBtn">
+              <button type="reset" className="resetlBtn">
                 Clear
               </button>{" "}
               &nbsp;

@@ -64,5 +64,8 @@
   background-color: #38bdf8;
 }
 .action_box button.cancelBtn {
-  background-color: #dc2626;
+  background-color: #dd6b6b;
+}
+.action_box button.resetlBtn {
+  background-color: #dbdd6b;
 }
