@@ -5,9 +5,9 @@ import AuthHeader from './components/Header/AuthHeader';
 import Header from './components/Header/Header';
 import AdminLogin from './pages/admin/AdminLogin/AdminLogin';
 import AssignmentPage from './pages/admin/Assignment/AssignmentPage';
-import AssignmentMark from './pages/admin/AssignmentMark/AssignmentMark';
+import AssignmentMarkPage from './pages/admin/AssignmentMarkPage/AssignmentMark';
 import Dashboard from './pages/admin/Dashboard/Dashboard';
-import QuizzesPage from './pages/admin/Quizzes/QuizzesPage';
+import QuizzesPage from './pages/admin/QuizzesPage/QuizzesPage';
 import VideosPage from './pages/admin/Videos/VideosPage';
 import CoursePlayer from './pages/student/CoursePlayer/CoursePlayer';
 import Leaderboard from './pages/student/Leaderboard/Leaderboard';
@@ -35,7 +35,7 @@ function App() {
           <Route path='/admin/quizzes' element={<QuizzesPage/>} />
           <Route path='/admin/videos' element={<VideosPage/>} />
           <Route path='/admin/assignment' element={<AssignmentPage/>} />
-          <Route path='/admin/assignment-mark' element={<AssignmentMark/>} />
+          <Route path='/admin/assignment-mark' element={<AssignmentMarkPage/>} />
         </Route>
       </Routes>
     </>
