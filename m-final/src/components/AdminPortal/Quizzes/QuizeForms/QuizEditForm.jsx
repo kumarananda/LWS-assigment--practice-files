@@ -3,13 +3,11 @@
 import React, { useState } from "react";
 import "../../../../forms.css";
 import { GoX } from "react-icons/go";
-import { useGetVideosQuery } from "../../../../features/api/videos/videosApi";
 import Option from "./Option";
 
 const QuizEditForm = ({ setStatus, editQuiz, videoQuery }) => {
   const { data: videos, isLoading, isError, isSuccess } = videoQuery || {};
 
-  console.log(editQuiz);
   const { id, options } = editQuiz || {};
 
   // create video title for select
@@ -22,10 +20,6 @@ const QuizEditForm = ({ setStatus, editQuiz, videoQuery }) => {
     ));
   }
 
-  /**
-   * Object { id: 3, question: "What is the difference between null and undefined in JavaScript?", video_id: 2, video_title: "#2 JavaScript Tips and Tricks - JavaScript Job Interview Questions", options: (4) […] }
-   */
-  // console.log(videos);
   // Form data state // Assignment edit form
   const [question, setQuestion] = useState(editQuiz.question);
   const [videoID, setVideoID] = useState(editQuiz.video_id);
@@ -37,7 +31,6 @@ const QuizEditForm = ({ setStatus, editQuiz, videoQuery }) => {
   const [options4, setOptions4] = useState({ id: 4, option: options[3].option, isCorrect: options[3].isCorrect });
 
   //Handle form submit // Assignment edit form
-
   const HandleAddAssignmentSubmit = e => {
     e.preventDefault();
     // find selected video title
