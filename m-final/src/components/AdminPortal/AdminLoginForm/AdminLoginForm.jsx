@@ -1,8 +1,11 @@
 /** @format */
 
 import React, { useState } from "react";
+import { useLoginMutation } from "../../../features/auth/authApi";
+import Error from "../../ui/InfoMsg/Error";
 
 const AdminLoginForm = () => {
+  const [login, { isLoading, isError, isSuccess, error }] = useLoginMutation();
   // Form data state // Admin login form
   const [formData, setFormData] = useState({ email: "", password: "" });
   // Handle form data
@@ -13,10 +16,16 @@ const AdminLoginForm = () => {
     }));
   };
 
+  console.log(error);
+
   //Handle form submit // Admin login form
   const HandleLoginSubmit = e => {
     e.preventDefault();
-    alert(JSON.stringify(formData));
+
+    login({
+      email: formData.email,
+      password: formData.password,
+    });
   };
 
   return (
@@ -72,6 +81,7 @@ const AdminLoginForm = () => {
             Sign in
           </button>
         </div>
+        <div className="formInfoMsg">{isError && <Error message={error.data} />}</div>
       </form>
     </>
   );
