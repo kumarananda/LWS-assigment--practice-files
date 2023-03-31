@@ -7,10 +7,9 @@ import SingleAssMark from "./SingleAssMark.jsx";
 const AssignmentMark = () => {
   const { data: assMarks, isLoading, isError, isSuccess } = useGetAssignmentMarkQuery();
 
-  //
-  const totalAss = assMarks.length;
-  const markPanding = assMarks.filter(i => i.status === "pending").length;
-  const markpublished = assMarks.filter(i => i.status === "published").length;
+  const totalAss = isSuccess ? assMarks.length : 0;
+  const markPanding = isSuccess ? assMarks.filter(i => i.status === "pending").length : 0;
+  const markpublished = isSuccess ? assMarks.filter(i => i.status === "published").length : 0;
 
   let content = null;
   if (isLoading) {
