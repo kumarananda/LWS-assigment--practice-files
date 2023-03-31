@@ -1,10 +1,10 @@
 /** @format */
 
 import React, { useState } from "react";
-import "./VideoEditForm.css";
+import "../../../../forms.css";
 import { GoX } from "react-icons/go";
 
-const VideoEditForm = ({ editVideo, setEditvideo, setStatus }) => {
+const VideoEditForm = ({ editVideo, setStatus }) => {
   const { id } = editVideo || {};
 
   // Form data state // Video edit form
@@ -13,7 +13,6 @@ const VideoEditForm = ({ editVideo, setEditvideo, setStatus }) => {
     description: editVideo.description,
     duration: editVideo.duration,
     views: editVideo.views,
-    createdAt: editVideo.createdAt,
     url: editVideo.url,
   });
 
@@ -64,15 +63,8 @@ const VideoEditForm = ({ editVideo, setEditvideo, setStatus }) => {
               <label htmlFor="video-views">Views</label>
               <input value={formData.views} onChange={handleFormData} id="video-views" type="text" name="views" />
             </div>
-            <div className="input_box">
-              <label htmlFor="video-createdAt">CreatedAt</label>
-              <input value={formData.createdAt} onChange={handleFormData} id="video-createdAt" type="text" name="createdAt" />
-            </div>
+
             <div className="action_box">
-              <button type="reset" className="resetlBtn">
-                Clear
-              </button>{" "}
-              &nbsp;
               <button onClick={() => setStatus(false)} className="cancelBtn">
                 Cancel
               </button>{" "}

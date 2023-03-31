@@ -1,7 +1,7 @@
 /** @format */
 
 import React, { useState } from "react";
-import "./VideoEditForm.css";
+import "../../../../forms.css";
 import { GoX } from "react-icons/go";
 
 const VideoAddForm = ({ setStatus }) => {
@@ -11,11 +11,8 @@ const VideoAddForm = ({ setStatus }) => {
     description: "",
     duration: "",
     views: "",
-    createdAt: "",
     url: "",
   });
-
-  const date = new Date();
 
   // Handle form data
   const handleFormData = e => {
@@ -28,6 +25,7 @@ const VideoAddForm = ({ setStatus }) => {
   //Handle form submit // Video add form
   const HandleAddVideoSubmit = e => {
     e.preventDefault();
+    const date = new Date();
     alert(JSON.stringify(formData));
   };
   return (
@@ -64,18 +62,11 @@ const VideoAddForm = ({ setStatus }) => {
               <label htmlFor="video-views">Views</label>
               <input value={formData.views} onChange={handleFormData} id="video-views" type="text" name="views" />
             </div>
-            <div className="input_box">
-              <label htmlFor="video-createdAt">CreatedAt</label>
-              <input value={formData.createdAt} onChange={handleFormData} id="video-createdAt" type="text" name="createdAt" />
-            </div>
+
             <div className="action_box">
-              <button type="reset" className="cancelBtn">
-                Clear
-              </button>{" "}
-              &nbsp;
               <button onClick={() => setStatus(false)} className="cancelBtn">
                 Cancel
-              </button>{" "}
+              </button>
               &nbsp;
               <button type="submit" className="submitBtn">
                 Add Video

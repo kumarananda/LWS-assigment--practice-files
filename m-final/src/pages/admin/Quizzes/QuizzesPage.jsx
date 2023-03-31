@@ -1,20 +1,20 @@
 /** @format */
 
 import React from "react";
-import Videos from "../../../components/AdminPortal/Videos/Videos";
 import Header from "../../../components/Header/Header";
+import Quizzes from "../../../components/AdminPortal/Quizzes/Quizzes.jsx";
 
-const VideosPage = () => {
+const QuizzesPage = () => {
   return (
     <>
       <Header />
-      <div className="py-6 bg-primary">
+      <section className="py-6 bg-primary">
         <div className="mx-auto max-w-full px-5 lg:px-20">
-          <Videos />
+          <Quizzes />
         </div>
-      </div>
+      </section>
     </>
   );
 };
 
-export default VideosPage;
+export default QuizzesPage;

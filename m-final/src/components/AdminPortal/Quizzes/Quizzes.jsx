@@ -1,24 +1,27 @@
 /** @format */
 
 import React, { useState } from "react";
+import { useGetQuizzessQuery } from "../../../features/api/quizzes/quizzesApi";
 import { useGetVideosQuery } from "../../../features/api/videos/videosApi";
 import Modal from "../../ui/Modal/Modal";
+import QuizAddForm from "./QuizeForms/QuizAddForm";
+import QuizEditForm from "./QuizeForms/QuizEditForm";
+import SingleQuiz from "./SingleQuiz";
 
-import SingleVideo from "./SingleVideo";
-import VideoAddForm from "./VideoForms/VideoAddForm";
-import VideoEditForm from "./VideoForms/VideoEditForm";
+const Quizzes = () => {
+  const { data: quizzes, isLoading, isError, isSuccess } = useGetQuizzessQuery();
 
-const Videos = () => {
-  const { data: videos, isLoading, isError, isSuccess } = useGetVideosQuery();
+  // video query //up components query for avoiding Loading delay
+  const videoQuery = useGetVideosQuery();
 
   // add video modal
   const [addStatus, setAddStatus] = useState(false);
 
   // edit video data and modal
-  const [editVideo, setEditvideo] = useState({});
+  const [editQuiz, setEditQuiz] = useState({});
   const [editStatus, setEditStatus] = useState(false);
 
-  // create content for videos
+  // create content for quizzes
   let content = null;
   if (isLoading) {
     content = <h3>Loading...</h3>;
@@ -27,48 +30,45 @@ const Videos = () => {
     content = <h3>There was an error!</h3>;
   }
   if (!isLoading && !isError && isSuccess) {
-    const videoLength = videos.length;
-    if (videoLength === 0) {
+    const quizLength = quizzes.length;
+    if (quizLength === 0) {
       content = <h3>Video list is empty!</h3>;
-    } else if (videoLength >= 0) {
-      content = videos.map(video => <SingleVideo video={video} setEdit={setEditvideo} setStatus={setEditStatus} />);
+    } else if (quizLength >= 0) {
+      content = quizzes.map(quiz => <SingleQuiz quiz={quiz} setEdit={setEditQuiz} setStatus={setEditStatus} key={quiz.id} />);
     }
   }
-
   return (
     <>
       <div className="px-3 py-20 bg-opacity-10">
         <div className="w-full flex">
           <button onClick={() => setAddStatus(true)} className="btn ml-auto">
-            Add Video
+            Add Quiz
           </button>
         </div>
         <div className="overflow-x-auto mt-4">
           <table className="divide-y-1 text-base divide-gray-600 w-full">
             <thead>
               <tr>
-                <th className="table-th">Video Title</th>
-                <th className="table-th">Description</th>
-                <th className="table-th">Action</th>
+                <th className="table-th">Question</th>
+                <th className="table-th">Video</th>
+                <th className="table-th justify-center">Action</th>
               </tr>
             </thead>
-            {/* Single video items */}
-            <tbody className="divide-y divide-slate-600/50">{content}</tbody>
+
+            <tbody className="divide-y divide-slate-600/50"> {content}</tbody>
           </table>
         </div>
       </div>
-
       {/* add form modal */}
       <Modal modalOpen={addStatus} setModalOpen={setAddStatus} MBoxWidth={900} outCickHide={false}>
-        <VideoAddForm setStatus={setAddStatus} />
+        <QuizAddForm setStatus={setAddStatus} />
       </Modal>
-
       {/* edit form modal */}
       <Modal modalOpen={editStatus} setModalOpen={setEditStatus} MBoxWidth={900} outCickHide={false}>
-        <VideoEditForm editVideo={editVideo} setStatus={setEditStatus} />
+        <QuizEditForm videoQuery={videoQuery} editQuiz={editQuiz} setStatus={setEditStatus} />
       </Modal>
     </>
   );
 };
 
-export default Videos;
+export default Quizzes;

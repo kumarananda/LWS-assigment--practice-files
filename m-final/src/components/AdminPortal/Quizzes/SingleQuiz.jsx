@@ -2,34 +2,31 @@
 
 import React from "react";
 
-const SingleAssignment = ({ assignment, setEdit, setStatus }) => {
-  const { id, title, video_title, totalMark } = assignment || {};
+const SingleQuiz = ({ quiz, setEdit, setStatus }) => {
+  const { id, question, video_id, video_title, options } = quiz || {};
 
-  // handle delete assignment
-  const handleDeleteAssignment = assId => {
-    alert(assId);
+  // set quiz edit data to store and handle modal
+  const handleQuizEdit = data => {
+    setEdit(data);
+    setStatus(true);
   };
 
-  // set edit data for form value
-  const handleSetEditData = () => {
-    setEdit(assignment);
-    setStatus(true);
+  // handle quiz delete
+  const handleQuizDelete = deleteId => {
+    alert(deleteId);
   };
 
   return (
     <>
       <tr>
         <td className="table-td">
-          <div className="ak-text-ellipsis"> {title} </div>
+          <div className="ak-text-ellipsis">{question} </div>
         </td>
         <td className="table-td">
-          <div className="ak-text-ellipsis"> {video_title} </div>
+          <div className="ak-text-ellipsis">{video_title} </div>
         </td>
-
-        <td className="table-td">{totalMark ? totalMark : "Pending"}</td>
-
-        <td className="table-td flex gap-x-2">
-          <button onClick={() => handleDeleteAssignment(id)}>
+        <td className="table-td flex gap-x-2 justify-center">
+          <button onClick={e => handleQuizDelete(id)}>
             <svg
               fill="none"
               viewBox="0 0 24 24"
@@ -44,7 +41,7 @@ const SingleAssignment = ({ assignment, setEdit, setStatus }) => {
               />
             </svg>
           </button>
-          <button onClick={handleSetEditData}>
+          <button onClick={e => handleQuizEdit(quiz)}>
             <svg
               fill="none"
               viewBox="0 0 24 24"
@@ -65,4 +62,4 @@ const SingleAssignment = ({ assignment, setEdit, setStatus }) => {
   );
 };
 
-export default SingleAssignment;
+export default SingleQuiz;

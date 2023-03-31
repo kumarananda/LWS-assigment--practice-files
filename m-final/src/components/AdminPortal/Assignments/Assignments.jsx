@@ -1,18 +1,21 @@
 /** @format */
 
 import React, { useState } from "react";
-import AssignmentAddForm from "../AssignmentForm/AssignmentAddForm.jsx";
-import AssignmentEditForm from "../AssignmentForm/AssignmentEditForm.jsx";
 import { useGetAssignmentsQuery } from "../../../features/api/assignments/assignmentsApi.js";
 import SingleAssignment from "./SingleAssignment.jsx";
 import Modal from "../../ui/Modal/Modal.jsx";
+import AssignmentEditForm from "./AssForms/AssignmentEditForm.jsx";
+import AssignmentAddForm from "./AssForms/AssignmentAddForm.jsx";
+import { useGetVideosQuery } from "../../../features/api/videos/videosApi.js";
 
 const Assignments = () => {
   const { data: assignments, isLoading, isSuccess, isError } = useGetAssignmentsQuery();
+  // video query //up components query for avoiding Loading delay
+  const videoQuery = useGetVideosQuery();
 
   // edit modal status and data state
   const [editStatus, setEditStatus] = useState(false);
-  const [editVideo, setEditvideo] = useState({});
+  const [editAss, setEditAss] = useState({});
 
   // add modal status
   const [addStatus, setAddStatus] = useState(false);
@@ -29,7 +32,9 @@ const Assignments = () => {
     if (assLength === 0) {
       content = "No assignment found!";
     } else if (assLength >= 0) {
-      content = assignments.map(assignment => <SingleAssignment assignment={assignment} />);
+      content = assignments.map(assignment => (
+        <SingleAssignment assignment={assignment} setEdit={setEditAss} setStatus={setEditStatus} key={assignment.id} />
+      ));
     }
   }
 
@@ -37,7 +42,9 @@ const Assignments = () => {
     <>
       <div className="px-3 py-20 bg-opacity-10">
         <div className="w-full flex">
-          <button className="btn ml-auto">Add Assignment</button>
+          <button onClick={() => setAddStatus(true)} className="btn ml-auto">
+            Add Assignment
+          </button>
         </div>
         <div className="overflow-x-auto mt-4">
           <table className="divide-y-1 text-base divide-gray-600 w-full">
@@ -49,18 +56,18 @@ const Assignments = () => {
                 <th className="table-th">Action</th>
               </tr>
             </thead>
-
             <tbody className="divide-y divide-slate-600/50">{content}</tbody>
           </table>
         </div>
       </div>
 
-      {/* Assigment add and edit modals */}
-      <Modal modalOpen={editStatus} setModalOpen={setEditStatus} MBoxWidth={900} outCickHide={false}>
-        <AssignmentEditForm editVideo={editVideo} setEditvideo={setEditvideo} setStatus={setEditStatus} />
-      </Modal>
+      {/* add form modal */}
       <Modal modalOpen={addStatus} setModalOpen={setAddStatus} MBoxWidth={900} outCickHide={false}>
         <AssignmentAddForm setStatus={setAddStatus} />
+      </Modal>
+      {/* edit form modal */}
+      <Modal modalOpen={editStatus} setModalOpen={setEditStatus} MBoxWidth={850} outCickHide={false}>
+        <AssignmentEditForm videoQuery={videoQuery} editAss={editAss} setStatus={setEditStatus} />
       </Modal>
     </>
   );
