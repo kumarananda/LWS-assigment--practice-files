@@ -47,17 +47,3 @@ const SingleAssMark = ({ assMark }) => {
 };
 
 export default SingleAssMark;
-
-/**
- * {
-    id:	1,
-student_id:	2,
-student_name:	"Saad Hasan",
-assignment_id:	1,
-title:	"Assignment 1 - Implement Debounce Function",
-createdAt:	"2021-01-15T15:17:01.727Z",
-totalMark:	100,
-mark	:0,
-repo_link:	"https://github.com/Learn-with-Sumit/assignment-1",
-status	:"pending"}
- */

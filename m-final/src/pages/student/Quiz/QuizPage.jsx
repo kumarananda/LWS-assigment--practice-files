@@ -3,7 +3,7 @@
 import React from "react";
 import Header from "../../../components/Header/Header";
 
-const Quiz = () => {
+const QuizPage = () => {
   return (
     <>
       <Header />
@@ -74,4 +74,4 @@ const Quiz = () => {
   );
 };
 
-export default Quiz;
+export default QuizPage;

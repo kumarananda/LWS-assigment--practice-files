@@ -4,16 +4,16 @@ import './assets/style/output.css'
 import AuthHeader from './components/Header/AuthHeader';
 import Header from './components/Header/Header';
 import AdminLogin from './pages/admin/AdminLogin/AdminLogin';
-import AssignmentPage from './pages/admin/Assignment/AssignmentPage';
-import AssignmentMark from './pages/admin/AssignmentMark/AssignmentMark';
 import Dashboard from './pages/admin/Dashboard/Dashboard';
-import QuizzesPage from './pages/admin/Quizzes/QuizzesPage';
-import VideosPage from './pages/admin/Videos/VideosPage';
-import CoursePlayer from './pages/student/CoursePlayer/CoursePlayer';
 import Leaderboard from './pages/student/Leaderboard/Leaderboard';
-import Quiz from './pages/student/Quiz/Quiz';
 import StudentLogin from './pages/student/StudentLogin/StudentLogin';
+import AssignmentMarkPage from './pages/admin/AssignmentMarkPage/AssignmentMarkPage';
+import QuizPage from './pages/student/Quiz/QuizPage';
+import CoursePlayer from './pages/student/CoursePlayer/CoursePlayer';
 import StudentRegistration from './pages/student/StudentRegistration/StudentRegistration';
+import QuizzesPage from './pages/admin/QuizzesPage/QuizzesPage';
+import AssignmentPage from './pages/admin/AssignmentPage/AssignmentPage';
+import VideosPage from './pages/admin/VideosPage/VideosPage';
 
 
 function App() {
@@ -27,7 +27,7 @@ function App() {
         <Route path='/registration' element={<StudentRegistration/>}/>
         <Route path='/leaderboard' element={<Leaderboard/>} />
         <Route path='/course-player' element={<CoursePlayer/>} />
-        <Route path='/quiz' element={<Quiz/>} />
+        <Route path='/quiz' element={<QuizPage/>} />
         // admin portal
         <Route path='/admin' >
           <Route path='/admin/' element={<AdminLogin/>} />
