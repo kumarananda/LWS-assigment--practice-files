@@ -35,7 +35,7 @@ function App() {
           <Route path='/admin/quizzes' element={<QuizzesPage/>} />
           <Route path='/admin/videos' element={<VideosPage/>} />
           <Route path='/admin/assignment' element={<AssignmentPage/>} />
-          <Route path='/admin/assignment-mark' element={<AssignmentMarkPage/>} />
+          <Route path='/admin/assignment-mark' element={<AssignmentMark/>} />
         </Route>
       </Routes>
     </>
