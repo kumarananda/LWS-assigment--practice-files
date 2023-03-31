@@ -2,7 +2,7 @@
 
 import React from "react";
 import Header from "../../../components/Header/Header";
-import Quizzes from "../../../components/AdminPortal/Quizzes/Quizzes.jsx";
+import Quizzes from "../../../components/AdminPortal/Quizzes/Quizzes";
 
 const QuizzesPage = () => {
   return (

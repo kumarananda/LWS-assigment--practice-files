@@ -120,16 +120,27 @@
   width: 100%;
 }
 .optionBox .optionSelect .isCorrect input {
-  width: 22px;
-  height: 22px;
+  width: 18px;
+  height: 18px;
 }
 .optionBox .optionName .input_box {
   padding-right: 5px;
 }
+/* .optionBox .optionSelect .input_box {
+  padding-left: 5px;
+} */
+
 .optionBox .optionSelect .input_box {
   padding-left: 5px;
+  padding-top: 30px;
+  padding-bottom: 0px;
 }
-.optionBox .optionSelect .input_box .isCorrect input {
+/* .optionBox .optionSelect .input_box .isCorrect input {
   margin: auto;
   margin-top: 10px;
+} */
+
+.optionBox .optionSelect .input_box .isCorrect input {
+  margin: auto;
+  margin-top: 5px;
 }
