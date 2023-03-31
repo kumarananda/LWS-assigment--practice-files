@@ -25,7 +25,15 @@ const SingleAssMark = ({ assMark }) => {
         {status === "pending" && (
           <td className="table-td">
             <form className="input-mark" onSubmit={handleMarkSubmit}>
-              <input type="number" className="hideNumberArrow" min="0" max={totalMark} value={addMark} onChange={e => setAddMark(e.target.value)} />
+              <input
+                required
+                type="number"
+                className="hideNumberArrow"
+                min="0"
+                max={totalMark}
+                value={addMark}
+                onChange={e => setAddMark(e.target.value)}
+              />
               <button className="markSubmitBtn" type="submit">
                 <svg
                   fill="none"
