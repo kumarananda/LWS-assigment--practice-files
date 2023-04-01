@@ -3,7 +3,7 @@
 import { Navigate } from "react-router-dom";
 import useAuth from "../../../hooks/useAuth";
 
-export default function AdminPrivateRoute({ children }) {
+export default function AdminRoute({ children }) {
   const { role, isLoggedIn } = useAuth();
 
   if (isLoggedIn && role === "admin") {

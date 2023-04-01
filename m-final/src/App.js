@@ -15,30 +15,30 @@ import QuizzesPage from './pages/admin/QuizzesPage/QuizzesPage';
 import AssignmentPage from './pages/admin/AssignmentPage/AssignmentPage';
 import VideosPage from './pages/admin/VideosPage/VideosPage';
 import useAuthCheck from './hooks/useAuthCheck';
+import PublicRoute from './components/ui/RouteAuthenticate/PublicRoute';
+import AdminRoute from './components/ui/RouteAuthenticate/AdminRoute';
+import StudentRoute from './components/ui/RouteAuthenticate/StudentRoute';
 
 
 function App() {
   const authChecked = useAuthCheck();
 
-  const location = useLocation()
-  const {pathname} = location || {}
-
   return (
     <>
       <Routes>
-        <Route path='/' element={<StudentLogin/>}/>
-        <Route path='/registration' element={<StudentRegistration/>}/>
-        <Route path='/leaderboard' element={<Leaderboard/>} />
-        <Route path='/course-player' element={<CoursePlayer/>} />
-        <Route path='/quiz' element={<QuizPage/>} />
+        <Route path='/' element={<PublicRoute><StudentLogin/></PublicRoute>}/>
+        <Route path='/registration' element={<PublicRoute><StudentRegistration/></PublicRoute>}/>
+        <Route path='/leaderboard' element={<StudentRoute><Leaderboard/></StudentRoute>} />
+        <Route path='/course-player' element={<StudentRoute><CoursePlayer/></StudentRoute>} />
+        <Route path='/quiz' element={<StudentRoute><QuizPage/></StudentRoute>} />
         // admin portal
         <Route path='/admin' >
-          <Route path='/admin/' element={<AdminLogin/>} />
-          <Route path='/admin/dashbord' element={<Dashboard/>} />
-          <Route path='/admin/quizzes' element={<QuizzesPage/>} />
-          <Route path='/admin/videos' element={<VideosPage/>} />
-          <Route path='/admin/assignment' element={<AssignmentPage/>} />
-          <Route path='/admin/assignment-mark' element={<AssignmentMarkPage/>} />
+          <Route path='/admin/' element={<PublicRoute><AdminLogin/></PublicRoute>} />
+          <Route path='/admin/dashbord' element={<AdminRoute><Dashboard/></AdminRoute>} />
+          <Route path='/admin/quizzes' element={<AdminRoute><QuizzesPage/></AdminRoute>}  />
+          <Route path='/admin/videos' element={<AdminRoute><VideosPage/></AdminRoute>} />
+          <Route path='/admin/assignment' element={<AdminRoute><AssignmentPage/></AdminRoute>} />
+          <Route path='/admin/assignment-mark' element={<AdminRoute><AssignmentMarkPage/></AdminRoute>} />
         </Route>
       </Routes>
     </>

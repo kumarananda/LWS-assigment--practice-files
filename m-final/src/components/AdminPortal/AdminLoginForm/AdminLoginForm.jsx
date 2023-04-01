@@ -3,8 +3,10 @@
 import React, { useState } from "react";
 import { useLoginMutation } from "../../../features/auth/authApi";
 import Error from "../../ui/InfoMsg/Error";
+import { useNavigate } from "react-router-dom";
 
 const AdminLoginForm = () => {
+  const navigate = useNavigate();
   const [login, { isLoading, isError, isSuccess, error }] = useLoginMutation();
   // Form data state // Admin login form
   const [formData, setFormData] = useState({ email: "", password: "" });
@@ -23,9 +25,18 @@ const AdminLoginForm = () => {
     e.preventDefault();
 
     login({
-      email: formData.email,
-      password: formData.password,
-    });
+      role: "admin",
+      data: { email: formData.email, password: formData.password },
+    })
+      .then(res => {
+        console.log(res.data.user.role);
+        if (res.data.user.role === "admin") {
+          navigate("/admin/dashbord");
+        }
+      })
+      .catch(err => {
+        console.log(err);
+      });
   };
 
   return (
