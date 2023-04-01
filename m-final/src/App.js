@@ -14,9 +14,12 @@ import StudentRegistration from './pages/student/StudentRegistration/StudentRegi
 import QuizzesPage from './pages/admin/QuizzesPage/QuizzesPage';
 import AssignmentPage from './pages/admin/AssignmentPage/AssignmentPage';
 import VideosPage from './pages/admin/VideosPage/VideosPage';
+import useAuthCheck from './hooks/useAuthCheck';
 
 
 function App() {
+  const authChecked = useAuthCheck();
+
   const location = useLocation()
   const {pathname} = location || {}
 
