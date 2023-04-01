@@ -68,6 +68,51 @@
       "views": "91.2K",
       "duration": "31:30",
       "createdAt": "2023-02-24T17:59:00.000Z"
+    },
+    {
+      "title": "Facing the Future: The Truth About Artificial Intelligence and Our Jobs - Bangla",
+      "description": "This video explores the impact of artificial intelligence on employment, examining the history of automation and the current state of AI technology. The video aims to provide a balanced perspective on the topic, helping viewers understand the truth about AI's impact on jobs and offering advice on how to prepare for the changing job market. This video also answers the most common questions asked by programmers worldwide - \"Will AI take my job?\"",
+      "duration": "34:50",
+      "views": "31K",
+      "url": "https://youtu.be/BihZd2x8Qh8",
+      "createdAt": "2023-04-01T16:32:38.944Z",
+      "id": 3
+    },
+    {
+      "title": "#01 Introduction | Tailwind CSS Bangla Tutorial",
+      "description": "This is the introduction video of Learn with Sumit Tailwind CSS Bangla Tutorial Course. In this video, you will get detail instructions about how to follow this playlist, course outline, what are the prerequisites to learn Tailwind CSS and what to expect from this course.",
+      "duration": "4.50",
+      "views": "2.9K",
+      "url": "https://youtu.be/X7XbjwD6fVY",
+      "createdAt": "2023-04-01T16:41:03.352Z",
+      "id": 4
+    },
+    {
+      "title": "#02 Tailwind Installation | Tailwind CSS Bangla Tutorial",
+      "description": "In this video of Learn with Sumit Tailwind CSS Bangla Tutorial Course, you will get detail instructions on how to install Tailwind CSS. Amongst various ways to install Tailwind, this video shows how to install tailwind css with Tailwind CLI or Command Line Interface.",
+      "duration": "7.05",
+      "views": "12K",
+      "url": "https://youtu.be/6LF7y7T0_EU",
+      "createdAt": "2023-04-01T16:59:32.425Z",
+      "id": 5
+    },
+    {
+      "title": "#03 Utility-First Approach | Tailwind CSS Bangla Tutorial",
+      "description": "This is the 3rd video of \"Learn with Sumit Tailwind CSS Bangla Tutorial Course\". In this video, I have described the fundamental concept of Tailwind CSS - the Utility-First Design Approach - which is where Tailwind is different from other CSS frameworks like Bootstrap or Material UI.\n",
+      "duration": "27:31",
+      "views": "13K",
+      "url": "https://youtu.be/HxVdmUGGtJk",
+      "createdAt": "2023-04-01T17:01:28.441Z",
+      "id": 6
+    },
+    {
+      "title": "#04 Responsive variants - Tailwind Breakpoints | Tailwind CSS Bangla Tutorial",
+      "description": "This is the 4th video of \"Learn with Sumit Tailwind CSS Bangla Tutorial Course\". In this video, you will get a clear concept about how responsiveness is handled in Tailwind. Tailwind gives us several device breakpoints which we can target to achieve responsiveness easily and efficiently.",
+      "duration": "7:31",
+      "views": "10K",
+      "url": "https://youtu.be/36TUIIZgiu0",
+      "createdAt": "2023-04-01T17:07:46.353Z",
+      "id": 7
     }
   ],
   "assignments": [

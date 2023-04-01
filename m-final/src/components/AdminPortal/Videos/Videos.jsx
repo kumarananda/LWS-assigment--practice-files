@@ -7,6 +7,7 @@ import Modal from "../../ui/Modal/Modal";
 import SingleVideo from "./SingleVideo";
 import VideoAddForm from "./VideoForms/VideoAddForm";
 import VideoEditForm from "./VideoForms/VideoEditForm";
+import VideoDeleteModal from "./VideoForms/VideoDeleteModal";
 
 const Videos = () => {
   const { data: videos, isLoading, isError, isSuccess } = useGetVideosQuery();
@@ -17,6 +18,10 @@ const Videos = () => {
   // edit video data and modal
   const [editVideo, setEditvideo] = useState({});
   const [editStatus, setEditStatus] = useState(false);
+
+  // set delete confirm modal
+  const [deleteStatus, setDeleteStatus] = useState(false);
+  const [deleteID, setDeleteId] = useState("");
 
   // create content for videos
   let content = null;
@@ -31,9 +36,23 @@ const Videos = () => {
     if (videoLength === 0) {
       content = <h3>Video list is empty!</h3>;
     } else if (videoLength >= 0) {
-      content = videos.map(video => <SingleVideo video={video} setEdit={setEditvideo} setStatus={setEditStatus} />);
+      content = videos.map(video => (
+        <SingleVideo
+          key={video.id}
+          video={video}
+          setEdit={setEditvideo}
+          setStatus={setEditStatus}
+          deleteStatus={setDeleteStatus}
+          setDeleteId={setDeleteId}
+        />
+      ));
     }
   }
+
+  // handle video delete
+  const handleVideoDelete = delId => {
+    // alert(delId);
+  };
 
   return (
     <>
@@ -66,6 +85,11 @@ const Videos = () => {
       {/* edit form modal */}
       <Modal modalOpen={editStatus} setModalOpen={setEditStatus} MBoxWidth={900} outCickHide={false}>
         <VideoEditForm editVideo={editVideo} setStatus={setEditStatus} />
+      </Modal>
+
+      {/* delete modal */}
+      <Modal modalOpen={deleteStatus} setModalOpen={setDeleteStatus} MBoxWidth={400} outCickHide={false}>
+        <VideoDeleteModal deleteID={deleteID} deleteAction={handleVideoDelete} setStatus={setDeleteStatus} />
       </Modal>
     </>
   );

@@ -1,13 +1,13 @@
 /** @format */
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useLoginMutation } from "../../../features/auth/authApi";
 import Error from "../../ui/InfoMsg/Error";
 import { useNavigate } from "react-router-dom";
 
 const AdminLoginForm = () => {
   const navigate = useNavigate();
-  const [login, { isLoading, isError, isSuccess, error }] = useLoginMutation();
+  const [login, { isLoading, isError, isSuccess, error, data }] = useLoginMutation();
   // Form data state // Admin login form
   const [formData, setFormData] = useState({ email: "", password: "" });
   // Handle form data
@@ -18,8 +18,6 @@ const AdminLoginForm = () => {
     }));
   };
 
-  console.log(error);
-
   //Handle form submit // Admin login form
   const HandleLoginSubmit = e => {
     e.preventDefault();
@@ -28,16 +26,22 @@ const AdminLoginForm = () => {
       role: "admin",
       data: { email: formData.email, password: formData.password },
     })
+      // try navigate 1
       .then(res => {
-        console.log(res.data.user.role);
-        if (res.data.user.role === "admin") {
+        console.log(res?.data?.user.role);
+        if (res?.data?.user.role === "admin") {
           navigate("/admin/dashbord");
         }
-      })
-      .catch(err => {
-        console.log(err);
       });
   };
+  // try navigate 2
+  // useEffect(() => {
+  //   if (data) {
+  //     if (data.user.role === "admin") {
+  //       navigate("/admin/dashbord");
+  //     }
+  //   }
+  // }, [data]);
 
   return (
     <>
@@ -92,7 +96,10 @@ const AdminLoginForm = () => {
             Sign in
           </button>
         </div>
-        <div className="formInfoMsg">{isError && <Error message={error.data} />}</div>
+        <div className="formInfoMsg">
+          {isError && <Error message={error.data} />}
+          {isLoading && <h5>Requesting...</h5>}
+        </div>
       </form>
     </>
   );

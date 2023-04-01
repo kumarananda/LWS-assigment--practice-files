@@ -21,28 +21,39 @@ import StudentRoute from './components/ui/RouteAuthenticate/StudentRoute';
 
 
 function App() {
-  const authChecked = useAuthCheck();
+  const {authChecked, checking} = useAuthCheck();
 
-  return (
-    <>
-      <Routes>
-        <Route path='/' element={<PublicRoute><StudentLogin/></PublicRoute>}/>
-        <Route path='/registration' element={<PublicRoute><StudentRegistration/></PublicRoute>}/>
-        <Route path='/leaderboard' element={<StudentRoute><Leaderboard/></StudentRoute>} />
-        <Route path='/course-player' element={<StudentRoute><CoursePlayer/></StudentRoute>} />
-        <Route path='/quiz' element={<StudentRoute><QuizPage/></StudentRoute>} />
-        // admin portal
-        <Route path='/admin' >
-          <Route path='/admin/' element={<PublicRoute><AdminLogin/></PublicRoute>} />
-          <Route path='/admin/dashbord' element={<AdminRoute><Dashboard/></AdminRoute>} />
-          <Route path='/admin/quizzes' element={<AdminRoute><QuizzesPage/></AdminRoute>}  />
-          <Route path='/admin/videos' element={<AdminRoute><VideosPage/></AdminRoute>} />
-          <Route path='/admin/assignment' element={<AdminRoute><AssignmentPage/></AdminRoute>} />
-          <Route path='/admin/assignment-mark' element={<AdminRoute><AssignmentMarkPage/></AdminRoute>} />
-        </Route>
-      </Routes>
-    </>
-  );
+
+  if(checking ){
+    return false
+    // <div>Checking authentication....</div>
+  }else{
+
+    return (
+      <>
+        <Routes>
+          <Route path='/' element={<PublicRoute><StudentLogin/></PublicRoute>}/>
+          <Route path='/registration' element={<PublicRoute><StudentRegistration/></PublicRoute>}/>
+          <Route path='/leaderboard' element={<StudentRoute><Leaderboard/></StudentRoute>} />
+          <Route path='/course-player' element={<StudentRoute><CoursePlayer/></StudentRoute>} />
+          <Route path='/quiz' element={<StudentRoute><QuizPage/></StudentRoute>} />
+          // admin portal
+          <Route path='/admin' >
+            <Route path='/admin/' element={<PublicRoute><AdminLogin/></PublicRoute>} />
+            <Route path='/admin/dashbord' element={<AdminRoute><Dashboard/></AdminRoute>} />
+            <Route path='/admin/quizzes' element={<AdminRoute><QuizzesPage/></AdminRoute>}  />
+            <Route path='/admin/videos' element={<AdminRoute><VideosPage/></AdminRoute>} />
+            <Route path='/admin/assignment' element={<AdminRoute><AssignmentPage/></AdminRoute>} />
+            <Route path='/admin/assignment-mark' element={<AdminRoute><AssignmentMarkPage/></AdminRoute>} />
+          </Route>
+        </Routes>
+      </>
+    );
+
+  }
+
+
+
 }
 
 export default App;

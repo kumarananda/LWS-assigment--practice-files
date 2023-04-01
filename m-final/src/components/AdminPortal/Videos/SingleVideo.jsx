@@ -1,16 +1,20 @@
 /** @format */
 
-import React from "react";
-import { useDispatch } from "react-redux";
+import React, { useState } from "react";
 
-const SingleVideo = ({ video, setEdit, setStatus }) => {
+const SingleVideo = ({ video, setEdit, setStatus, setDeleteId, deleteStatus }) => {
   const { id, title, description, url, views, duration, createdAt } = video || {};
-  const dispatch = useDispatch();
 
-  // set video edit data to store and handle modal
+  // set video edit data and handle modal
   const handleVideoEdit = data => {
     setEdit(data);
     setStatus(true);
+  };
+
+  // set video delete id and handle modal
+  const handleVideoDelete = id => {
+    setDeleteId(id);
+    deleteStatus(true);
   };
 
   return (
@@ -23,7 +27,7 @@ const SingleVideo = ({ video, setEdit, setStatus }) => {
           <div className="ak-text-ellipsis">{title} </div>
         </td>
         <td className="table-td flex gap-x-2">
-          <button className="delete-video-btn">
+          <button onClick={() => handleVideoDelete(id)} className="delete-video-btn">
             <svg
               fill="none"
               viewBox="0 0 24 24"

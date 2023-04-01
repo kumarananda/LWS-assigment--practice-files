@@ -1,21 +1,26 @@
 /** @format */
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "../../../../forms.css";
 import { GoX } from "react-icons/go";
+import { useEditVideoMutation } from "../../../../features/api/videos/videosApi";
 
-const VideoEditForm = ({ editVideo, setStatus }) => {
-  const { id } = editVideo || {};
+const VideoEditForm = ({ editVideo: editData, setStatus }) => {
+  const { id } = editData || {};
+
+  // edit vedeo mutation
+  const [editVideo, { isLoading, isError, isSuccess, error }] = useEditVideoMutation(id);
 
   // Form data state // Video edit form
   const [formData, setFormData] = useState({
-    title: editVideo.title,
-    description: editVideo.description,
-    duration: editVideo.duration,
-    views: editVideo.views,
-    url: editVideo.url,
+    title: editData.title,
+    description: editData.description,
+    duration: editData.duration,
+    views: editData.views,
+    url: editData.url,
   });
 
+  // createdAt
   // Handle form data
   const handleFormData = e => {
     setFormData(prev => ({
@@ -27,8 +32,17 @@ const VideoEditForm = ({ editVideo, setStatus }) => {
   //Handle form submit // Video edit form
   const HandleEditVideoSubmit = e => {
     e.preventDefault();
-    alert(JSON.stringify(formData));
+    editVideo({ id, data: formData });
   };
+
+  // if success modal will off
+  useEffect(() => {
+    if (isSuccess) {
+      //hare will be success msg actions
+      setStatus(false);
+    }
+  }, [isSuccess]);
+
   return (
     <>
       <div className="fromWraper">
@@ -67,12 +81,16 @@ const VideoEditForm = ({ editVideo, setStatus }) => {
             <div className="action_box">
               <button onClick={() => setStatus(false)} className="cancelBtn">
                 Cancel
-              </button>{" "}
+              </button>
               &nbsp;
               <button type="submit" className="submitBtn">
                 Update
               </button>
             </div>
+
+            {/* action msg's */}
+            {isLoading && <h3>Updating...</h3>}
+            {isError && <h3>{error.message}</h3>}
           </form>
         </div>
       </div>

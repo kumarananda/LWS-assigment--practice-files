@@ -1,10 +1,12 @@
 /** @format */
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "../../../../forms.css";
 import { GoX } from "react-icons/go";
+import { useAddVideoMutation } from "../../../../features/api/videos/videosApi";
 
 const VideoAddForm = ({ setStatus }) => {
+  const [addVideo, { isLoading, isError, isSuccess, error }] = useAddVideoMutation();
   // Form data state // Video add form
   const [formData, setFormData] = useState({
     title: "",
@@ -26,8 +28,20 @@ const VideoAddForm = ({ setStatus }) => {
   const HandleAddVideoSubmit = e => {
     e.preventDefault();
     const date = new Date();
-    alert(JSON.stringify(formData));
+    // alert(JSON.stringify(formData));
+    addVideo({
+      ...formData,
+      createdAt: date,
+    });
   };
+
+  useEffect(() => {
+    if (isSuccess) {
+      //hare will be success msg actions
+      setStatus(false)
+    }
+  }, [isSuccess]);
+
   return (
     <>
       <div className="fromWraper">
@@ -72,6 +86,11 @@ const VideoAddForm = ({ setStatus }) => {
                 Add Video
               </button>
             </div>
+
+            {/* action msg's */}
+            {isLoading && <h3>Updating...</h3>}
+            {isError && <h3>{error.message}</h3>}
+
           </form>
         </div>
       </div>
