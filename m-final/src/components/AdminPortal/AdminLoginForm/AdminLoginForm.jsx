@@ -97,7 +97,7 @@ const AdminLoginForm = () => {
           </button>
         </div>
         <div className="formInfoMsg">
-          {isError && <Error message={error.data} />}
+          {isError && <Error message={error?.error ? "Server Error!" : error?.data} />}
           {isLoading && <h5>Requesting...</h5>}
         </div>
       </form>

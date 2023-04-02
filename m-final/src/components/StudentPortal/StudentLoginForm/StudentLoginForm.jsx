@@ -1,9 +1,15 @@
 /** @format */
 
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { useLoginMutation } from "../../../features/auth/authApi";
+import Error from "../../ui/InfoMsg/Error";
 
 const StudentLoginForm = () => {
+  const navigate = useNavigate();
+
+  const [login, { isLoading, isError, isSuccess, error, data }] = useLoginMutation();
+
   // Form data state // Login form
   const [formData, setFormData] = useState({ email: "", password: "" });
   // Handle form data
@@ -14,11 +20,34 @@ const StudentLoginForm = () => {
     }));
   };
 
+  console.log(error);
   //Handle form submit
+
+  //Handle form submit // Admin login form
   const HandleLoginSubmit = e => {
     e.preventDefault();
-    alert(JSON.stringify(formData));
+
+    login({
+      role: "student",
+      data: { email: formData.email, password: formData.password },
+    })
+      // try navigate 1
+      .then(res => {
+        console.log(res?.data?.user.role);
+        if (res?.data?.user.role === "student") {
+          navigate("/course-player");
+        }
+      });
   };
+
+  // try navigate 2
+  // useEffect(() => {
+  //   if (data) {
+  //     if (data.user.role === "admin") {
+  //       navigate("/admin/dashbord");
+  //     }
+  //   }
+  // }, [data]);
 
   return (
     <>
@@ -72,6 +101,10 @@ const StudentLoginForm = () => {
           >
             Sign in
           </button>
+        </div>
+        <div className="formInfoMsg">
+          {isError && <Error message={error?.error ? "Server Error!" : error.data} />}
+          {isLoading && <h5>Requesting...</h5>}
         </div>
       </form>
     </>
