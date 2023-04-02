@@ -141,4 +141,10 @@ export const quizzessApi = apiSlice.injectEndpoints({
 })
 
 
-export const { useGetQuizzessQuery, useGetQuizQuery, useAddQuizMutation, useEditQuizMutation, useDeleteQuizMutation } = quizzessApi
+export const { 
+    useGetQuizzessQuery, 
+    useGetQuizQuery, 
+    useAddQuizMutation, 
+    useEditQuizMutation, 
+    useDeleteQuizMutation 
+} = quizzessApi

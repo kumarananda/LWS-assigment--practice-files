@@ -1,25 +1,41 @@
 /** @format */
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "../../../../forms.css";
 import { GoX } from "react-icons/go";
+import { compareTwoArray } from "../../../../utils/compare";
+import { useEditAssignmentMutation } from "../../../../features/api/assignments/assignmentsApi";
 
-const AssignmentEditForm = ({ editAss, setStatus, videoQuery }) => {
+const AssignmentEditForm = ({ editAss, setStatus, videoQuery, assignments }) => {
+  // edit assignment mutation
+  const [editAssignment, { isLoading: assLoading, isError: assError, isSuccess: assSuccess, error: assErrorMsg, data: assData }] =
+    useEditAssignmentMutation();
   // get all video data
   const { data: videos, isLoading, isError, isSuccess } = videoQuery || {};
 
   // edit data
   const { id } = editAss || {};
 
+  // selecteable videos block start
+  // filter already add assignment with video
+  // not Assigned Assignment Videos
+  const conpearFunction = (videosArray, assArray) => videosArray.id === assArray.video_id;
+  const filteredVideos = compareTwoArray(videos, assignments, conpearFunction);
+  // find edit video data
+  const editVideoData = videos.filter(video => video.id === editAss.video_id);
+  // selectedable videos
+  const selectedable = [...editVideoData, ...filteredVideos];
   // create video title for select
   let selectOptions = "";
   if (isSuccess) {
-    selectOptions = videos.map(video => (
+    selectOptions = selectedable.map(video => (
       <option key={video.id} value={video.id}>
         {video.title}
       </option>
     ));
   }
+  // selecteable videos block end
+
   // console.log(videos);
   // Form data state // Assignment edit form
   const [title, setTitle] = useState(editAss.title);
@@ -40,10 +56,16 @@ const AssignmentEditForm = ({ editAss, setStatus, videoQuery }) => {
       totalMark,
     };
 
-    alert(JSON.stringify(data));
+    editAssignment({ id, data });
   };
 
-  // if
+  // if success modal off
+  useEffect(() => {
+    if (assSuccess) {
+      // alert modal will update hare
+      setStatus(false);
+    }
+  }, [assSuccess]);
 
   return (
     <>
@@ -103,6 +125,9 @@ const AssignmentEditForm = ({ editAss, setStatus, videoQuery }) => {
                 Update
               </button>
             </div>
+            {/* action msg's */}
+            {assLoading && <h3>Updating...</h3>}
+            {assError && <h3>{assErrorMsg.message}</h3>}
           </form>
         </div>
       </div>

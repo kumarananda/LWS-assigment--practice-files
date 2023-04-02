@@ -1,35 +1,44 @@
 /** @format */
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "../../../../forms.css";
 import { GoX } from "react-icons/go";
 import { useGetVideosQuery } from "../../../../features/api/videos/videosApi";
+import { useAddAssignmentMutation } from "../../../../features/api/assignments/assignmentsApi";
+import { compareTwoArray } from "../../../../utils/compare";
 
-const AssignmentAddForm = ({ setStatus }) => {
+const AssignmentAddForm = ({ setStatus, assignments }) => {
+  // all videos query
   const { data: videos, isLoading, isError, isSuccess } = useGetVideosQuery();
+  // add assignment mutation
+  const [addAssignment, { isLoading: assLoading, isError: assError, isSuccess: assSuccess, error: assErrorMsg, data: assData }] =
+    useAddAssignmentMutation();
+
+  // filter already add assignment with video
+  // not Assigned Assignment Videos
+  const conpearFunction = (videosArray, assArray) => videosArray.id === assArray.video_id;
+  const filteredVideos = compareTwoArray(videos, assignments, conpearFunction);
 
   // create video title for select
   let selectOptions = "";
   if (isSuccess) {
-    selectOptions = videos.map(video => (
+    selectOptions = filteredVideos.map(video => (
       <option key={video.id} value={video.id}>
         {video.title}
       </option>
     ));
   }
-  // console.log(videos);
+
   // Form data state // Assignment edit form
   const [title, setTitle] = useState("");
   const [totalMark, setTotalMark] = useState("");
   const [videoID, setVideoID] = useState("");
 
   //Handle form submit // Assignment edit form
-  // console.log(videos);
   const HandleAddAssignmentSubmit = e => {
     e.preventDefault();
     // find selected video title
     const relatedVideo = videos.length > 0 ? videos.filter(item => item.id === +videoID)[0] : {};
-    console.log(relatedVideo);
     let data = {
       title,
       video_id: +videoID,
@@ -37,8 +46,17 @@ const AssignmentAddForm = ({ setStatus }) => {
       totalMark,
     };
 
-    alert(JSON.stringify(data));
+    addAssignment(data);
   };
+
+  // if success modal off
+  useEffect(() => {
+    if (assSuccess) {
+      // alert modal will update hare
+      setStatus(false);
+    }
+  }, [assSuccess]);
+
   return (
     <>
       <div className="fromWraper">
@@ -97,6 +115,9 @@ const AssignmentAddForm = ({ setStatus }) => {
                 Update
               </button>
             </div>
+            {/* action msg's */}
+            {assLoading && <h3>Updating...</h3>}
+            {assError && <h3>{assErrorMsg.message}</h3>}
           </form>
         </div>
       </div>

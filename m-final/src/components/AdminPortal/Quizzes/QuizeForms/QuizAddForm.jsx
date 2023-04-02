@@ -113,6 +113,10 @@ const QuizAddForm = ({ setStatus }) => {
               </button>
             </div>
           </form>
+
+          {/* action msg's */}
+          {quizLoading && <h3>Updating...</h3>}
+          {quizError && <h3>{quizErrorData.message}</h3>}
         </div>
       </div>
     </>

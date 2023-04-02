@@ -2,18 +2,19 @@
 
 import React from "react";
 
-const SingleAssignment = ({ assignment, setEdit, setStatus }) => {
+const SingleAssignment = ({ assignment, setEdit, setStatus, setDeleteStatus, setDeleteId }) => {
   const { id, title, video_title, totalMark } = assignment || {};
-
-  // handle delete assignment
-  const handleDeleteAssignment = assId => {
-    alert(assId);
-  };
 
   // set edit data for form value
   const handleSetEditData = () => {
     setEdit(assignment);
     setStatus(true);
+  };
+
+  // handle delete assignment
+  const handleDeleteAssignment = assId => {
+    setDeleteId(assId);
+    setDeleteStatus(true);
   };
 
   return (

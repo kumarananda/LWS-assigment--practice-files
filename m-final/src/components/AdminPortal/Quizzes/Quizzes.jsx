@@ -8,6 +8,7 @@ import QuizAddForm from "./QuizeForms/QuizAddForm";
 import QuizEditForm from "./QuizeForms/QuizEditForm";
 import SingleQuiz from "./SingleQuiz";
 import DeleteConfirmModal from "../../ui/Modal/DeleteConfirmModal";
+import Error from "../../ui/InfoMsg/Error";
 
 const Quizzes = () => {
   const { data: quizzes, isLoading, isError, isSuccess } = useGetQuizzessQuery();
@@ -87,6 +88,11 @@ const Quizzes = () => {
 
             <tbody className="divide-y divide-slate-600/50">{content}</tbody>
           </table>
+        </div>
+        {/* will be update another type of alert */}
+        <div className="formInfoMsg">
+          {deleteError && <Error message={deleteData?.error ? "Server Error!" : deleteData?.data} />}
+          {deleteLoading && <h5>Requesting...</h5>}
         </div>
       </div>
       {/* add form modal */}

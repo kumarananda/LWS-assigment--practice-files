@@ -144,4 +144,9 @@ export const videosApi = apiSlice.injectEndpoints({
 })
 
 
-export const { useGetVideosQuery, useEditVideoMutation, useAddVideoMutation, useDeleteVideoMutation } = videosApi
+export const { 
+    useGetVideosQuery, 
+    useEditVideoMutation, 
+    useAddVideoMutation, 
+    useDeleteVideoMutation 
+} = videosApi
