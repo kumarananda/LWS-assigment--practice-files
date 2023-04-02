@@ -21,10 +21,10 @@ import StudentRoute from './components/ui/RouteAuthenticate/StudentRoute';
 
 
 function App() {
-  const {authChecked, checking} = useAuthCheck();
+  const authChecked = useAuthCheck();
 
 
-  if(checking ){
+  if(!authChecked ){
     return false
     // <div>Checking authentication....</div>
   }else{

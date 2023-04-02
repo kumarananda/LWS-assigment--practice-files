@@ -48,6 +48,13 @@
       "role": "student",
       "name": "Arif",
       "id": 7
+    },
+    {
+      "email": "anandasaha484@gmail.com",
+      "password": "$2a$10$UiKVWp4NtY9B84vQcGQMp.w.kOKdF0NN4QoQW9ar46KjSW3NfOxTa",
+      "name": "Ananda Kumar Saha",
+      "role": "student",
+      "id": 8
     }
   ],
   "videos": [

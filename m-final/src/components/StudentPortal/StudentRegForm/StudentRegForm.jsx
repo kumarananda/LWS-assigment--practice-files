@@ -1,8 +1,18 @@
 /** @format */
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { useRegisterMutation } from "../../../features/auth/authApi";
+import { useNavigate } from "react-router-dom";
+import Error from "../../ui/InfoMsg/Error";
 
 const StudentRegForm = () => {
+  const navigate = useNavigate();
+
+  //register req
+  const [register, { isLoading, isError, isSuccess, error, data }] = useRegisterMutation();
+
+  // Password alert
+  const [passAlert, setPassAlert] = useState(false);
   // Form data state // Registration
   const [formData, setFormData] = useState({
     name: "",
@@ -12,6 +22,7 @@ const StudentRegForm = () => {
   });
   // Handle form data //Registration
   const handleFormData = e => {
+    setPassAlert(false);
     setFormData(prev => ({
       ...prev,
       [e.target.name]: e.target.value,
@@ -21,8 +32,26 @@ const StudentRegForm = () => {
   //Handle form submit / Registration
   const HandleRegSubmit = e => {
     e.preventDefault();
-    alert(JSON.stringify(formData));
+    const { name, email, password, confirmPassword } = formData;
+    if (password !== confirmPassword) {
+      setPassAlert(true);
+    } else {
+      setPassAlert(false);
+      register({ name, email, password, role: "student" });
+      // .then(res => {
+      //   console.log(res?.data);
+      //   if (res?.data) {
+      //     navigate("/course-player");
+      //   }
+      // });
+    }
   };
+  // try navigate 2
+  useEffect(() => {
+    if (data) {
+      navigate("/course-player");
+    }
+  }, [data]);
 
   return (
     <>
@@ -98,6 +127,11 @@ const StudentRegForm = () => {
           >
             Create Account
           </button>
+        </div>
+        <div className="formInfoMsg">
+          {isError && <Error message={error?.error ? "Server Error!" : error.data} />}
+          {passAlert && <Error message={"Password not match!"} />}
+          {isLoading && <h5>Requesting...</h5>}
         </div>
       </form>
     </>
