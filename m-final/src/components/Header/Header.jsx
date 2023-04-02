@@ -23,7 +23,7 @@ const Header = () => {
             <>
               <div className="flex items-center gap-4 text-lg">
                 {pathname === "/" && <Link to={"/admin"}>Admin Login</Link>}
-                {pathname === "/admin" && <Link to={"/admin"}>Student Login</Link>}
+                {pathname === "/admin" && <Link to={"/"}>Student Login</Link>}
               </div>
             </>
           ) : user && user.role === "student" ? (
@@ -32,8 +32,8 @@ const Header = () => {
                 <Link className="font-medium" to={"/course-player"}>
                   Course Player
                 </Link>
+                {/* <Link to={"/quiz"}>Quiz</Link> */}
                 <Link to={"/leaderboard"}>Leaderboard</Link>
-                <Link to={"/quiz"}>Quiz</Link>
               </div>
               <div className="flex items-center gap-4 ">
                 <h2 className="font-medium">{user?.name}</h2>
