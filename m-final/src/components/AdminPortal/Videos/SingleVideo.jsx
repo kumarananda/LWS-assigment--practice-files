@@ -24,7 +24,7 @@ const SingleVideo = ({ video, setEdit, setStatus, setDeleteId, deleteStatus }) =
           <div className="ak-text-ellipsis"> {description}</div>
         </td>
         <td className="table-td ">
-          <div className="ak-text-ellipsis">{title} </div>
+          <span className="ak-text-ellipsis">{title} </span>
         </td>
         <td className="table-td flex gap-x-2">
           <button onClick={() => handleVideoDelete(id)} className="delete-video-btn">

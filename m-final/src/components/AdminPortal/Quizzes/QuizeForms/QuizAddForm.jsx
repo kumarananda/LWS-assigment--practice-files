@@ -1,15 +1,19 @@
 /** @format */
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "../../../../forms.css";
 import { GoX } from "react-icons/go";
 import { useGetVideosQuery } from "../../../../features/api/videos/videosApi";
 import Option from "./Option";
+import { useAddQuizMutation } from "../../../../features/api/quizzes/quizzesApi";
 
 const QuizAddForm = ({ setStatus }) => {
+  // video query for selection
   const { data: videos, isLoading, isError, isSuccess } = useGetVideosQuery();
+  // edit quiz query
+  const [addQuizMutation, { isLoading: quizLoading, isError: quizError, isSuccess: quizSuccess, error: quizErrorData }] = useAddQuizMutation();
 
-  // create video title for select
+  // create video title for select related video
   let selectOptions = "";
   if (isSuccess) {
     selectOptions = videos.map(video => (
@@ -45,9 +49,19 @@ const QuizAddForm = ({ setStatus }) => {
     if (!options1.isCorrect && !options2.isCorrect && !options3.isCorrect && !options4.isCorrect) {
       alert("Need select at least one correct option.");
     } else {
-      alert(JSON.stringify(data));
+      addQuizMutation(data);
     }
   };
+
+  // if success modal off
+  useEffect(() => {
+    if (quizSuccess) {
+      // alert modal will update hare
+
+      setStatus(false);
+    }
+  }, [quizSuccess]);
+
   return (
     <>
       <div className="fromWraper">
@@ -64,12 +78,11 @@ const QuizAddForm = ({ setStatus }) => {
           <form onSubmit={HandleAddAssignmentSubmit} method="POST">
             <div className="input_box">
               <label htmlFor="question_title">Question</label>
-              <input
-                required
+              <textarea
                 value={question}
                 onChange={e => setQuestion(e.target.value)}
                 id="question_title"
-                type="text"
+                rows={"3"}
                 name="question"
                 placeholder="Question"
               />

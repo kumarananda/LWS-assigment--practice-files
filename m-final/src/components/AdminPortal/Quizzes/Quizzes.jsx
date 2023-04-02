@@ -1,15 +1,19 @@
 /** @format */
 
-import React, { useState } from "react";
-import { useGetQuizzessQuery } from "../../../features/api/quizzes/quizzesApi";
+import React, { useEffect, useState } from "react";
+import { useDeleteQuizMutation, useGetQuizzessQuery } from "../../../features/api/quizzes/quizzesApi";
 import { useGetVideosQuery } from "../../../features/api/videos/videosApi";
 import Modal from "../../ui/Modal/Modal";
 import QuizAddForm from "./QuizeForms/QuizAddForm";
 import QuizEditForm from "./QuizeForms/QuizEditForm";
 import SingleQuiz from "./SingleQuiz";
+import DeleteConfirmModal from "../../ui/Modal/DeleteConfirmModal";
 
 const Quizzes = () => {
   const { data: quizzes, isLoading, isError, isSuccess } = useGetQuizzessQuery();
+
+  // delete quiz
+  const [deleteQuiz, { isLoading: deleteLoading, isError: deleteError, isSuccess: deleteSuccess, error: deleteData }] = useDeleteQuizMutation();
 
   // video query //up components query for avoiding Loading delay
   const videoQuery = useGetVideosQuery();
@@ -20,6 +24,10 @@ const Quizzes = () => {
   // edit video data and modal
   const [editQuiz, setEditQuiz] = useState({});
   const [editStatus, setEditStatus] = useState(false);
+
+  // set delete confirm modal
+  const [deleteStatus, setDeleteStatus] = useState(false);
+  const [deleteID, setDeleteId] = useState("");
 
   // create content for quizzes
   let content = null;
@@ -34,9 +42,31 @@ const Quizzes = () => {
     if (quizLength === 0) {
       content = <h3>Video list is empty!</h3>;
     } else if (quizLength >= 0) {
-      content = quizzes.map(quiz => <SingleQuiz quiz={quiz} setEdit={setEditQuiz} setStatus={setEditStatus} key={quiz.id} />);
+      content = quizzes.map(quiz => (
+        <SingleQuiz
+          quiz={quiz}
+          setEdit={setEditQuiz}
+          setStatus={setEditStatus}
+          key={quiz.id}
+          setDeleteId={setDeleteId}
+          setDeleteStatus={setDeleteStatus}
+        />
+      ));
     }
   }
+
+  // handle Quiz delete
+  const handleVideoDelete = delId => {
+    deleteQuiz(delId);
+  };
+
+  // is delete successful modal will cloase
+  useEffect(() => {
+    if (deleteSuccess) {
+      setDeleteStatus(false);
+    }
+  }, [deleteSuccess]);
+
   return (
     <>
       <div className="px-3 py-20 bg-opacity-10">
@@ -55,7 +85,7 @@ const Quizzes = () => {
               </tr>
             </thead>
 
-            <tbody className="divide-y divide-slate-600/50"> {content}</tbody>
+            <tbody className="divide-y divide-slate-600/50">{content}</tbody>
           </table>
         </div>
       </div>
@@ -66,6 +96,12 @@ const Quizzes = () => {
       {/* edit form modal */}
       <Modal modalOpen={editStatus} setModalOpen={setEditStatus} MBoxWidth={900} outCickHide={false}>
         <QuizEditForm videoQuery={videoQuery} editQuiz={editQuiz} setStatus={setEditStatus} />
+      </Modal>
+      {/* delete modal */}
+
+      {/* delete modal */}
+      <Modal modalOpen={deleteStatus} setModalOpen={setDeleteStatus} MBoxWidth={400} outCickHide={false}>
+        <DeleteConfirmModal deleteID={deleteID} deleteAction={handleVideoDelete} setStatus={setDeleteStatus} />
       </Modal>
     </>
   );

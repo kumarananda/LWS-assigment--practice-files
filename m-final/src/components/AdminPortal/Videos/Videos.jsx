@@ -7,8 +7,8 @@ import Modal from "../../ui/Modal/Modal";
 import SingleVideo from "./SingleVideo";
 import VideoAddForm from "./VideoForms/VideoAddForm";
 import VideoEditForm from "./VideoForms/VideoEditForm";
-import VideoDeleteModal from "./VideoForms/VideoDeleteModal";
 import Error from "../../ui/InfoMsg/Error";
+import DeleteConfirmModal from "../../ui/Modal/DeleteConfirmModal";
 
 const Videos = () => {
   // get all videos
@@ -57,12 +57,13 @@ const Videos = () => {
   const handleVideoDelete = delId => {
     deleteVideo(delId);
   };
+
+  // is delete successful modal will cloase
   useEffect(() => {
     if (deleteSuccess) {
       setDeleteStatus(false);
     }
   }, [deleteSuccess]);
-  console.log(deleteData);
 
   return (
     <>
@@ -105,7 +106,7 @@ const Videos = () => {
 
       {/* delete modal */}
       <Modal modalOpen={deleteStatus} setModalOpen={setDeleteStatus} MBoxWidth={400} outCickHide={false}>
-        <VideoDeleteModal deleteID={deleteID} deleteAction={handleVideoDelete} setStatus={setDeleteStatus} />
+        <DeleteConfirmModal deleteID={deleteID} deleteAction={handleVideoDelete} setStatus={setDeleteStatus} />
       </Modal>
     </>
   );

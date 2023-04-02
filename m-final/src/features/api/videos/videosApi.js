@@ -9,9 +9,8 @@ export const videosApi = apiSlice.injectEndpoints({
                 url: "/videos",
                 method: "GET",
             }),
-            // providesTags: (result, error,) => [{ type: 'Videos' }],
-
         }), 
+
         getVideo : builder.query({
             query: (id) => ({
                 url: `/videos/${id}`,
@@ -20,46 +19,7 @@ export const videosApi = apiSlice.injectEndpoints({
            
         }),
 
-        deleteVideo : builder.mutation({
-            query: (id) => ({
-                url: `/videos/${id}`,
-                method: "DELETE",
 
-            }),
-            // if cache stored for single video 
-            invalidatesTags : (result, error, id) => [{ type: 'Video', id }],
-
-            async onQueryStarted(arg, { queryFulfilled, dispatch }) {
-                
-                try {
-                    const video = await queryFulfilled;
-                    if (video?.data?.id) {
-
-                        // update videos cache pessimistically start
-                        dispatch(
-                            apiSlice.util.updateQueryData(
-                                "getVideos",
-                                undefined,
-                                (draft) => {
-                                    // done
-                                    // const deleteIndex = draft.findIndex(item => item.id == arg) 
-                                    // draft.splice(deleteIndex, 1)
-        
-                                    //done
-                                    return draft.filter(item => item.id !== arg) 
-                                    
-                                }
-                            )
-                        );
-                        // update videos cache pessimistically end
-                    }
-                } catch (err) {
-                    console.log(err);
-                }
-
-            },
-
-        }),
         addVideo : builder.mutation({
             query: (data) => ({
                 url: "/videos",
@@ -133,6 +93,46 @@ export const videosApi = apiSlice.injectEndpoints({
                 } catch (err) {
                     console.log(err);
                 }
+            },
+
+        }),
+        deleteVideo : builder.mutation({
+            query: (id) => ({
+                url: `/videos/${id}`,
+                method: "DELETE",
+
+            }),
+            // if cache stored for single video 
+            invalidatesTags : (result, error, id) => [{ type: 'Video', id }],
+
+            async onQueryStarted(arg, { queryFulfilled, dispatch }) {
+                
+                try {
+                    const video = await queryFulfilled;
+                    if (video?.data?.id) {
+
+                        // update videos cache pessimistically start
+                        dispatch(
+                            apiSlice.util.updateQueryData(
+                                "getVideos",
+                                undefined,
+                                (draft) => {
+                                    // done
+                                    // const deleteIndex = draft.findIndex(item => item.id == arg) 
+                                    // draft.splice(deleteIndex, 1)
+        
+                                    //done
+                                    return draft.filter(item => item.id !== arg) 
+                                    
+                                }
+                            )
+                        );
+                        // update videos cache pessimistically end
+                    }
+                } catch (err) {
+                    console.log(err);
+                }
+
             },
 
         }),

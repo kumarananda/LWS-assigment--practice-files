@@ -222,6 +222,34 @@
           "isCorrect": false
         }
       ]
+    },
+    {
+      "question": "1.1 - এখানে কয়টি এবং কি কি স্টেট হতে পারে?\nধরুন আপনার রিয়্যাক্ট দিয়ে বানানো ওয়েব পেইজে একটি বাটন আছে। সেটাতে ক্লিক করলে একটি মোডাল ওপেন হবে। আবার মোডাল এর ভিতরে একটি ক্লোজ বাটন আছে সেটিতে ক্লিক করলে মোডাল ক্লোজ হবে। এছাড়া মোডাল এর ভিতরে একটি ফর্ম আছে যেখানে ২ টি ফর্ম ফিল্ড - 'name' এবং 'age' আছে এবং একটি সাবমিট বাটন আছে। ফর্ম এর সাবমিট বাটনে ক্লিক করলে ফর্ম এর ডাটা নিয়ে কনসোলে দেখাবে এবং একটি সাকসেস মেসেজ দেখাবে যে ফর্ম সাবমিট হয়েছে। এখন আপনাকে বলতে হবে এই ছোট এপ্লিকেশনে কয়টি এবং কি কি স্টেট থাকতে পারে?",
+      "video_id": 1,
+      "video_title": "Debounce Function in JavaScript - JavaScript Job Interview question",
+      "options": [
+        {
+          "id": 1,
+          "option": "2 টি - 'name' এবং 'age'",
+          "isCorrect": false
+        },
+        {
+          "id": 2,
+          "option": "4 টি - 'isModalOpen', 'name', 'age' এবং 'isSuccess'",
+          "isCorrect": true
+        },
+        {
+          "id": 3,
+          "option": "3 টি - 'isModalOpen', 'name' এবং 'age'",
+          "isCorrect": true
+        },
+        {
+          "id": 4,
+          "option": "2 টি - 'isModalOpen' এবং 'isSuccess'",
+          "isCorrect": false
+        }
+      ],
+      "id": 4
     }
   ],
   "assignmentMark": [

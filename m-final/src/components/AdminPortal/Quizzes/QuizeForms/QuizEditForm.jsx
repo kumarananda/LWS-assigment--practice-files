@@ -1,12 +1,16 @@
 /** @format */
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "../../../../forms.css";
 import { GoX } from "react-icons/go";
 import Option from "./Option";
+import { useEditQuizMutation } from "../../../../features/api/quizzes/quizzesApi";
 
 const QuizEditForm = ({ setStatus, editQuiz, videoQuery }) => {
   const { data: videos, isLoading, isError, isSuccess } = videoQuery || {};
+
+  // edit Quiz  Mutation
+  const [editQuizMutation, { isLoading: quizLoading, isError: quizError, isSuccess: quizSuccess, error: quizErrorData }] = useEditQuizMutation();
 
   const { id, options } = editQuiz || {};
 
@@ -35,7 +39,7 @@ const QuizEditForm = ({ setStatus, editQuiz, videoQuery }) => {
     e.preventDefault();
     // find selected video title
     const relatedVideo = videos.length > 0 ? videos.filter(item => item.id === +videoID)[0] : {};
-    console.log(relatedVideo);
+    // console.log(relatedVideo);
     let data = {
       question,
       video_id: +videoID,
@@ -45,9 +49,19 @@ const QuizEditForm = ({ setStatus, editQuiz, videoQuery }) => {
     if (!options1.isCorrect && !options2.isCorrect && !options3.isCorrect && !options4.isCorrect) {
       alert("Need select at least one correct option.");
     } else {
-      alert(JSON.stringify(data));
+      editQuizMutation({ id, data });
     }
   };
+
+  // if success modal off
+  useEffect(() => {
+    if (quizSuccess) {
+      // alert modal will update hare
+
+      setStatus(false);
+    }
+  }, [quizSuccess]);
+
   return (
     <>
       <div className="fromWraper">
@@ -64,12 +78,11 @@ const QuizEditForm = ({ setStatus, editQuiz, videoQuery }) => {
           <form onSubmit={HandleAddAssignmentSubmit} method="POST">
             <div className="input_box">
               <label htmlFor="question_title">Question</label>
-              <input
-                required
+              <textarea
                 value={question}
                 onChange={e => setQuestion(e.target.value)}
                 id="question_title"
-                type="text"
+                rows={"3"}
                 name="question"
                 placeholder="Question"
               />

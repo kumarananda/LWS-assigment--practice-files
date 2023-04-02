@@ -3,7 +3,7 @@
 import React from "react";
 import { GoX } from "react-icons/go";
 
-const VideoDeleteModal = ({ deleteID, deleteAction, setStatus }) => {
+const DeleteConfirmModal = ({ deleteID, deleteAction, setStatus }) => {
   return (
     <div className="fromWraper">
       <div className="fromHeader">
@@ -26,4 +26,4 @@ const VideoDeleteModal = ({ deleteID, deleteAction, setStatus }) => {
   );
 };
 
-export default VideoDeleteModal;
+export default DeleteConfirmModal;

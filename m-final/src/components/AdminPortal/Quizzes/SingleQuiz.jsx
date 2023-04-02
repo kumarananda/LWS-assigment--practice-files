@@ -2,7 +2,7 @@
 
 import React from "react";
 
-const SingleQuiz = ({ quiz, setEdit, setStatus }) => {
+const SingleQuiz = ({ quiz, setEdit, setStatus, setDeleteStatus, setDeleteId }) => {
   const { id, question, video_id, video_title, options } = quiz || {};
 
   // set quiz edit data to store and handle modal
@@ -13,14 +13,15 @@ const SingleQuiz = ({ quiz, setEdit, setStatus }) => {
 
   // handle quiz delete
   const handleQuizDelete = deleteId => {
-    alert(deleteId);
+    setDeleteId(deleteId);
+    setDeleteStatus(true);
   };
 
   return (
     <>
       <tr>
         <td className="table-td">
-          <div className="ak-text-ellipsis">{question} </div>
+          <span className="ak-text-ellipsis">{question} </span>
         </td>
         <td className="table-td">
           <div className="ak-text-ellipsis">{video_title} </div>
