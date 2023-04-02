@@ -105,8 +105,12 @@ export const quizzessApi = apiSlice.injectEndpoints({
             async onQueryStarted(arg, { queryFulfilled, dispatch }) {
                 
                 try {
-                    const quiz = await queryFulfilled;
-                    if (quiz?.data?.id) {
+                    const {meta, data} = await queryFulfilled;
+
+                    // as json-server-auth delete response 
+                    // console.log(meta?.response?.ok);
+
+                    if (meta?.response?.ok) {
 
                         // update quizzes cache pessimistically start
                         dispatch(

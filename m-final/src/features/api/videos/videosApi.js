@@ -108,8 +108,12 @@ export const videosApi = apiSlice.injectEndpoints({
             async onQueryStarted(arg, { queryFulfilled, dispatch }) {
                 
                 try {
-                    const video = await queryFulfilled;
-                    if (video?.data?.id) {
+                    const {meta} = await queryFulfilled;
+
+                    // as json-server-auth delete response 
+                    // console.log(meta?.response?.ok);
+
+                    if (meta?.response?.ok) {
 
                         // update videos cache pessimistically start
                         dispatch(
