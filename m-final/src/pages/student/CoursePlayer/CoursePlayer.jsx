@@ -2,12 +2,10 @@
 
 import React from "react";
 import { Link } from "react-router-dom";
-import Header from "../../../components/Header/Header";
 
 const CoursePlayer = () => {
   return (
     <>
-      <Header />
       <section className="py-6 bg-primary">
         <div className="mx-auto max-w-7xl px-5 lg:px-0">
           <div className="grid grid-cols-3 gap-2 lg:gap-8">

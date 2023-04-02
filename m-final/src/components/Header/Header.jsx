@@ -1,11 +1,16 @@
 /** @format */
 
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import learningportalImg from "../../assets/image/learningportal.svg";
 import Logout from "../ui/Logout/Logout";
+import { useSelector } from "react-redux";
 
 const Header = () => {
+  const user = useSelector(state => state.auth.user);
+  const location = useLocation();
+  const { pathname } = location || {};
+
   return (
     <>
       <nav className="shadow-md">
@@ -13,23 +18,43 @@ const Header = () => {
           <Link to={"/"}>
             <img className="h-10" src={learningportalImg} alt="Learning Portal" />
           </Link>
-          <div className="flex items-center gap-3">
-            <h2 className="font-medium">Saad Hasan</h2>
 
-            {/* Logout Button */}
-            <Logout>
-              <button className="flex gap-2 items-center px-4 py-1 rounded-full text-sm transition-all bg-red-600 hover:bg-red-700 font-medium">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-6 h-6">
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    d="M15.75 9V5.25A2.25 2.25 0 0013.5 3h-6a2.25 2.25 0 00-2.25 2.25v13.5A2.25 2.25 0 007.5 21h6a2.25 2.25 0 002.25-2.25V15M12 9l-3 3m0 0l3 3m-3-3h12.75"
-                  />
-                </svg>
-                Logout
-              </button>
-            </Logout>
-          </div>
+          {!user ? (
+            <>
+              <div className="flex items-center gap-4 text-lg">
+                {pathname === "/" && <Link to={"/admin"}>Admin Login</Link>}
+                {pathname === "/admin" && <Link to={"/admin"}>Student Login</Link>}
+              </div>
+            </>
+          ) : user && user.role === "student" ? (
+            <>
+              <div className="flex items-center gap-4 text-lg">
+                <Link className="font-medium" to={"/course-player"}>
+                  Course Player
+                </Link>
+                <Link to={"/leaderboard"}>Leaderboard</Link>
+                <Link to={"/quiz"}>Quiz</Link>
+              </div>
+              <div className="flex items-center gap-4 ">
+                <h2 className="font-medium">{user?.name}</h2>
+                <Logout />
+              </div>
+            </>
+          ) : (
+            <>
+              <div className="flex items-center gap-4 text-lg">
+                <Link to={"/admin/dashbord"}>Dashboard</Link>
+                <Link to={"/admin/videos"}>Videos</Link>
+                <Link to={"/admin/quizzes"}>Quizzes</Link>
+                <Link to={"/admin/assignment"}>Assignment</Link>
+                <Link to={"/admin/assignment-mark"}>AssignmentMark</Link>
+              </div>
+              <div className="flex items-center gap-3">
+                <h2 className="font-medium">{user?.name}</h2>
+                <Logout />
+              </div>
+            </>
+          )}
         </div>
       </nav>
     </>
@@ -37,3 +62,53 @@ const Header = () => {
 };
 
 export default Header;
+
+/**
+ *   let content = null;
+  if (!user) {
+    content = (
+      <>
+        <div className="flex items-center gap-4 text-lg">
+          {pathname === "/" && <Link to={"/admin"}>Admin Login</Link>}
+          {pathname === "/admin" && <Link to={"/admin"}>Student Login</Link>}
+        </div>
+      </>
+    );
+  }
+  if (user && user.role === "admin") {
+    content = (
+      <>
+        <div className="flex items-center gap-4 text-lg">
+          <Link to={"/admin/dashbord"}>Dashboard</Link>
+          <Link to={"/admin/videos"}>Videos</Link>
+          <Link to={"/admin/quizzes"}>Quizzes</Link>
+          <Link to={"/admin/assignment"}>Assignment</Link>
+          <Link to={"/admin/assignment-mark"}>AssignmentMark</Link>
+        </div>
+        <div className="flex items-center gap-3">
+          <h2 className="font-medium">{user?.name}</h2>
+
+          <Logout />
+        </div>
+      </>
+    );
+  }
+  if (user && user.role === "student") {
+    content = (
+      <>
+        <div className="flex items-center gap-4 text-lg">
+          <Link className="font-medium" to={"/course-player"}>
+            Course Player
+          </Link>
+          <Link to={"/leaderboard"}>Leaderboard</Link>
+          <Link to={"/quiz"}>Quiz</Link>
+        </div>
+        <div className="flex items-center gap-4 ">
+          <h2 className="font-medium">{user?.name}</h2>
+
+          <Logout />
+        </div>
+      </>
+    );
+  }
+ */

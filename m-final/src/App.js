@@ -1,7 +1,6 @@
 import React from 'react';
 import { Route, Routes, useLocation } from 'react-router-dom';
 import './assets/style/output.css'
-import AuthHeader from './components/Header/AuthHeader';
 import Header from './components/Header/Header';
 import AdminLogin from './pages/admin/AdminLogin/AdminLogin';
 import Dashboard from './pages/admin/Dashboard/Dashboard';
@@ -31,6 +30,7 @@ function App() {
 
     return (
       <>
+        <Header/>
         <Routes>
           <Route path='/' element={<PublicRoute><StudentLogin/></PublicRoute>}/>
           <Route path='/registration' element={<PublicRoute><StudentRegistration/></PublicRoute>}/>
