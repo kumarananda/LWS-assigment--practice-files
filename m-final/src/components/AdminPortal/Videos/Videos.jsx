@@ -1,18 +1,22 @@
 /** @format */
 
-import React, { useState } from "react";
-import { useGetVideosQuery } from "../../../features/api/videos/videosApi";
+import React, { useEffect, useState } from "react";
+import { useDeleteVideoMutation, useGetVideosQuery } from "../../../features/api/videos/videosApi";
 import Modal from "../../ui/Modal/Modal";
 
 import SingleVideo from "./SingleVideo";
 import VideoAddForm from "./VideoForms/VideoAddForm";
 import VideoEditForm from "./VideoForms/VideoEditForm";
 import VideoDeleteModal from "./VideoForms/VideoDeleteModal";
+import Error from "../../ui/InfoMsg/Error";
 
 const Videos = () => {
+  // get all videos
   const { data: videos, isLoading, isError, isSuccess } = useGetVideosQuery();
+  // delete video query
+  const [deleteVideo, { isLoading: deleteLoading, isError: deleteError, isSuccess: deleteSuccess, error: deleteData }] = useDeleteVideoMutation();
 
-  // add video modal
+  // add video modal state
   const [addStatus, setAddStatus] = useState(false);
 
   // edit video data and modal
@@ -51,8 +55,14 @@ const Videos = () => {
 
   // handle video delete
   const handleVideoDelete = delId => {
-    // alert(delId);
+    deleteVideo(delId);
   };
+  useEffect(() => {
+    if (deleteSuccess) {
+      setDeleteStatus(false);
+    }
+  }, [deleteSuccess]);
+  console.log(deleteData);
 
   return (
     <>
@@ -74,6 +84,12 @@ const Videos = () => {
             {/* Single video items */}
             <tbody className="divide-y divide-slate-600/50">{content}</tbody>
           </table>
+        </div>
+
+        {/* will be update another type of alert */}
+        <div className="formInfoMsg">
+          {deleteError && <Error message={deleteData?.error ? "Server Error!" : deleteData?.data} />}
+          {deleteLoading && <h5>Requesting...</h5>}
         </div>
       </div>
 

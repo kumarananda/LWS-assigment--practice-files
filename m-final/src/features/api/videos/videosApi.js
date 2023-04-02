@@ -9,7 +9,7 @@ export const videosApi = apiSlice.injectEndpoints({
                 url: "/videos",
                 method: "GET",
             }),
-            providesTags: (result, error,) => [{ type: 'Videos' }],
+            // providesTags: (result, error,) => [{ type: 'Videos' }],
 
         }), 
         getVideo : builder.query({
@@ -18,6 +18,47 @@ export const videosApi = apiSlice.injectEndpoints({
             }),
             providesTags: (result, error, id) => [{ type: 'Video', id }],
            
+        }),
+
+        deleteVideo : builder.mutation({
+            query: (id) => ({
+                url: `/videos/${id}`,
+                method: "DELETE",
+
+            }),
+            // if cache stored for single video 
+            invalidatesTags : (result, error, id) => [{ type: 'Video', id }],
+
+            async onQueryStarted(arg, { queryFulfilled, dispatch }) {
+                
+                try {
+                    const video = await queryFulfilled;
+                    if (video?.data?.id) {
+
+                        // update videos cache pessimistically start
+                        dispatch(
+                            apiSlice.util.updateQueryData(
+                                "getVideos",
+                                undefined,
+                                (draft) => {
+                                    // done
+                                    // const deleteIndex = draft.findIndex(item => item.id == arg) 
+                                    // draft.splice(deleteIndex, 1)
+        
+                                    //done
+                                    return draft.filter(item => item.id !== arg) 
+                                    
+                                }
+                            )
+                        );
+                        // update videos cache pessimistically end
+                    }
+                } catch (err) {
+                    console.log(err);
+                }
+
+            },
+
         }),
         addVideo : builder.mutation({
             query: (data) => ({
@@ -99,4 +140,4 @@ export const videosApi = apiSlice.injectEndpoints({
 })
 
 
-export const { useGetVideosQuery, useEditVideoMutation, useAddVideoMutation } = videosApi
+export const { useGetVideosQuery, useEditVideoMutation, useAddVideoMutation, useDeleteVideoMutation } = videosApi
