@@ -1,19 +1,33 @@
 /** @format */
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { showDateDetails } from "../../../utils/date";
+import { useUpdateAssignmentMarkMutation } from "../../../features/api/assignmentMark/assignmentMarkApi";
 
 const SingleAssMark = ({ assMark }) => {
   const { id, student_id, student_name, assignment_id, title, createdAt, totalMark, mark, repo_link, status } = assMark || {};
 
+  const [updateAssignmentMark, { isLoading, isSuccess, isError }] = useUpdateAssignmentMarkMutation();
   // mark assignment mark state
   const [addMark, setAddMark] = useState("");
 
   // handle mark submit
   const handleMarkSubmit = e => {
     e.preventDefault();
-    alert(addMark);
+    updateAssignmentMark({ id, mark: addMark });
   };
+
+  useEffect(() => {
+    if (isError) {
+      alert("Mark Update filed!");
+    }
+  }, [isError]);
+
+  useEffect(() => {
+    if (isSuccess) {
+      // alert("Mark Update Successful.");
+    }
+  }, [isSuccess]);
 
   return (
     <>

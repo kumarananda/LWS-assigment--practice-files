@@ -22,6 +22,54 @@ export const assignmentMarkApi = apiSlice.injectEndpoints({
                 body: data
             }),
         }) ,
+        updateAssignmentMark :  builder.mutation({
+            query: ({id,mark}) => ({
+                url: `/assignmentMark/${id}`,
+                method: "PATCH",
+                body: {
+                    mark,
+                    status : "published"
+                }
+            }),
+            async onQueryStarted(arg, { queryFulfilled, dispatch }) {
+                
+                try {
+                    const assignmentMark = await queryFulfilled;
+                    if (assignmentMark?.data?.id) {
+
+                        // update assignment cache pessimistically start
+                        dispatch(
+                            apiSlice.util.updateQueryData(
+                                "getAssignmentMarks",
+                                undefined,
+                                (draft) => {
+                                    const updateIndex = draft.findIndex(item => item.id == arg.id);
+                                    draft[updateIndex] = assignmentMark.data
+                                }
+                                
+                            )
+                        )
+
+                        dispatch(
+                            apiSlice.util.updateQueryData(
+                                "getAssignmentMarks",
+                                arg.id.toString(),
+                                (draft) => {
+                                //    return draft = assignment.data
+                                //    return assignment.data
+                                    Object.assign(draft, assignmentMark.data)
+                                }
+                                
+                            )
+                        );
+                        // update assignment cache pessimistically end
+                    }
+                } catch (err) {
+                    console.log(err);
+                }
+            },
+
+        }) ,
     })
 })
 
@@ -30,4 +78,5 @@ export const {
     useGetAssignmentMarksQuery, 
     // useGetAssignmentMarkQuery,
     useAddAssignmentMarkMutation, 
+    useUpdateAssignmentMarkMutation,
 } = assignmentMarkApi
