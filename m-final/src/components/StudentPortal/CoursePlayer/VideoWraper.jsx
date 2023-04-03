@@ -6,15 +6,12 @@ import { useGetVideoQuery, useGetVideosQuery } from "../../../features/api/video
 import VideoDetiles from "./VideoDetiles";
 
 const VideoWraper = () => {
-  // const { pathname } = useLocation();
+  const { pathname } = useLocation();
 
   const { videoId } = useParams();
 
   // all videos
   const { data: videos, isLoading, isError, isSuccess, error } = useGetVideosQuery();
-
-  // console.log(videoId);
-  console.log(!videoId);
 
   // Single video
   const {
@@ -24,8 +21,8 @@ const VideoWraper = () => {
     isSuccess: isSVSuccess,
     error: SVerror,
   } = useGetVideoQuery(videoId, {
-    skip: !videoId,
-    // skip: pathname === ("/course-player" || "/course-player/"),
+    // skip: !videoId,
+    skip: pathname === ("/course-player" || "/course-player/"),
   });
 
   //

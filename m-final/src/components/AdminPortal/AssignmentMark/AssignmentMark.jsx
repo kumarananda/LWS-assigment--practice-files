@@ -1,11 +1,11 @@
 /** @format */
 
 import React from "react";
-import { useGetAssignmentMarkQuery } from "../../../features/api/assignmentMark/assignmentMarkApi";
+import { useGetAssignmentMarksQuery } from "../../../features/api/assignmentMark/assignmentMarkApi";
 import SingleAssMark from "./SingleAssMark.jsx";
 
 const AssignmentMark = () => {
-  const { data: assMarks, isLoading, isError, isSuccess } = useGetAssignmentMarkQuery();
+  const { data: assMarks, isLoading, isError, isSuccess } = useGetAssignmentMarksQuery();
 
   const totalAss = isSuccess ? assMarks.length : 0;
   const markPanding = isSuccess ? assMarks.filter(i => i.status === "pending").length : 0;

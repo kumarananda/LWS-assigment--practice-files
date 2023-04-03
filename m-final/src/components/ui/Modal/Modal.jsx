@@ -2,8 +2,7 @@
 
 import React, { useEffect, useRef } from "react";
 import "./Modal.css";
-import { GoX } from "react-icons/go";
-import { Link } from "react-router-dom";
+
 
 const Modal = ({ children, modalOpen = false, setModalOpen, MBoxWidth, outCickHide, ZIndex }) => {
   // modal state

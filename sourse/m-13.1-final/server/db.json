@@ -81,7 +81,7 @@
       "description": "This video explores the impact of artificial intelligence on employment, examining the history of automation and the current state of AI technology. The video aims to provide a balanced perspective on the topic, helping viewers understand the truth about AI's impact on jobs and offering advice on how to prepare for the changing job market. This video also answers the most common questions asked by programmers worldwide - \"Will AI take my job?\"",
       "duration": "34:50",
       "views": "31K",
-      "url": "https://youtu.be/BihZd2x8Qh8",
+      "url": "https://www.youtube.com/embed/BihZd2x8Qh8",
       "createdAt": "2023-04-01T16:32:38.944Z",
       "id": 3
     },
@@ -90,7 +90,7 @@
       "description": "This is the introduction video of Learn with Sumit Tailwind CSS Bangla Tutorial Course. In this video, you will get detail instructions about how to follow this playlist, course outline, what are the prerequisites to learn Tailwind CSS and what to expect from this course.",
       "duration": "4.50",
       "views": "2.9K",
-      "url": "https://youtu.be/X7XbjwD6fVY",
+      "url": "https://www.youtube.com/embed/X7XbjwD6fVY",
       "createdAt": "2023-04-01T16:41:03.352Z",
       "id": 4
     },
@@ -99,7 +99,7 @@
       "description": "In this video of Learn with Sumit Tailwind CSS Bangla Tutorial Course, you will get detail instructions on how to install Tailwind CSS. Amongst various ways to install Tailwind, this video shows how to install tailwind css with Tailwind CLI or Command Line Interface.",
       "duration": "7.05",
       "views": "12K",
-      "url": "https://youtu.be/6LF7y7T0_EU",
+      "url": "https://www.youtube.com/embed/6LF7y7T0_EU",
       "createdAt": "2023-04-01T16:59:32.425Z",
       "id": 5
     },
@@ -108,7 +108,7 @@
       "description": "This is the 3rd video of \"Learn with Sumit Tailwind CSS Bangla Tutorial Course\". In this video, I have described the fundamental concept of Tailwind CSS - the Utility-First Design Approach - which is where Tailwind is different from other CSS frameworks like Bootstrap or Material UI.\n",
       "duration": "27:31",
       "views": "13K",
-      "url": "https://youtu.be/HxVdmUGGtJk",
+      "url": "https://www.youtube.com/embed/HxVdmUGGtJk",
       "createdAt": "2023-04-01T17:01:28.441Z",
       "id": 6
     },
@@ -117,7 +117,7 @@
       "description": "This is the 4th video of \"Learn with Sumit Tailwind CSS Bangla Tutorial Course\". In this video, you will get a clear concept about how responsiveness is handled in Tailwind. Tailwind gives us several device breakpoints which we can target to achieve responsiveness easily and efficiently.",
       "duration": "7:31",
       "views": "10K",
-      "url": "https://youtu.be/36TUIIZgiu0",
+      "url": "https://www.youtube.com/embed/36TUIIZgiu0",
       "createdAt": "2023-04-01T17:07:46.353Z",
       "id": 7
     }
@@ -136,22 +136,43 @@
       "video_id": 2,
       "video_title": "#2 JavaScript Tips and Tricks - JavaScript Job Interview Questions",
       "totalMark": 100
+    },
+    {
+      "title": "3.10 Task - Batch 2 - Product Cart Application",
+      "video_id": 3,
+      "video_title": "Facing the Future: The Truth About Artificial Intelligence and Our Jobs - Bangla",
+      "totalMark": "100",
+      "id": 3
+    },
+    {
+      "title": "4.9 Task - Batch 2 - Book store Application",
+      "video_id": 4,
+      "video_title": "#01 Introduction | Tailwind CSS Bangla Tutorial",
+      "totalMark": "100",
+      "id": 4
+    },
+    {
+      "title": "5.10 Task - Batch 2 - Play with Redux Toolkit",
+      "video_id": 5,
+      "video_title": "#02 Tailwind Installation | Tailwind CSS Bangla Tutorial",
+      "totalMark": "100",
+      "id": 5
     }
   ],
   "quizzes": [
     {
       "id": 1,
       "question": "What is a Debounce function in JavaScript?",
-      "video_id": 1,
-      "video_title": "Debounce Function in JavaScript - JavaScript Job Interview question",
+      "video_id": 4,
+      "video_title": "#01 Introduction | Tailwind CSS Bangla Tutorial",
       "options": [
         {
-          "id": "1",
+          "id": 1,
           "option": "A function that is called after a certain time interval",
           "isCorrect": true
         },
         {
-          "id": "2",
+          "id": 2,
           "option": "A function that is called after a certain time interval",
           "isCorrect": false
         },
@@ -170,16 +191,16 @@
     {
       "id": 2,
       "question": "Which of the following is an example of a situation where you would use the Debounce function?",
-      "video_id": 1,
-      "video_title": "Debounce Function in JavaScript - JavaScript Job Interview question",
+      "video_id": 6,
+      "video_title": "#03 Utility-First Approach | Tailwind CSS Bangla Tutorial",
       "options": [
         {
-          "id": "1",
+          "id": 1,
           "option": "A search bar where the results are displayed as you type.",
           "isCorrect": true
         },
         {
-          "id": "2",
+          "id": 2,
           "option": "A button that performs an action when clicked.",
           "isCorrect": false
         },
@@ -250,6 +271,34 @@
         }
       ],
       "id": 4
+    },
+    {
+      "question": "Quiz 2.4 - Higher Order component এর প্যারামিটার কি হয়?\nHigher Order Component (HOC) ফাংশন প্যারামিটার হিসেবে কি নেয়?",
+      "video_id": 1,
+      "video_title": "Debounce Function in JavaScript - JavaScript Job Interview question",
+      "options": [
+        {
+          "id": 1,
+          "option": "আরেকটি কম্পোনেন্ট",
+          "isCorrect": true
+        },
+        {
+          "id": 2,
+          "option": "একটি array",
+          "isCorrect": false
+        },
+        {
+          "id": 3,
+          "option": "React Element",
+          "isCorrect": false
+        },
+        {
+          "id": 4,
+          "option": "কিছুই প্যারামিটারে নেয় না",
+          "isCorrect": false
+        }
+      ],
+      "id": 5
     }
   ],
   "assignmentMark": [
@@ -288,6 +337,18 @@
       "mark": 50,
       "repo_link": "https://github.com/Learn-with-Sumit/assignment-1",
       "status": "published"
+    },
+    {
+      "student_id": 3,
+      "student_name": "Akash Ahmed",
+      "assignment_id": 1,
+      "title": "Assignment 1 - Implement Debounce Function",
+      "repo_link": "gfdsfsasdggsasg",
+      "totalMark": 100,
+      "status": "pending",
+      "mark": "",
+      "createdAt": "2023-04-03T19:01:31.866Z",
+      "id": 3
     }
   ],
   "quizMark": [
