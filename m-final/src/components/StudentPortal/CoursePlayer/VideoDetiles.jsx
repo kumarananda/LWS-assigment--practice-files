@@ -8,6 +8,7 @@ import { useGetAssignmentQuery } from "../../../features/api/assignments/assignm
 import { AssButton, AssLoadingButton, AssNotFoundButton } from "./AssButton";
 import Modal from "../../ui/Modal/Modal";
 import AssSubmitModal from "./AssSubmitModal";
+import { useGetAssignmentMarkQuery } from "../../../features/api/assignmentMark/assignmentMarkApi";
 
 const VideoDetiles = ({ video }) => {
   const { id: videoId, title, description, url, views, duration, createdAt } = video || {};
@@ -16,8 +17,14 @@ const VideoDetiles = ({ video }) => {
   // user data
   const { id: student_id, name: student_name } = useSelector(state => state.auth.user);
 
-  console.log(assignment);
-  console.log(ass_error?.status);
+  // running
+  // get user assignment for this video
+  // const { data: submitedAss } = useGetAssignmentMarkQuery({ student_id, assignment_id: assignment?.id }, { skip: !assignment.id });
+
+  // console.log(submitedAss);
+
+  // console.log(assignment);
+  // console.log(ass_error?.status);
 
   // ass modal status
   const [assSubmit, setAssSubmit] = useState(false);

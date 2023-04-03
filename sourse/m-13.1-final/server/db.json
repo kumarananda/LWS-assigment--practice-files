@@ -315,40 +315,40 @@
       "status": "published"
     },
     {
-      "id": 2,
-      "student_id": 2,
-      "student_name": "Saad Hasan",
-      "assignment_id": 1,
-      "title": "Assignment 2 - Implement Best Practices",
-      "createdAt": "2021-01-15T15:17:01.727Z",
-      "totalMark": 100,
-      "mark": 100,
-      "repo_link": "https://github.com/Learn-with-Sumit/assignment-1",
-      "status": "published"
-    },
-    {
-      "id": 2,
       "student_id": 3,
       "student_name": "Akash Ahmed",
       "assignment_id": 1,
-      "title": "Assignment 2 - Implement Best Practices",
-      "createdAt": "2021-01-15T15:17:01.727Z",
+      "title": "Assignment 1 - Implement Debounce Function",
+      "repo_link": "git.com",
       "totalMark": 100,
-      "mark": 50,
-      "repo_link": "https://github.com/Learn-with-Sumit/assignment-1",
-      "status": "published"
+      "status": "pending",
+      "mark": "",
+      "createdAt": "2023-04-03T19:56:40.213Z",
+      "id": 2
+    },
+    {
+      "student_id": 3,
+      "student_name": "Akash Ahmed",
+      "assignment_id": 2,
+      "title": "Assignment 2 - Implement Best Practices",
+      "repo_link": "254",
+      "totalMark": 100,
+      "status": "pending",
+      "mark": "",
+      "createdAt": "2023-04-03T19:57:29.869Z",
+      "id": 3
     },
     {
       "student_id": 3,
       "student_name": "Akash Ahmed",
       "assignment_id": 1,
       "title": "Assignment 1 - Implement Debounce Function",
-      "repo_link": "gfdsfsasdggsasg",
+      "repo_link": "gfdghffhfghghdh",
       "totalMark": 100,
-      "status": "published",
-      "mark": "50",
-      "createdAt": "2023-04-03T19:01:31.866Z",
-      "id": 3
+      "status": "pending",
+      "mark": "",
+      "createdAt": "2023-04-03T20:20:04.834Z",
+      "id": 4
     }
   ],
   "quizMark": [

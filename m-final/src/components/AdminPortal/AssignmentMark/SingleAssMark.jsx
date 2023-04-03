@@ -2,12 +2,13 @@
 
 import React, { useEffect, useState } from "react";
 import { showDateDetails } from "../../../utils/date";
-import { useUpdateAssignmentMarkMutation } from "../../../features/api/assignmentMark/assignmentMarkApi";
+import { useGetAssignmentMarkQuery, useUpdateAssignmentMarkMutation } from "../../../features/api/assignmentMark/assignmentMarkApi";
 
 const SingleAssMark = ({ assMark }) => {
   const { id, student_id, student_name, assignment_id, title, createdAt, totalMark, mark, repo_link, status } = assMark || {};
 
   const [updateAssignmentMark, { isLoading, isSuccess, isError }] = useUpdateAssignmentMarkMutation();
+
   // mark assignment mark state
   const [addMark, setAddMark] = useState("");
 

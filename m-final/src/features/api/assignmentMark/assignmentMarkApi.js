@@ -9,12 +9,14 @@ export const assignmentMarkApi = apiSlice.injectEndpoints({
                 method: "GET",
             }),
         }),
-        // getAssignmentMark : builder.query({
-        //     query: ({videoId, userId}) => ({
-        //         url: `/assignmentMark/${addurl}`,
-        //         method: "GET",
-        //     }),
-        // }) ,
+        getAssignmentMark : builder.query({
+            query: ({student_id, assignment_id}) => ({
+                url: `/assignmentMark?student_id_like=${student_id}&assignment_id_like=${assignment_id}`,
+                method: "GET",
+            }),
+            providesTags : (result, error, {student_id, assignment_id}) => [{ type: 'AssignmentMark', id : assignment_id,stu_Id: student_id }],
+        }),
+
         addAssignmentMark : builder.mutation({
             query: (data) => ({
                 url: `/assignmentMark`,
@@ -76,7 +78,7 @@ export const assignmentMarkApi = apiSlice.injectEndpoints({
 
 export const {
     useGetAssignmentMarksQuery, 
-    // useGetAssignmentMarkQuery,
+    useGetAssignmentMarkQuery,
     useAddAssignmentMarkMutation, 
     useUpdateAssignmentMarkMutation,
 } = assignmentMarkApi
