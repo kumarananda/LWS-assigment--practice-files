@@ -10,9 +10,14 @@ import Modal from "../../ui/Modal/Modal";
 import AssSubmitModal from "./AssSubmitModal";
 import { useGetAssignmentMarkQuery } from "../../../features/api/assignmentMark/assignmentMarkApi";
 import ShowSubmitedModal from "./ShowSubmitedModal";
+import { useGetQuizForVideoQuery } from "../../../features/api/quizzes/quizzesApi";
 
 const VideoDetiles = ({ video }) => {
   const { id: videoId, title, description, url, views, duration, createdAt } = video || {};
+
+  // Quiz data for this video
+  const { data: quizdata, isLoading, isSuccess, isError } = useGetQuizForVideoQuery(videoId);
+
   // get assignment data
   const {
     data: assignment,
@@ -31,11 +36,6 @@ const VideoDetiles = ({ video }) => {
     { student_id, assignment_id: assignment?.id },
     { skip: !assignment?.id }
   );
-
-  console.log(submitedAss);
-
-  // console.log(assignment);
-  // console.log(ass_error?.status);
 
   // ass modal status
   const [assSubmit, setAssSubmit] = useState(false);
@@ -66,6 +66,29 @@ const VideoDetiles = ({ video }) => {
     }
   }
 
+  // make quize button
+  let quizButton = null;
+  if (isLoading) {
+    quizButton = <AssButton>কুইজ নেই</AssButton>;
+  }
+  if (!isLoading && isError) {
+    quizButton = <AssButton>কুইজ নেই</AssButton>;
+  }
+  if (!isLoading && !isError && isSuccess) {
+    if (!quizdata?.length) {
+      quizButton = <AssButton>কুইজ নেই</AssButton>;
+    } else if (quizdata?.length > 0) {
+      quizButton = (
+        <Link
+          to={`/quiz/${videoId}`}
+          className="px-3 font-bold py-1 border border-cyan text-cyan rounded-full text-sm hover:bg-cyan hover:text-primary"
+        >
+          কুইজে অংশগ্রহণ করুন
+        </Link>
+      );
+    }
+  }
+
   return (
     <>
       <div className="col-span-full w-full space-y-8 lg:col-span-2">
@@ -84,12 +107,7 @@ const VideoDetiles = ({ video }) => {
           <h2 className=" pb-4 text-sm leading-[1.7142857] text-slate-400">Uploaded on {showDateMonthYear(createdAt)} </h2> {/*23 February 2020 */}
           <div className="flex gap-4">
             {assButton}
-            <Link
-              to={`/quiz/${videoId}`}
-              className="px-3 font-bold py-1 border border-cyan text-cyan rounded-full text-sm hover:bg-cyan hover:text-primary"
-            >
-              কুইজে অংশগ্রহণ করুন
-            </Link>
+            {quizButton}
           </div>
           <p className="mt-4 text-sm text-slate-400 leading-6">{description}</p>
         </div>

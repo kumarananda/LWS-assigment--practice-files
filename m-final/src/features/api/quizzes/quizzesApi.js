@@ -16,6 +16,13 @@ export const quizzessApi = apiSlice.injectEndpoints({
             }),
             providesTags: (result, error, id) => [{ type: 'Quiz', id }],
         }),
+        getQuizForVideo : builder.query({
+            query: (video_id) => ({
+                url: `/quizzes?video_id_like=${video_id}`,
+                method: "GET",
+            }),
+            providesTags: (result, error, videoId) => [{ type: 'Quiz', videoId }],
+        }),
 
         addQuiz : builder.mutation({
             query: (data) => ({
@@ -144,6 +151,7 @@ export const quizzessApi = apiSlice.injectEndpoints({
 export const { 
     useGetQuizzessQuery, 
     useGetQuizQuery, 
+    useGetQuizForVideoQuery,
     useAddQuizMutation, 
     useEditQuizMutation, 
     useDeleteQuizMutation 

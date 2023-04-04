@@ -29,13 +29,6 @@ const CoursePlayer = () => {
     }
   }
 
-  // get prams data
-
-  //   const prevVideo = localStorage.getItem("vidoe_id");
-
-  //   // make default vedio poage re-visit
-  //   const prevVideoId = prevVideo ? prevVideo : "";
-
   return (
     <>
       <div className="grid grid-cols-3 gap-2 lg:gap-8">
