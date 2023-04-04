@@ -319,36 +319,24 @@
       "student_name": "Akash Ahmed",
       "assignment_id": 1,
       "title": "Assignment 1 - Implement Debounce Function",
-      "repo_link": "git.com",
+      "repo_link": "gggggggggggjjjj",
       "totalMark": 100,
       "status": "pending",
       "mark": "",
-      "createdAt": "2023-04-03T19:56:40.213Z",
+      "createdAt": "2023-04-04T07:28:48.897Z",
       "id": 2
     },
     {
       "student_id": 3,
       "student_name": "Akash Ahmed",
-      "assignment_id": 2,
-      "title": "Assignment 2 - Implement Best Practices",
-      "repo_link": "254",
-      "totalMark": 100,
+      "assignment_id": 4,
+      "title": "4.9 Task - Batch 2 - Book store Application",
+      "repo_link": "fjdsklfjdslkfa",
+      "totalMark": "100",
       "status": "pending",
       "mark": "",
-      "createdAt": "2023-04-03T19:57:29.869Z",
+      "createdAt": "2023-04-04T07:29:18.002Z",
       "id": 3
-    },
-    {
-      "student_id": 3,
-      "student_name": "Akash Ahmed",
-      "assignment_id": 1,
-      "title": "Assignment 1 - Implement Debounce Function",
-      "repo_link": "gfdghffhfghghdh",
-      "totalMark": 100,
-      "status": "pending",
-      "mark": "",
-      "createdAt": "2023-04-03T20:20:04.834Z",
-      "id": 4
     }
   ],
   "quizMark": [

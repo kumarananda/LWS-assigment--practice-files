@@ -1,11 +1,10 @@
 /** @format */
 
 import React, { useEffect, useState } from "react";
-import Modal from "../../ui/Modal/Modal";
 import { GoX } from "react-icons/go";
 import { useAddAssignmentMarkMutation } from "../../../features/api/assignmentMark/assignmentMarkApi";
 
-const AssSubmitModal = ({ student_id, student_name, assignment, setStatus }) => {
+const AssSubmitModal = ({ student_id, student_name, assignment, setStatus, assMarkRefetch, assRefetch }) => {
   const [addAssignmentMark, { isLoading, isError, isSuccess }] = useAddAssignmentMarkMutation();
 
   // input state
@@ -40,6 +39,8 @@ const AssSubmitModal = ({ student_id, student_name, assignment, setStatus }) => 
   // if success modal off
   useEffect(() => {
     if (isSuccess) {
+      assMarkRefetch();
+      assRefetch();
       setStatus(false);
     }
   }, [isSuccess]);
