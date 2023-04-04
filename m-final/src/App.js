@@ -4,7 +4,6 @@ import './assets/style/output.css'
 import Header from './components/Header/Header';
 import AdminLogin from './pages/admin/AdminLogin/AdminLogin';
 import Dashboard from './pages/admin/Dashboard/Dashboard';
-import Leaderboard from './pages/student/Leaderboard/Leaderboard';
 import StudentLogin from './pages/student/StudentLogin/StudentLogin';
 import AssignmentMarkPage from './pages/admin/AssignmentMarkPage/AssignmentMarkPage';
 import QuizPage from './pages/student/Quiz/QuizPage';
@@ -17,6 +16,7 @@ import PublicRoute from './components/ui/RouteAuthenticate/PublicRoute';
 import AdminRoute from './components/ui/RouteAuthenticate/AdminRoute';
 import StudentRoute from './components/ui/RouteAuthenticate/StudentRoute';
 import CoursePlayerPage from './pages/student/CoursePlayer/CoursePlayerPage';
+import LeaderboardPage from './pages/student/Leaderboard/LeaderboardPage';
 
 
 function App() {
@@ -34,7 +34,7 @@ function App() {
         <Routes>
           <Route path='/' element={<PublicRoute><StudentLogin/></PublicRoute>}/>
           <Route path='/registration' element={<PublicRoute><StudentRegistration/></PublicRoute>}/>
-          <Route path='/leaderboard' element={<StudentRoute><Leaderboard/></StudentRoute>} />
+          <Route path='/leaderboard' element={<StudentRoute><LeaderboardPage/></StudentRoute>} />
           <Route path='/course-player' element={<StudentRoute><CoursePlayerPage/></StudentRoute>} />
           <Route path='/course-player/:videoId' element={<StudentRoute><CoursePlayerPage/></StudentRoute>} />
           <Route path='/quiz/:videoId' element={<StudentRoute><QuizPage/></StudentRoute>} />
