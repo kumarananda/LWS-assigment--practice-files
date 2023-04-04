@@ -45,7 +45,7 @@ const VideoDetiles = ({ video }) => {
   // create assignment button
   let assButton = null;
   if (assLoading) {
-    assButton = <AssButton>এসাইনমেন্ট</AssButton>; // লোডিং // Loading
+    assButton = <AssButton>এসাইনমেন্ট নেই</AssButton>; // লোডিং // Loading
   }
   if (!assLoading && assError) {
     assButton = <AssButton>এসাইনমেন্ট নেই</AssButton>;
@@ -105,7 +105,7 @@ const VideoDetiles = ({ video }) => {
         <div>
           <h1 className="text-lg font-semibold tracking-tight text-slate-100">{title}</h1>
           <h2 className=" pb-4 text-sm leading-[1.7142857] text-slate-400">Uploaded on {showDateMonthYear(createdAt)} </h2> {/*23 February 2020 */}
-          <div className="flex gap-4">
+          <div className="flex gap-4 justify-between">
             {assButton}
             {quizButton}
           </div>
