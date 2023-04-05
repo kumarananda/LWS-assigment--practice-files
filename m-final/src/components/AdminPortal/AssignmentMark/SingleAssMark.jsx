@@ -15,7 +15,11 @@ const SingleAssMark = ({ assMark }) => {
   // handle mark submit
   const handleMarkSubmit = e => {
     e.preventDefault();
-    updateAssignmentMark({ id, mark: addMark });
+    const data = {
+      ...assMark,
+      mark: addMark,
+    };
+    updateAssignmentMark({ id, data });
   };
 
   useEffect(() => {

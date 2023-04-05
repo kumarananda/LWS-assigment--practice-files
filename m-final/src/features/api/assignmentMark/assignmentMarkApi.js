@@ -25,36 +25,42 @@ export const assignmentMarkApi = apiSlice.injectEndpoints({
             }),
         }) ,
         updateAssignmentMark :  builder.mutation({
-            query: ({id,mark}) => ({
+            query: ({id,data}) => ({
                 url: `/assignmentMark/${id}`,
                 method: "PATCH",
                 body: {
-                    mark,
+                    mark: data.mark,
                     status : "published"
                 }
             }),
             async onQueryStarted(arg, { queryFulfilled, dispatch }) {
+
+                // // optimistic cache update start
+                const allAssTarget = dispatch(
+                    apiSlice.util.updateQueryData(
+                        "getAssignmentMarks",
+                        undefined,
+                        (draft) => {
+                            console.log(JSON.parse(JSON.stringify(draft)));
+                            const updateIndex = draft.findIndex(item => item.id == arg.id);
+                            console.log(arg);
+                            draft[updateIndex] = {
+                                ...arg.data,
+                                status : "published"
+                            }
+                        }
+                    )
+                );
                 
                 try {
                     const assignmentMark = await queryFulfilled;
                     if (assignmentMark?.data?.id) {
 
                         // update assignment cache pessimistically start
-                        dispatch(
-                            apiSlice.util.updateQueryData(
-                                "getAssignmentMarks",
-                                undefined,
-                                (draft) => {
-                                    const updateIndex = draft.findIndex(item => item.id == arg.id);
-                                    draft[updateIndex] = assignmentMark.data
-                                }
-                                
-                            )
-                        )
 
                         dispatch(
                             apiSlice.util.updateQueryData(
-                                "getAssignmentMarks",
+                                "getAssignmentMark",
                                 arg.id.toString(),
                                 (draft) => {
                                 //    return draft = assignment.data
@@ -67,7 +73,7 @@ export const assignmentMarkApi = apiSlice.injectEndpoints({
                         // update assignment cache pessimistically end
                     }
                 } catch (err) {
-                    console.log(err);
+                    allAssTarget.undo()
                 }
             },
 
@@ -81,4 +87,4 @@ export const {
     useGetAssignmentMarkQuery,
     useAddAssignmentMarkMutation, 
     useUpdateAssignmentMarkMutation,
-} = assignmentMarkApi
+} = assignmentMarkApi;

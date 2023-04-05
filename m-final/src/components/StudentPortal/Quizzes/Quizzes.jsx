@@ -17,7 +17,7 @@ const Quizzes = () => {
 
   // correct count
   const [corrQuiz, setCorrQuiz] = useState({}); // build with object key type
-  const correctArray = Object.values(corrQuiz); // con
+  const correctArray = Object.values(corrQuiz); // convart Boolean array
   const countCorret = (acc, curr) => {
     if (curr) {
       return acc + 1;
@@ -53,6 +53,7 @@ const Quizzes = () => {
     }
   }
 
+  // quiz mark data Object
   const quizMarkdata = {
     student_id,
     student_name,
@@ -64,7 +65,9 @@ const Quizzes = () => {
     totalMark: totalQuiz * 5,
     mark: totalCorrect * 5,
   };
-  const handleQuizMark = () => {
+
+  // submit quiz mark
+  const handleQuizMarkSubmit = () => {
     alert(JSON.stringify(quizMarkdata));
   };
 
@@ -78,7 +81,7 @@ const Quizzes = () => {
         <div className="space-y-8">{content}</div>
 
         <button
-          onClick={handleQuizMark}
+          onClick={handleQuizMarkSubmit}
           className="px-4 py-2 rounded-full bg-cyan block ml-auto mt-8 hover:opacity-90 active:opacity-100 active:scale-95"
         >
           Submit
