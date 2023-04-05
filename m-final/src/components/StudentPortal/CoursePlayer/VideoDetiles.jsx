@@ -11,6 +11,7 @@ import AssSubmitModal from "./AssSubmitModal";
 import { useGetAssignmentMarkQuery } from "../../../features/api/assignmentMark/assignmentMarkApi";
 import ShowSubmitedModal from "./ShowSubmitedModal";
 import { useGetQuizForVideoQuery } from "../../../features/api/quizzes/quizzesApi";
+import { useGetStuVideoQuizMarksQuery } from "../../../features/api/quizzesMark/quizzMarkApi";
 
 const VideoDetiles = ({ video }) => {
   const { id: videoId, title, description, url, views, duration, createdAt } = video || {};
@@ -30,12 +31,19 @@ const VideoDetiles = ({ video }) => {
   // user data
   const { id: student_id, name: student_name } = useSelector(state => state.auth.user);
 
-  // running
   // get user assignment for this video
   const { data: submitedAss, refetch: assMarkRefetch } = useGetAssignmentMarkQuery(
     { student_id, assignment_id: assignment?.id },
     { skip: !assignment?.id }
   );
+  // get user quiz data if submited for this video
+  const {
+    data: stuVideoQuizzs,
+    isSuccess: qMarkSuccess,
+    refetch: quizRefetch,
+  } = useGetStuVideoQuizMarksQuery({ student_id, video_id: videoId }, { skip: false });
+
+  console.log(stuVideoQuizzs);
 
   // ass modal status
   const [assSubmit, setAssSubmit] = useState(false);
@@ -78,14 +86,37 @@ const VideoDetiles = ({ video }) => {
     if (!quizdata?.length) {
       quizButton = <AssButton>কুইজ নেই</AssButton>;
     } else if (quizdata?.length > 0) {
-      quizButton = (
-        <Link
-          to={`/quiz/${videoId}`}
-          className="px-3 font-bold py-1 border border-cyan text-cyan rounded-full text-sm hover:bg-cyan hover:text-primary"
-        >
-          কুইজে অংশগ্রহণ করুন
-        </Link>
-      );
+      if (qMarkSuccess) {
+        if (stuVideoQuizzs.length > 0) {
+          quizButton = (
+            <Link
+              to={`/quiz/${videoId}`}
+              className="px-3 font-bold py-1 border border-cyan text-cyan rounded-full text-sm hover:bg-cyan hover:text-primary"
+            >
+              {"কুইজ জমা দিয়েছেন"}
+            </Link>
+          );
+        } else {
+          quizButton = (
+            <Link
+              to={`/quiz/${videoId}`}
+              className="px-3 font-bold py-1 border border-cyan text-cyan rounded-full text-sm hover:bg-cyan hover:text-primary"
+            >
+              {"কুইজে অংশগ্রহণ করুন"}
+            </Link>
+          );
+        }
+      } else {
+        quizButton = (
+          <Link
+            to={`/quiz/${videoId}`}
+            onClick={e => e.preventDefault()}
+            className="px-3 font-bold py-1 border border-cyan text-cyan rounded-full text-sm hover:bg-cyan hover:text-primary"
+          >
+            {"কুইজে অংশগ্রহণ করুন"}
+          </Link>
+        );
+      }
     }
   }
 

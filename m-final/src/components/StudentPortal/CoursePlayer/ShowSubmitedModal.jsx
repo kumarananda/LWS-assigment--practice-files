@@ -2,6 +2,7 @@
 
 import React from "react";
 import { GoX } from "react-icons/go";
+import { showDateDetails } from "../../../utils/date";
 const ShowSubmitedModal = ({ assignment, setStatus }) => {
   const { title, repo_link, totalMark, status, createdAt, mark } = assignment || {};
   // console.log(assignment);
@@ -21,22 +22,26 @@ const ShowSubmitedModal = ({ assignment, setStatus }) => {
         {/* body */}
         <div className="fromBody">
           <div className="input_box">
-            <h4> Assingment Title </h4>
+            <h6> Assingment title </h6>
             <h5 htmlFor="question_title">{title}</h5>
           </div>
           <div className="input_box">
-            <h4> Repo link </h4>
+            <h6> Repo link </h6>
             <h5 htmlFor="question_title">{repo_link}</h5>
           </div>
 
-          <div className="input_box flex justify-evenly">
+          <div className="input_box flex justify-between">
             <div className="item">
-              <h4>Total Mark</h4>
+              <h6>Total mark</h6>
               <h5 htmlFor="question_title">{totalMark}</h5>
             </div>
             <div className="item">
-              <h4>Received Mark</h4>
+              <h6>Received mark</h6>
               <h5 htmlFor="question_title">{status === "pending" ? "pending" : mark}</h5>
+            </div>
+            <div className="item">
+              <h6>Submitted time</h6>
+              <h5 htmlFor="question_title">{showDateDetails(createdAt)}</h5>
             </div>
           </div>
 

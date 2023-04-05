@@ -1,19 +1,33 @@
 /** @format */
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useGetQuizForVideoQuery } from "../../../features/api/quizzes/quizzesApi";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import SingleQuiz from "./SingleQuiz";
 import { useSelector } from "react-redux";
-
+import { useAddVidoeQuizMarkMutation, useGetStuVideoQuizMarksQuery } from "../../../features/api/quizzesMark/quizzMarkApi";
+import VideoQuizResult from "./VideoQuizResult";
 const Quizzes = () => {
   const { videoId } = useParams();
+  const navigate = useNavigate();
 
   // user data
   const { id: student_id, name: student_name } = useSelector(state => state.auth.user);
 
+  // get user quiz data if submited for this video
+  const {
+    data: stuVideoQuizzs,
+    isSuccess: qMarkSuccess,
+    isLoading: qMarkLoading,
+    isError: qMarkError,
+    refetch: quizRefetch,
+  } = useGetStuVideoQuizMarksQuery({ student_id, video_id: videoId }, { skip: false });
+
   // use quiz query
   const { data: quizdata, isLoading, isSuccess, isError } = useGetQuizForVideoQuery(videoId);
+
+  // use quiz/quizzs mark add
+  const [addVideoQuizMark, { isLoading: addLoading, isError: addError, isSuccess: addSuccess, addErrorData }] = useAddVidoeQuizMarkMutation();
 
   // correct count
   const [corrQuiz, setCorrQuiz] = useState({}); // build with object key type
@@ -28,8 +42,6 @@ const Quizzes = () => {
   // total correctAnswer
   const totalCorrect = correctArray.reduce(countCorret, 0);
 
-  console.log(totalCorrect);
-
   let content = null;
   let videoTitle = undefined;
   let compare = [];
@@ -42,7 +54,7 @@ const Quizzes = () => {
   }
   if (!isLoading && !isError && isSuccess) {
     if (!quizdata?.length) {
-      content = "Quiz not found for this video";
+      content = "Quiz not found!";
     } else if (quizdata?.length > 0) {
       totalQuiz = quizdata.length;
       videoTitle = quizdata[0].video_title;
@@ -53,23 +65,65 @@ const Quizzes = () => {
     }
   }
 
-  // quiz mark data Object
-  const quizMarkdata = {
-    student_id,
-    student_name,
-    video_id: videoId,
-    video_title: videoTitle,
-    totalQuiz: totalQuiz,
-    totalCorrect: totalCorrect,
-    totalWrong: totalQuiz - totalCorrect,
-    totalMark: totalQuiz * 5,
-    mark: totalCorrect * 5,
-  };
-
   // submit quiz mark
   const handleQuizMarkSubmit = () => {
-    alert(JSON.stringify(quizMarkdata));
+    // quiz mark data Object
+    const quizMarkdata = {
+      student_id,
+      student_name,
+      video_id: videoId,
+      video_title: videoTitle,
+      totalQuiz: totalQuiz,
+      totalCorrect: totalCorrect,
+      totalWrong: totalQuiz - totalCorrect,
+      totalMark: totalQuiz * 5,
+      mark: totalCorrect * 5,
+    };
+    // alert(JSON.stringify(quizMarkdata));
+    addVideoQuizMark(quizMarkdata);
   };
+
+  useEffect(() => {
+    if (addSuccess) {
+      // navigate("/course-player");
+      navigate("/leaderboard");
+    }
+  }, [addSuccess]);
+
+  useEffect(() => {
+    if (addError) {
+      alert(addErrorData);
+    }
+  }, [addError]);
+
+  let parentContent = null;
+  if (qMarkLoading) {
+    parentContent = "Loading....";
+  }
+  if (!qMarkLoading && qMarkError) {
+    parentContent = "Theare was an error!";
+  }
+  if (!qMarkLoading && !qMarkError && qMarkSuccess) {
+    let answeredLengeh = stuVideoQuizzs.length;
+    if (answeredLengeh === 0) {
+      parentContent = (
+        <>
+          <div className="space-y-8">{content}</div>
+
+          {quizdata?.length > 0 && (
+            <button
+              onClick={handleQuizMarkSubmit}
+              className="px-4 py-2 rounded-full bg-cyan block ml-auto mt-8 hover:opacity-90 active:opacity-100 active:scale-95"
+            >
+              Submit
+            </button>
+          )}
+        </>
+      );
+    } else if (answeredLengeh > 0) {
+      parentContent = <VideoQuizResult result={stuVideoQuizzs[0]} />;
+    }
+  }
 
   return (
     <>
@@ -78,14 +132,8 @@ const Quizzes = () => {
           <h1 className="text-2xl font-bold">{videoTitle}</h1>
           <p className="text-sm text-slate-200">Each question contains 5 Mark</p>
         </div>
-        <div className="space-y-8">{content}</div>
 
-        <button
-          onClick={handleQuizMarkSubmit}
-          className="px-4 py-2 rounded-full bg-cyan block ml-auto mt-8 hover:opacity-90 active:opacity-100 active:scale-95"
-        >
-          Submit
-        </button>
+        {parentContent}
       </div>
     </>
   );
