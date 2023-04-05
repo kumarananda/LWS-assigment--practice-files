@@ -22,6 +22,7 @@ export const quizMarkApi = apiSlice.injectEndpoints({
                 method: "GET",
             }),
             // providesTags : (result, error, {student_id, video_id}) => [{ type: 'QuizMark', stuId : student_id, vidId: video_id }],
+            providesTags :  ['QuizMark'],
         }),
 
         addVidoeQuizMark : builder.mutation({
@@ -30,28 +31,33 @@ export const quizMarkApi = apiSlice.injectEndpoints({
                 method: "POST",
                 body: data
             }),
+            invalidatesTags : ["QuizMark"],
+            // cash update reuire 
+            // ****************
             async onQueryStarted(arg, { queryFulfilled, dispatch }) {
                 
 
                 try {
                     const quizMark = await queryFulfilled;
 
+                    // this.invalidatesTags = (result, error, {student_id, video_id}) => [{ type: 'QuizMark', stuId : student_id, vidId: video_id }],
+
                     console.log(quizMark.data);
 
                     if (quizMark?.data?.id) {
 
                         // update assignment cache pessimistically start
-                        // dispatch(
-                        //     apiSlice.util.updateQueryData(
-                        //         "getStuVideoQuizMarks",
-                        //         undefined,
-                        //         (draft) => {
-                        //             const updateIndex = draft.findIndex(item => item.id == arg.id);
-                        //             draft = [quizMark.data]
-                        //         }
+                        dispatch(
+                            apiSlice.util.updateQueryData(
+                                "getStuVideoQuizMarks",
+                                undefined,
+                                (draft) => {
+                                    const updateIndex = draft.findIndex(item => item.id == arg.id);
+                                    draft = [{...quizMark.data}]
+                                }
                                 
-                        //     )
-                        // )
+                            )
+                        )
 
                         // dispatch(
                         //     apiSlice.util.updateQueryData(
