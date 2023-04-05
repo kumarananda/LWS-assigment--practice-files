@@ -49,9 +49,7 @@ const Quizzes = () => {
       quizdata.map(item => {
         compare.push(item.options);
       });
-      content = quizdata.map((quiz, index) => (
-        <SingleQuiz quiz={quiz} setCorr={setCorrQuiz} compare={compare} totalQuiz={totalQuiz} key={quiz.id} index={index} />
-      ));
+      content = quizdata.map((quiz, index) => <SingleQuiz quiz={quiz} setCorr={setCorrQuiz} compare={compare} key={quiz.id} index={index} />);
     }
   }
 
@@ -78,9 +76,6 @@ const Quizzes = () => {
           <p className="text-sm text-slate-200">Each question contains 5 Mark</p>
         </div>
         <div className="space-y-8">{content}</div>
-        {/* <div className="space-y-8">
-          <saveOnly />
-        </div> */}
 
         <button
           onClick={handleQuizMark}
@@ -94,36 +89,3 @@ const Quizzes = () => {
 };
 
 export default Quizzes;
-
-const saveOnly = () => {
-  return (
-    <>
-      <div className="quiz">
-        <h4 className="question">Quiz 2 - Which of the following is an example of a situation where you would use the Debounce function?</h4>
-        <form className="quizOptions">
-          {/* Option 1 */}
-          <label htmlFor="option1_q2">
-            <input type="checkbox" id="option1_q2" />A search bar where the results are displayed as you type.
-          </label>
-
-          {/* Option 2 */}
-          <label htmlFor="option2_q2">
-            <input type="checkbox" id="option2_q2" />A button that performs an action when clicked.
-          </label>
-
-          {/* Option 3 */}
-          <label htmlFor="option3_q2">
-            <input type="checkbox" id="option3_q2" />
-            An animation that plays when a user hovers over an element.
-          </label>
-
-          {/* Option 4 */}
-          <label htmlFor="option4_q2">
-            <input type="checkbox" id="option4_q2" />
-            All of the above.
-          </label>
-        </form>
-      </div>
-    </>
-  );
-};

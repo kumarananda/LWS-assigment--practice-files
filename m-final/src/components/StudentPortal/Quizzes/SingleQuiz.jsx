@@ -2,7 +2,7 @@
 
 import React, { useEffect, useState } from "react";
 
-const SingleQuiz = ({ quiz, index, compare, totalQuiz, setCorr }) => {
+const SingleQuiz = ({ quiz, index, compare, setCorr }) => {
   const { id, question, options = [], video_id } = quiz || {};
 
   // options state
