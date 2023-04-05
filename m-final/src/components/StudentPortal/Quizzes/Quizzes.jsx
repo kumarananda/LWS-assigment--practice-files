@@ -4,16 +4,36 @@ import React, { useState } from "react";
 import { useGetQuizForVideoQuery } from "../../../features/api/quizzes/quizzesApi";
 import { useParams } from "react-router-dom";
 import SingleQuiz from "./SingleQuiz";
+import { useSelector } from "react-redux";
 
 const Quizzes = () => {
   const { videoId } = useParams();
+
+  // user data
+  const { id: student_id, name: student_name } = useSelector(state => state.auth.user);
+
   // use quiz query
   const { data: quizdata, isLoading, isSuccess, isError } = useGetQuizForVideoQuery(videoId);
 
-  console.log(quizdata);
+  // correct count
+  const [corrQuiz, setCorrQuiz] = useState({}); // build with object key type
+  const correctArray = Object.values(corrQuiz); // con
+  const countCorret = (acc, curr) => {
+    if (curr) {
+      return acc + 1;
+    } else {
+      return acc;
+    }
+  };
+  // total correctAnswer
+  const totalCorrect = correctArray.reduce(countCorret, 0);
+
+  console.log(totalCorrect);
 
   let content = null;
   let videoTitle = undefined;
+  let compare = [];
+  let totalQuiz = undefined;
   if (isLoading) {
     content = "Loading...";
   }
@@ -24,10 +44,31 @@ const Quizzes = () => {
     if (!quizdata?.length) {
       content = "Quiz not found for this video";
     } else if (quizdata?.length > 0) {
+      totalQuiz = quizdata.length;
       videoTitle = quizdata[0].video_title;
-      content = quizdata.map((quiz, index) => <SingleQuiz quiz={quiz} key={quiz.id} index={index} />);
+      quizdata.map(item => {
+        compare.push(item.options);
+      });
+      content = quizdata.map((quiz, index) => (
+        <SingleQuiz quiz={quiz} setCorr={setCorrQuiz} compare={compare} totalQuiz={totalQuiz} key={quiz.id} index={index} />
+      ));
     }
   }
+
+  const quizMarkdata = {
+    student_id,
+    student_name,
+    video_id: videoId,
+    video_title: videoTitle,
+    totalQuiz: totalQuiz,
+    totalCorrect: totalCorrect,
+    totalWrong: totalQuiz - totalCorrect,
+    totalMark: totalQuiz * 5,
+    mark: totalCorrect * 5,
+  };
+  const handleQuizMark = () => {
+    alert(JSON.stringify(quizMarkdata));
+  };
 
   return (
     <>
@@ -37,8 +78,16 @@ const Quizzes = () => {
           <p className="text-sm text-slate-200">Each question contains 5 Mark</p>
         </div>
         <div className="space-y-8">{content}</div>
+        {/* <div className="space-y-8">
+          <saveOnly />
+        </div> */}
 
-        <button className="px-4 py-2 rounded-full bg-cyan block ml-auto mt-8 hover:opacity-90 active:opacity-100 active:scale-95">Submit</button>
+        <button
+          onClick={handleQuizMark}
+          className="px-4 py-2 rounded-full bg-cyan block ml-auto mt-8 hover:opacity-90 active:opacity-100 active:scale-95"
+        >
+          Submit
+        </button>
       </div>
     </>
   );
