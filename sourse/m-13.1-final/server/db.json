@@ -333,10 +333,22 @@
       "title": "4.9 Task - Batch 2 - Book store Application",
       "repo_link": "fjdsklfjdslkfa",
       "totalMark": "100",
-      "status": "pending",
-      "mark": "",
+      "status": "published",
+      "mark": "88",
       "createdAt": "2023-04-04T07:29:18.002Z",
       "id": 3
+    },
+    {
+      "student_id": 3,
+      "student_name": "Akash Ahmed",
+      "assignment_id": 2,
+      "title": "Assignment 2 - Implement Best Practices",
+      "repo_link": "Test test",
+      "totalMark": 100,
+      "status": "published",
+      "mark": "60",
+      "createdAt": "2023-04-06T18:26:34.135Z",
+      "id": 4
     }
   ],
   "quizMark": [

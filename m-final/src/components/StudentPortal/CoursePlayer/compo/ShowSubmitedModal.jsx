@@ -12,7 +12,7 @@ const ShowSubmitedModal = ({ assignment, setStatus }) => {
         {/* header */}
         <div className="fromHeader">
           <div className="formTitle">
-            <h3>Submited Assignment Repo. Link</h3>
+            <h3>Submited Assignment Details</h3>
           </div>
 
           <button onClick={() => setStatus(false)}>
@@ -23,25 +23,25 @@ const ShowSubmitedModal = ({ assignment, setStatus }) => {
         <div className="fromBody">
           <div className="input_box">
             <h6> Assingment title </h6>
-            <h5 htmlFor="question_title">{title}</h5>
+            <h5>{title}</h5>
           </div>
           <div className="input_box">
             <h6> Repo link </h6>
-            <h5 htmlFor="question_title">{repo_link}</h5>
+            <h5>{repo_link}</h5>
           </div>
 
           <div className="input_box flex justify-between">
             <div className="item">
               <h6>Total mark</h6>
-              <h5 htmlFor="question_title">{totalMark}</h5>
+              <h5>{totalMark}</h5>
             </div>
             <div className="item">
               <h6>Received mark</h6>
-              <h5 htmlFor="question_title">{status === "pending" ? "pending" : mark}</h5>
+              <h5>{status === "pending" ? "pending" : mark}</h5>
             </div>
             <div className="item">
               <h6>Submitted time</h6>
-              <h5 htmlFor="question_title">{showDateDetails(createdAt)}</h5>
+              <h5>{showDateDetails(createdAt)}</h5>
             </div>
           </div>
 
