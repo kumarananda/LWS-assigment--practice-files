@@ -16,27 +16,15 @@ const UserStudent = ({ students = [], ranking = [] }) => {
 
   return (
     <>
-      <table className="text-base w-full border border-slate-600/50 rounded-md my-4">
-        <thead>
-          <tr>
-            <th className="table-th !text-center">Rank</th>
-            <th className="table-th !text-center">Name</th>
-            <th className="table-th !text-center">Quiz Mark</th>
-            <th className="table-th !text-center">Assignment Mark</th>
-            <th className="table-th !text-center">Total</th>
-          </tr>
-        </thead>
-
-        <tbody>
-          <tr className="border-2 border-cyan">
-            <td className="table-td text-center font-bold">{makeRanking(findUserStudent.grankTotal)}</td>
-            <td className="table-td text-center font-bold">{findUserStudent.name}</td>
-            <td className="table-td text-center font-bold">{findUserStudent.totalQuizMark}</td>
-            <td className="table-td text-center font-bold">{findUserStudent.totalAssMark}</td>
-            <td className="table-td text-center font-bold">{findUserStudent.grankTotal}</td>
-          </tr>
-        </tbody>
-      </table>
+      <tbody>
+        <tr className="border-2 border-cyan">
+          <td className="table-td text-center font-bold">{makeRanking(findUserStudent.grandTotal)}</td>
+          <td className="table-td text-center font-bold">{findUserStudent.name}</td>
+          <td className="table-td text-center font-bold">{findUserStudent.totalQuizMark}</td>
+          <td className="table-td text-center font-bold">{findUserStudent.totalAssMark}</td>
+          <td className="table-td text-center font-bold">{findUserStudent.grandTotal}</td>
+        </tr>
+      </tbody>
     </>
   );
 };

@@ -26,13 +26,13 @@ const Leaderboard = () => {
         return {
           id: stu.id,
           name: stu.name,
-          grankTotal: assMark + quizMark,
+          grandTotal: assMark + quizMark,
           totalQuizMark: quizMark,
           totalAssMark: assMark,
         };
       })
       ?.sort((a, b) => {
-        return b.grankTotal - a.grankTotal;
+        return b.grandTotal - a.grandTotal;
       });
 
     return makeFild;
@@ -55,8 +55,8 @@ const Leaderboard = () => {
         // filtered result
         const filteredStudents = filteringWithNewValue(students, quizzesMarks, assMarks);
         const unique = [];
-        filteredStudents.map(x => (unique.filter(a => a.grankTotal == x.grankTotal).length > 0 ? null : unique.push(x)));
-        const ranking = unique.map(u => u.grankTotal.toString());
+        filteredStudents.map(x => (unique.filter(a => a.grandTotal == x.grandTotal).length > 0 ? null : unique.push(x)));
+        const ranking = unique.map(u => u.grandTotal.toString());
 
         console.log(ranking);
 
@@ -73,14 +73,35 @@ const Leaderboard = () => {
     <>
       <div>
         <h3 className="text-lg font-bold">Your Position in Leaderboard</h3>
-
-        {userStudentContent}
+        <table className="text-base w-full border border-slate-600/50 rounded-md my-4">
+          <thead>
+            <tr>
+              <th className="table-th !text-center">Rank</th>
+              <th className="table-th !text-center">Name</th>
+              <th className="table-th !text-center">Quiz Mark</th>
+              <th className="table-th !text-center">Assignment Mark</th>
+              <th className="table-th !text-center">Total</th>
+            </tr>
+          </thead>
+          {userStudentContent}
+        </table>
       </div>
 
       <div className="my-8">
         <h3 className="text-lg font-bold">Top 20 Result</h3>
+        <table className="text-base w-full border border-slate-600/50 rounded-md my-4">
+          <thead>
+            <tr className="border-b border-slate-600/50">
+              <th className="table-th !text-center">Rank</th>
+              <th className="table-th !text-center">Name</th>
+              <th className="table-th !text-center">Quiz Mark</th>
+              <th className="table-th !text-center">Assignment Mark</th>
+              <th className="table-th !text-center">Total</th>
+            </tr>
+          </thead>
 
-        {allStudentContent}
+          {allStudentContent}
+        </table>
       </div>
     </>
   );
