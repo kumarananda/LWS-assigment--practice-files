@@ -10,7 +10,6 @@ import VideoQuizResult from "./VideoQuizResult";
 const Quizzes = () => {
   const { videoId } = useParams();
   const navigate = useNavigate();
-
   // user data
   const { id: student_id, name: student_name } = useSelector(state => state.auth.user);
 

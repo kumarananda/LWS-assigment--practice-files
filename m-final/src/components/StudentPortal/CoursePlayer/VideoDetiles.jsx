@@ -93,7 +93,7 @@ const VideoDetiles = ({ video }) => {
               to={`/quiz/${videoId}`}
               className="px-3 font-bold py-1 border border-cyan text-cyan rounded-full text-sm hover:bg-cyan hover:text-primary"
             >
-              {"কুইজ জমা দিয়েছেন"}
+              কুইজ মাৰ্ক দেখুন
             </Link>
           );
         } else {
@@ -102,7 +102,7 @@ const VideoDetiles = ({ video }) => {
               to={`/quiz/${videoId}`}
               className="px-3 font-bold py-1 border border-cyan text-cyan rounded-full text-sm hover:bg-cyan hover:text-primary"
             >
-              {"কুইজে অংশগ্রহণ করুন"}
+              কুইজে অংশগ্রহণ করুন
             </Link>
           );
         }
@@ -113,7 +113,7 @@ const VideoDetiles = ({ video }) => {
             onClick={e => e.preventDefault()}
             className="px-3 font-bold py-1 border border-cyan text-cyan rounded-full text-sm hover:bg-cyan hover:text-primary"
           >
-            {"কুইজে অংশগ্রহণ করুন"}
+            কুইজে অংশগ্রহণ করুন
           </Link>
         );
       }

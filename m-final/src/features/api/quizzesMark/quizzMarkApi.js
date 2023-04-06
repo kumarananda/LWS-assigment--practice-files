@@ -3,7 +3,7 @@ import apiSlice from "../apiSlice"
 
 export const quizMarkApi = apiSlice.injectEndpoints({
     endpoints : (builder) => ({
-        getAllquizzesMarks : builder.query({
+        getAllQuizzesMarks : builder.query({
             query: () => ({
                 url: "/quizMark",
                 method: "GET",
@@ -21,7 +21,6 @@ export const quizMarkApi = apiSlice.injectEndpoints({
                 url: `/quizMark?student_id_like=${student_id}&video_id_like=${video_id}`,
                 method: "GET",
             }),
-            // providesTags : (result, error, {student_id, video_id}) => [{ type: 'QuizMark', stuId : student_id, vidId: video_id }],
             providesTags :  ['QuizMark'],
         }),
 
@@ -32,8 +31,7 @@ export const quizMarkApi = apiSlice.injectEndpoints({
                 body: data
             }),
             invalidatesTags : ["QuizMark"],
-            // cash update reuire 
-            // ****************
+   
             async onQueryStarted(arg, { queryFulfilled, dispatch }) {
                 
 
@@ -50,7 +48,7 @@ export const quizMarkApi = apiSlice.injectEndpoints({
                         dispatch(
                             apiSlice.util.updateQueryData(
                                 "getStuVideoQuizMarks",
-                                undefined,
+                                undefined, // point , is not undfind
                                 (draft) => {
                                     const updateIndex = draft.findIndex(item => item.id == arg.id);
                                     draft = [{...quizMark.data}]
@@ -85,7 +83,7 @@ export const quizMarkApi = apiSlice.injectEndpoints({
 
 
 export const {
-    useGetAllquizzesMarksQuery,
+    useGetAllQuizzesMarksQuery,
     // useGetStuQuizMarksQuery,
     useGetStuVideoQuizMarksQuery,
     useAddVidoeQuizMarkMutation,

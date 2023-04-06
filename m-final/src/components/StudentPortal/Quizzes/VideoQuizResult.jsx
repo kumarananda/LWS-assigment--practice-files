@@ -9,15 +9,13 @@ const VideoQuizResult = ({ result }) => {
     <div className="w-full flex justify-center">
       <div className="flex w-2/4 justify-start">
         <div className="text-xl">
-          <h6>Total quiz : {totalQuiz}</h6>
-
-          <h6>Correct answer : {totalCorrect}</h6>
-
-          <h6>Worng answer : {totalWrong}</h6>
-
-          <h6>Total Mark : {totalMark}</h6>
-
-          <h6>Achieved Mark : {mark}</h6>
+          <h6>Your quiz result for this video</h6>
+          <br />
+          <h5>Total quiz : {totalQuiz}</h5>
+          <h5>Correct answer : {totalCorrect}</h5>
+          <h5>Worng answer : {totalWrong}</h5>
+          <h5>Total Mark : {totalMark}</h5>
+          <h5>Achieved Mark : {mark}</h5>
         </div>
       </div>
     </div>
