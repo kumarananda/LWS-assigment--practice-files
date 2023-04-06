@@ -15,12 +15,11 @@ const Header = () => {
     <>
       <nav className="shadow-md">
         <div className="max-w-7xl px-5 lg:px-0 mx-auto flex justify-between py-3">
-          <Link to={"/"}>
-            <img className="h-10" src={learningportalImg} alt="Learning Portal" />
-          </Link>
-
           {!user ? (
             <>
+              <Link to={"/"}>
+                <img className="h-10" src={learningportalImg} alt="Learning Portal" />
+              </Link>
               <div className="flex items-center gap-4 text-lg">
                 {pathname === "/" && <Link to={"/admin"}>Admin Login</Link>}
                 {pathname === "/admin" && <Link to={"/"}>Student Login</Link>}
@@ -28,6 +27,9 @@ const Header = () => {
             </>
           ) : user && user.role === "student" ? (
             <>
+              <Link to={"/course-player"}>
+                <img className="h-10" src={learningportalImg} alt="Learning Portal" />
+              </Link>
               <div className="flex items-center gap-4 text-lg">
                 <Link className="font-medium" to={"/course-player"}>
                   Course Player
@@ -42,6 +44,9 @@ const Header = () => {
             </>
           ) : (
             <>
+              <Link to={"/admin/dashbord"}>
+                <img className="h-10" src={learningportalImg} alt="Learning Portal" />
+              </Link>
               <div className="flex items-center gap-4 text-lg">
                 <Link to={"/admin/dashbord"}>Dashboard</Link>
                 <Link to={"/admin/videos"}>Videos</Link>
