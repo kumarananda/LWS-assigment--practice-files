@@ -25,24 +25,7 @@ const Header = () => {
                 {pathname === "/admin" && <Link to={"/"}>Student Login</Link>}
               </div>
             </>
-          ) : user && user.role === "student" ? (
-            <>
-              <Link to={"/course-player"}>
-                <img className="h-10" src={learningportalImg} alt="Learning Portal" />
-              </Link>
-              <div className="flex items-center gap-4 text-lg">
-                <Link className="font-medium" to={"/course-player"}>
-                  Course Player
-                </Link>
-                {/* <Link to={"/quiz"}>Quiz</Link> */}
-                <Link to={"/leaderboard"}>Leaderboard</Link>
-              </div>
-              <div className="flex items-center gap-4 ">
-                <h2 className="font-medium">{user?.name}</h2>
-                <Logout />
-              </div>
-            </>
-          ) : (
+          ) : user && user.role === "admin" ? (
             <>
               <Link to={"/admin/dashbord"}>
                 <img className="h-10" src={learningportalImg} alt="Learning Portal" />
@@ -55,6 +38,23 @@ const Header = () => {
                 <Link to={"/admin/assignment-mark"}>AssignmentMark</Link>
               </div>
               <div className="flex items-center gap-3">
+                <h2 className="font-medium">{user?.name}</h2>
+                <Logout />
+              </div>
+            </>
+          ) : (
+            <>
+              <Link to={"/course-player"}>
+                <img className="h-10" src={learningportalImg} alt="Learning Portal" />
+              </Link>
+              <div className="flex items-center gap-4 text-lg">
+                <Link className="font-medium" to={"/course-player"}>
+                  Course Player
+                </Link>
+                {/* <Link to={"/quiz"}>Quiz</Link> */}
+                <Link to={"/leaderboard"}>Leaderboard</Link>
+              </div>
+              <div className="flex items-center gap-4 ">
                 <h2 className="font-medium">{user?.name}</h2>
                 <Logout />
               </div>
