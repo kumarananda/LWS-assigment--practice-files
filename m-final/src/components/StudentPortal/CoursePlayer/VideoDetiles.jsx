@@ -1,23 +1,28 @@
 /** @format */
 
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { showDateMonthYear } from "../../../utils/date";
 import { useSelector } from "react-redux";
 import { useGetAssignmentQuery } from "../../../features/api/assignments/assignmentsApi";
-import { AssButton } from "./AssButton";
+import { AssButton } from "./compo/AssButton";
 import Modal from "../../ui/Modal/Modal";
-import AssSubmitModal from "./AssSubmitModal";
+import AssSubmitModal from "./compo/AssSubmitModal";
 import { useGetAssignmentMarkQuery } from "../../../features/api/assignmentMark/assignmentMarkApi";
-import ShowSubmitedModal from "./ShowSubmitedModal";
+import ShowSubmitedModal from "./compo/ShowSubmitedModal";
 import { useGetQuizForVideoQuery } from "../../../features/api/quizzes/quizzesApi";
 import { useGetStuVideoQuizMarksQuery } from "../../../features/api/quizzesMark/quizzMarkApi";
+import Video from "./Video";
+import { useGetVideoQuery } from "../../../features/api/videos/videosApi";
 
-const VideoDetiles = ({ video }) => {
-  const { id: videoId, title, description, url, views, duration, createdAt } = video || {};
+const VideoDetiles = ({ firstId }) => {
+  const { id: student_id, name: student_name } = useSelector(state => state.auth.user);
+  const { videoId } = useParams();
 
-  // Quiz data for this video
-  const { data: quizdata, isLoading, isSuccess, isError } = useGetQuizForVideoQuery(videoId);
+  const queryId = (videoId ? videoId : firstId).toString();
+
+  // Single video
+  const { data: sVideo, isLoading: isSVLoading, isError: isSVError, isSuccess: isSVSuccess, error: SVerror } = useGetVideoQuery(queryId);
 
   // get assignment data
   const {
@@ -27,9 +32,11 @@ const VideoDetiles = ({ video }) => {
     isError: assError,
     isSuccess: assSuccess,
     error: ass_error,
-  } = useGetAssignmentQuery(videoId);
+  } = useGetAssignmentQuery(queryId);
+
+  // Quiz data for this video
+  const { data: quizdata, isLoading, isSuccess, isError } = useGetQuizForVideoQuery(queryId);
   // user data
-  const { id: student_id, name: student_name } = useSelector(state => state.auth.user);
 
   // get user assignment for this video
   const { data: submitedAss, refetch: assMarkRefetch } = useGetAssignmentMarkQuery(
@@ -41,9 +48,7 @@ const VideoDetiles = ({ video }) => {
     data: stuVideoQuizzs,
     isSuccess: qMarkSuccess,
     refetch: quizRefetch,
-  } = useGetStuVideoQuizMarksQuery({ student_id, video_id: videoId }, { skip: false });
-
-  console.log(stuVideoQuizzs);
+  } = useGetStuVideoQuizMarksQuery({ student_id, video_id: queryId }, { skip: false });
 
   // ass modal status
   const [assSubmit, setAssSubmit] = useState(false);
@@ -90,7 +95,7 @@ const VideoDetiles = ({ video }) => {
         if (stuVideoQuizzs.length > 0) {
           quizButton = (
             <Link
-              to={`/quiz/${videoId}`}
+              to={`/quiz/${queryId}`}
               className="px-3 font-bold py-1 border border-cyan text-cyan rounded-full text-sm hover:bg-cyan hover:text-primary"
             >
               কুইজ মাৰ্ক দেখুন
@@ -99,7 +104,7 @@ const VideoDetiles = ({ video }) => {
         } else {
           quizButton = (
             <Link
-              to={`/quiz/${videoId}`}
+              to={`/quiz/${queryId}`}
               className="px-3 font-bold py-1 border border-cyan text-cyan rounded-full text-sm hover:bg-cyan hover:text-primary"
             >
               কুইজে অংশগ্রহণ করুন
@@ -120,29 +125,27 @@ const VideoDetiles = ({ video }) => {
     }
   }
 
+  // from single query
+  let content = null;
+  if (isSVLoading) {
+    content = "Loading...";
+  }
+  if (!isSVLoading && isSVError) {
+    content = "Thare was an error!";
+  }
+  if (!isSVLoading && !isSVError && isSVSuccess) {
+    if (!sVideo?.id) {
+      content = "Video not found";
+    }
+    if (sVideo?.id) {
+      content = <Video video={sVideo} quizButton={quizButton} assButton={assButton} />;
+    }
+  }
+
+  //////  /////
   return (
     <>
-      <div className="col-span-full w-full space-y-8 lg:col-span-2">
-        <iframe
-          width="100%"
-          className="aspect-video"
-          src={url}
-          title="Things I wish I knew as a Junior Web Developer - Sumit Saha - BASIS SoftExpo 2023"
-          frameBorder="0"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-          allowFullScreen
-        ></iframe>
-
-        <div>
-          <h1 className="text-lg font-semibold tracking-tight text-slate-100">{title}</h1>
-          <h2 className=" pb-4 text-sm leading-[1.7142857] text-slate-400">Uploaded on {showDateMonthYear(createdAt)} </h2> {/*23 February 2020 */}
-          <div className="flex gap-4 justify-between">
-            {assButton}
-            {quizButton}
-          </div>
-          <p className="mt-4 text-sm text-slate-400 leading-6">{description}</p>
-        </div>
-      </div>
+      <div className="col-span-full w-full space-y-8 lg:col-span-2">{content}</div>
       {/* Assingment Submit */}
       <Modal modalOpen={assSubmit} setModalOpen={setAssSubmit} MBoxWidth={600} outCickHide={true}>
         <AssSubmitModal

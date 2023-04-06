@@ -2,7 +2,7 @@
 
 import React, { useEffect, useState } from "react";
 import { GoX } from "react-icons/go";
-import { useAddAssignmentMarkMutation } from "../../../features/api/assignmentMark/assignmentMarkApi";
+import { useAddAssignmentMarkMutation } from "../../../../features/api/assignmentMark/assignmentMarkApi";
 
 const AssSubmitModal = ({ student_id, student_name, assignment, setStatus, assMarkRefetch, assRefetch }) => {
   const [addAssignmentMark, { isLoading, isError, isSuccess }] = useAddAssignmentMarkMutation();

@@ -2,7 +2,7 @@
 
 import React from "react";
 import { GoX } from "react-icons/go";
-import { showDateDetails } from "../../../utils/date";
+import { showDateDetails } from "../../../../utils/date";
 const ShowSubmitedModal = ({ assignment, setStatus }) => {
   const { title, repo_link, totalMark, status, createdAt, mark } = assignment || {};
   // console.log(assignment);
