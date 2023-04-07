@@ -18,10 +18,10 @@ export function Info({ message }) {
     </div>
   );
 }
-export function Loading({ message, bgFalse }) {
+export function Loading({ message }) {
   return (
     <div className="flex items-center">
-      <div className={`relative ${bgFalse ? "bg-lime-200" : ""} max-w-xl px-4 py-2   text-lime-800 rounded shadow w-full`}>
+      <div className={`relative ${"bg-lime-200"} max-w-xl px-4 py-2   text-lime-800 rounded shadow w-full`}>
         <span className="block text-sm">{message}</span>
       </div>
     </div>

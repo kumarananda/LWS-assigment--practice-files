@@ -1,5 +1,6 @@
 import  apiSlice  from "../api/apiSlice";
 import { userLoggedIn } from "./authSlice";
+import swal from 'sweetalert';
 
 export const authApi = apiSlice.injectEndpoints({
     endpoints: (builder) => ({
@@ -48,12 +49,12 @@ export const authApi = apiSlice.injectEndpoints({
 
                     // check user type for login
                     if(role === "admin" && user.role === "student" ){
-                        alert("Error! Your account type is student. Please use student portal")
-                        return console.log("Error! Your account type is student. Please use student portal");
+                        swal("Error!", "You are not admin!", "error")
+                        return;
                     }
                     if(role === "student" && user.role === "admin" ){
-                        alert("Error! Your account type is admin. Please use admin portal")
-                        return console.log("Error! Your account type is admin. Please use admin portal");
+                        swal("Error!", "You are not Student!", "error");
+                        return;
                     }
                     
                     localStorage.setItem(

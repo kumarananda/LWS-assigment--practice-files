@@ -34,6 +34,18 @@ export const quizMarkApi = apiSlice.injectEndpoints({
                 try {
                     const quizMark = await queryFulfilled;
 
+                    dispatch(
+                        apiSlice.util.updateQueryData(
+                            "getAllQuizzesMarks",
+                            undefined,
+                            (draft) => {
+                                draft.push(quizMark.data) 
+                            }
+
+                        )
+                    )
+
+
                 } catch (err) {
                     console.log(err);
                 }

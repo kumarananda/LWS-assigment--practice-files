@@ -9,12 +9,14 @@ export const videosApi = apiSlice.injectEndpoints({
                 url: "/videos",
                 method: "GET",
             }),
+            keepUnusedDataFor : 600,
         }), 
 
         getVideo : builder.query({
             query: (id) => ({
                 url: `/videos/${id}`,
             }),
+            keepUnusedDataFor: 600,
             providesTags: (result, error, id) => [{ type: 'Video', id }],
            
         }),

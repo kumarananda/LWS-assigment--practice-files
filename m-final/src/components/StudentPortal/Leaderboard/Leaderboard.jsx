@@ -20,7 +20,7 @@ const Leaderboard = () => {
   function filteringWithNewValue(students, quizzesMarks, assMarks) {
     const makeFild = students
       ?.map(stu => {
-        const reduceFunMark = (acc, curr) => acc + Number(curr.totalMark);
+        const reduceFunMark = (acc, curr) => acc + Number(curr.mark);
         let quizMark = quizzesMarks?.filter(item => item.student_id === stu.id).reduce(reduceFunMark, 0);
         let assMark = assMarks?.filter(item => item.student_id === stu.id).reduce(reduceFunMark, 0);
         return {
@@ -34,6 +34,8 @@ const Leaderboard = () => {
       ?.sort((a, b) => {
         return b.grandTotal - a.grandTotal;
       });
+
+    // console.log(makeFild);
 
     return makeFild;
   }
@@ -66,7 +68,7 @@ const Leaderboard = () => {
         filteredStudents.map(x => (unique.filter(a => a.grandTotal == x.grandTotal).length > 0 ? null : unique.push(x)));
         const ranking = unique.map(u => u.grandTotal.toString());
 
-        console.log(ranking);
+        // console.log(ranking);
 
         allStudentContent = <AllStudents students={filteredStudents} ranking={ranking} />;
         userStudentContent = <UserStudent students={filteredStudents} ranking={ranking} />;

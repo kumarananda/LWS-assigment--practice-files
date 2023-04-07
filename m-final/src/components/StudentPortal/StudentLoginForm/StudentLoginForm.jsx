@@ -3,7 +3,7 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useLoginMutation } from "../../../features/auth/authApi";
-import Error from "../../ui/InfoMsg/Error";
+import Error, { Loading } from "../../ui/InfoMsg/Error";
 
 const StudentLoginForm = () => {
   const navigate = useNavigate();
@@ -104,7 +104,7 @@ const StudentLoginForm = () => {
         </div>
         <div className="formInfoMsg">
           {isError && <Error message={error?.error ? "Server Error!" : error.data} />}
-          {isLoading && <h5>Requesting...</h5>}
+          {isLoading && <Loading message={"Requesting..."} />}
         </div>
       </form>
     </>

@@ -2,12 +2,12 @@
 
 import React, { useState } from "react";
 import { useGetVideosQuery } from "../../../features/api/videos/videosApi";
-import { useParams } from "react-router-dom";
+// import { useParams } from "react-router-dom";
 import CourseVideoLink from "./CourseVideoLink";
 import VideoDetiles from "./VideoDetiles";
 
 const CoursePlayer = () => {
-  const { videoId } = useParams();
+  // const { videoId } = useParams();
   // get all videos
   const { data: videos, isLoading, isError, isSuccess, error } = useGetVideosQuery();
 

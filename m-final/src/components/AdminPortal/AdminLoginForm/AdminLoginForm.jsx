@@ -2,7 +2,7 @@
 
 import React, { useEffect, useState } from "react";
 import { useLoginMutation } from "../../../features/auth/authApi";
-import Error from "../../ui/InfoMsg/Error";
+import Error, { Loading } from "../../ui/InfoMsg/Error";
 import { useNavigate } from "react-router-dom";
 
 const AdminLoginForm = () => {
@@ -98,7 +98,7 @@ const AdminLoginForm = () => {
         </div>
         <div className="formInfoMsg">
           {isError && <Error message={error?.error ? "Server Error!" : error?.data} />}
-          {isLoading && <h5>Requesting...</h5>}
+          {isLoading && <Loading message={"Requesting..."} />}
         </div>
       </form>
     </>

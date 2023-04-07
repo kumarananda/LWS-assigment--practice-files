@@ -22,8 +22,17 @@ const Header = () => {
                 <img className="h-10" src={learningportalImg} alt="Learning Portal" />
               </Link>
               <div className="flex items-center gap-4 text-lg">
-                {pathname === "/" && <Link to={"/admin"}>Admin Login</Link>}
-                {pathname === "/admin" && <Link to={"/"}>Student Login</Link>}
+                {(pathname === "/admin" || pathname === "/admin/" || pathname === "/registration" || pathname === "/registration/") && (
+                  <Link to={"/"}>
+                    <span className="text-lg text-blue-600"> Student Login</span>
+                  </Link>
+                )}
+
+                {pathname === "/" && (
+                  <Link to={"/admin"}>
+                    <span className="text-lg text-blue-600"> Admin Login</span>
+                  </Link>
+                )}
               </div>
             </>
           ) : user && user.role === "admin" ? (

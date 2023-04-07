@@ -1,3 +1,4 @@
+import swal from "sweetalert";
 import apiSlice from "../apiSlice"
 
 
@@ -73,6 +74,7 @@ export const assignmentMarkApi = apiSlice.injectEndpoints({
                         // update assignment cache pessimistically end
                     }
                 } catch (err) {
+                    swal("Update flild!", 'error')
                     allAssTarget.undo()
                 }
             },

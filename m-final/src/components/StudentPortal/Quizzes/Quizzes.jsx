@@ -7,6 +7,7 @@ import SingleQuiz from "./SingleQuiz";
 import { useSelector } from "react-redux";
 import { useAddVidoeQuizMarkMutation, useGetStuVideoQuizMarksQuery } from "../../../features/api/quizzesMark/quizzMarkApi";
 import VideoQuizResult from "./VideoQuizResult";
+import swal from "sweetalert";
 const Quizzes = () => {
   const { videoId } = useParams();
   const navigate = useNavigate();
@@ -87,7 +88,7 @@ const Quizzes = () => {
       // navigate("/course-player");
       setTimeout(() => {
         navigate("/leaderboard");
-      }, 500);
+      }, 200);
     }
   }, [addSuccess]);
 

@@ -2,8 +2,8 @@
 
 import React, { useEffect, useState } from "react";
 import { useRegisterMutation } from "../../../features/auth/authApi";
-import { useNavigate } from "react-router-dom";
-import Error from "../../ui/InfoMsg/Error";
+import { Link, useNavigate } from "react-router-dom";
+import Error, { Loading } from "../../ui/InfoMsg/Error";
 
 const StudentRegForm = () => {
   const navigate = useNavigate();
@@ -119,6 +119,13 @@ const StudentRegForm = () => {
             />
           </div>
         </div>
+        <div className="flex items-center justify-end">
+          <div className="text-sm">
+            <Link to="/" className="font-medium text-violet-600 hover:text-violet-500">
+              Have an account? Login
+            </Link>
+          </div>
+        </div>
 
         <div>
           <button
@@ -131,7 +138,7 @@ const StudentRegForm = () => {
         <div className="formInfoMsg">
           {isError && <Error message={error?.error ? "Server Error!" : error.data} />}
           {passAlert && <Error message={"Password not match!"} />}
-          {isLoading && <h5>Requesting...</h5>}
+          {isLoading && <Loading message={"Updation..."} />}
         </div>
       </form>
     </>

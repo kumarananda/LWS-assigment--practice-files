@@ -55,6 +55,34 @@
       "name": "Ananda Kumar Saha",
       "role": "student",
       "id": 8
+    },
+    {
+      "email": "student2@gmail.com",
+      "password": "$2a$10$BnMe2fK.ktabN62ilkJDw.YCg4P1YNwbtoAnwvBeUP/DgqvN2reyq",
+      "name": "student2",
+      "role": "student",
+      "id": 9
+    },
+    {
+      "email": "student3@gmail.com",
+      "password": "$2a$10$VV3tokaNt1Xgs/wYOxJjBOjyReGNEGDga8tpJmPX20bTPYuA9d.ku",
+      "name": "student3",
+      "role": "student",
+      "id": 10
+    },
+    {
+      "email": "student5@gmail.com",
+      "password": "$2a$10$7rKowaK6pWy3dq.SZmdSiObt8bWLrUQttRm2iaxy1uJZGyXomaVku",
+      "name": "student5",
+      "role": "student",
+      "id": 11
+    },
+    {
+      "email": "student6@gmail.com",
+      "password": "$2a$10$uAxIrl9WPk35.WumGWkUIu0RPoa2HLdS7/RNysqbnThQntJdm8qTm",
+      "name": "student6",
+      "role": "student",
+      "id": 12
     }
   ],
   "videos": [
@@ -349,6 +377,102 @@
       "mark": "60",
       "createdAt": "2023-04-06T18:26:34.135Z",
       "id": 4
+    },
+    {
+      "student_id": 9,
+      "student_name": "student2",
+      "assignment_id": 3,
+      "title": "3.10 Task - Batch 2 - Product Cart Application",
+      "repo_link": "jjjj.com",
+      "totalMark": "100",
+      "status": "published",
+      "mark": "80",
+      "createdAt": "2023-04-07T12:11:38.015Z",
+      "id": 5
+    },
+    {
+      "student_id": 9,
+      "student_name": "student2",
+      "assignment_id": 2,
+      "title": "Assignment 2 - Implement Best Practices",
+      "repo_link": "chfdhdhddghdhdghfdg",
+      "totalMark": 100,
+      "status": "published",
+      "mark": "99",
+      "createdAt": "2023-04-07T12:22:18.168Z",
+      "id": 6
+    },
+    {
+      "student_id": 9,
+      "student_name": "student2",
+      "assignment_id": 1,
+      "title": "Assignment 1 - Implement Debounce Function",
+      "repo_link": "huigggyug",
+      "totalMark": 100,
+      "status": "published",
+      "mark": "77",
+      "createdAt": "2023-04-07T12:22:48.559Z",
+      "id": 7
+    },
+    {
+      "student_id": 10,
+      "student_name": "student3",
+      "assignment_id": 1,
+      "title": "Assignment 1 - Implement Debounce Function",
+      "repo_link": "55hugfgyudfytfd",
+      "totalMark": 100,
+      "status": "published",
+      "mark": "100",
+      "createdAt": "2023-04-07T12:26:22.808Z",
+      "id": 8
+    },
+    {
+      "student_id": 11,
+      "student_name": "student5",
+      "assignment_id": 1,
+      "title": "Assignment 1 - Implement Debounce Function",
+      "repo_link": "sdgjsdgsdfhiujf",
+      "totalMark": 100,
+      "status": "published",
+      "mark": "100",
+      "createdAt": "2023-04-07T12:42:18.928Z",
+      "id": 9
+    },
+    {
+      "student_id": 12,
+      "student_name": "student6",
+      "assignment_id": 1,
+      "title": "Assignment 1 - Implement Debounce Function",
+      "repo_link": "75",
+      "totalMark": 100,
+      "status": "published",
+      "mark": "55",
+      "createdAt": "2023-04-07T12:50:08.295Z",
+      "id": 10
+    },
+    {
+      "student_id": 12,
+      "student_name": "student6",
+      "assignment_id": 5,
+      "title": "5.10 Task - Batch 2 - Play with Redux Toolkit",
+      "repo_link": "hugug",
+      "totalMark": "100",
+      "status": "published",
+      "mark": "100",
+      "createdAt": "2023-04-07T12:50:16.359Z",
+      "id": 11
+    },
+    {
+      "student_id": 5,
+      "student_name": "Ferdous",
+      "assignment_id": 1,
+      "title": "Assignment 1 - Implement Debounce Function",
+      "repo_link": "fdgfdgfdgfdgfgd",
+      "totalMark": 100,
+      "status": "published",
+      "mark": "100",
+      "createdAt": "2023-04-07T13:01:40.690Z",
+      "id": 12
     }
   ],
   "quizMark": [
@@ -387,6 +511,78 @@
       "totalMark": 5,
       "mark": 5,
       "id": 3
+    },
+    {
+      "student_id": 9,
+      "student_name": "student2",
+      "video_id": "1",
+      "video_title": "Debounce Function in JavaScript - JavaScript Job Interview question",
+      "totalQuiz": 2,
+      "totalCorrect": 1,
+      "totalWrong": 1,
+      "totalMark": 10,
+      "mark": 5,
+      "id": 4
+    },
+    {
+      "student_id": 9,
+      "student_name": "student2",
+      "video_id": "2",
+      "video_title": "#2 JavaScript Tips and Tricks - JavaScript Job Interview Questions",
+      "totalQuiz": 1,
+      "totalCorrect": 1,
+      "totalWrong": 0,
+      "totalMark": 5,
+      "mark": 5,
+      "id": 5
+    },
+    {
+      "student_id": 12,
+      "student_name": "student6",
+      "video_id": "1",
+      "video_title": "Debounce Function in JavaScript - JavaScript Job Interview question",
+      "totalQuiz": 2,
+      "totalCorrect": 1,
+      "totalWrong": 1,
+      "totalMark": 10,
+      "mark": 5,
+      "id": 6
+    },
+    {
+      "student_id": 5,
+      "student_name": "Ferdous",
+      "video_id": "1",
+      "video_title": "Debounce Function in JavaScript - JavaScript Job Interview question",
+      "totalQuiz": 2,
+      "totalCorrect": 2,
+      "totalWrong": 0,
+      "totalMark": 10,
+      "mark": 10,
+      "id": 7
+    },
+    {
+      "student_id": 5,
+      "student_name": "Ferdous",
+      "video_id": "2",
+      "video_title": "#2 JavaScript Tips and Tricks - JavaScript Job Interview Questions",
+      "totalQuiz": 1,
+      "totalCorrect": 0,
+      "totalWrong": 1,
+      "totalMark": 5,
+      "mark": 0,
+      "id": 8
+    },
+    {
+      "student_id": 5,
+      "student_name": "Ferdous",
+      "video_id": "4",
+      "video_title": "#01 Introduction | Tailwind CSS Bangla Tutorial",
+      "totalQuiz": 1,
+      "totalCorrect": 1,
+      "totalWrong": 0,
+      "totalMark": 5,
+      "mark": 5,
+      "id": 9
     }
   ]
 }
