@@ -83,6 +83,20 @@
       "name": "student6",
       "role": "student",
       "id": 12
+    },
+    {
+      "email": "student8@gmail.com",
+      "password": "$2a$10$5SX8Ovz/dMdiytr6zJ2hT.L4gldE8ZimndtbjFy4RpsNwvrzgTloG",
+      "name": "student8",
+      "role": "student",
+      "id": 13
+    },
+    {
+      "email": "student9@gmail.com",
+      "password": "$2a$10$sRfdQOoK0PaP/IIwltCOE.sXBELxlPzGuRzbq//MU1mE0RoARZ832",
+      "name": "student9",
+      "role": "student",
+      "id": 14
     }
   ],
   "videos": [
@@ -299,34 +313,6 @@
         }
       ],
       "id": 4
-    },
-    {
-      "question": "Quiz 2.4 - Higher Order component এর প্যারামিটার কি হয়?\nHigher Order Component (HOC) ফাংশন প্যারামিটার হিসেবে কি নেয়?",
-      "video_id": 1,
-      "video_title": "Debounce Function in JavaScript - JavaScript Job Interview question",
-      "options": [
-        {
-          "id": 1,
-          "option": "আরেকটি কম্পোনেন্ট",
-          "isCorrect": true
-        },
-        {
-          "id": 2,
-          "option": "একটি array",
-          "isCorrect": false
-        },
-        {
-          "id": 3,
-          "option": "React Element",
-          "isCorrect": false
-        },
-        {
-          "id": 4,
-          "option": "কিছুই প্যারামিটারে নেয় না",
-          "isCorrect": false
-        }
-      ],
-      "id": 5
     }
   ],
   "assignmentMark": [
@@ -505,10 +491,46 @@
       "title": "Assignment 2 - Implement Best Practices",
       "repo_link": "gsdgsdgsdg",
       "totalMark": 100,
-      "status": "pending",
-      "mark": 0,
+      "status": "published",
+      "mark": 100,
       "createdAt": "2023-04-07T15:59:49.926Z",
       "id": 15
+    },
+    {
+      "student_id": 4,
+      "student_name": "Mohammad Salahuddin",
+      "assignment_id": 3,
+      "title": "3.10 Task - Batch 2 - Product Cart Application",
+      "repo_link": "git.com",
+      "totalMark": "100",
+      "status": "pending",
+      "mark": 0,
+      "createdAt": "2023-04-07T18:52:11.968Z",
+      "id": 16
+    },
+    {
+      "student_id": 13,
+      "student_name": "student8",
+      "assignment_id": 1,
+      "title": "Assignment 1 - Implement Debounce Function",
+      "repo_link": "huigy",
+      "totalMark": 100,
+      "status": "pending",
+      "mark": 0,
+      "createdAt": "2023-04-07T18:54:48.520Z",
+      "id": 17
+    },
+    {
+      "student_id": 14,
+      "student_name": "student9",
+      "assignment_id": 1,
+      "title": "Assignment 1 - Implement Debounce Function",
+      "repo_link": "67bhfjhjhb",
+      "totalMark": 100,
+      "status": "pending",
+      "mark": 0,
+      "createdAt": "2023-04-07T18:56:48.952Z",
+      "id": 18
     }
   ],
   "quizMark": [
@@ -643,6 +665,54 @@
       "totalMark": 5,
       "mark": 5,
       "id": 11
+    },
+    {
+      "student_id": 4,
+      "student_name": "Mohammad Salahuddin",
+      "video_id": "6",
+      "video_title": "#03 Utility-First Approach | Tailwind CSS Bangla Tutorial",
+      "totalQuiz": 1,
+      "totalCorrect": 1,
+      "totalWrong": 0,
+      "totalMark": 5,
+      "mark": 5,
+      "id": 12
+    },
+    {
+      "student_id": 13,
+      "student_name": "student8",
+      "video_id": "1",
+      "video_title": "Debounce Function in JavaScript - JavaScript Job Interview question",
+      "totalQuiz": 1,
+      "totalCorrect": 0,
+      "totalWrong": 1,
+      "totalMark": 5,
+      "mark": 0,
+      "id": 13
+    },
+    {
+      "student_id": 14,
+      "student_name": "student9",
+      "video_id": "1",
+      "video_title": "Debounce Function in JavaScript - JavaScript Job Interview question",
+      "totalQuiz": 1,
+      "totalCorrect": 0,
+      "totalWrong": 1,
+      "totalMark": 5,
+      "mark": 0,
+      "id": 14
+    },
+    {
+      "student_id": 3,
+      "student_name": "Akash Ahmed",
+      "video_id": "2",
+      "video_title": "#2 JavaScript Tips and Tricks - JavaScript Job Interview Questions",
+      "totalQuiz": 1,
+      "totalCorrect": 0,
+      "totalWrong": 1,
+      "totalMark": 5,
+      "mark": 0,
+      "id": 15
     }
   ]
 }
