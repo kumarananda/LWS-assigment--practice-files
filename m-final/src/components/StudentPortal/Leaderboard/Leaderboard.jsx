@@ -16,13 +16,17 @@ const Leaderboard = () => {
   const { data: assMarks, isLoading: amLoading, isSuccess: amSuccess, isError: amError } = useGetAssignmentMarksQuery();
 
   // all student filter and rankink creation
-  console.log("filtered");
+  // console.log("filtered");
   function filteringWithNewValue(students, quizzesMarks, assMarks) {
     const makeFild = students
       ?.map(stu => {
-        const reduceFunMark = (acc, curr) => acc + Number(curr.mark);
-        let quizMark = quizzesMarks?.filter(item => item.student_id === stu.id).reduce(reduceFunMark, 0);
-        let assMark = assMarks?.filter(item => item.student_id === stu.id).reduce(reduceFunMark, 0);
+        const reduceFunMark = (acc, curr) => {
+          console.log(curr.mark);
+          return acc + +curr.mark;
+        };
+        let quizMark = quizzesMarks?.filter(item => +item.student_id === +stu.id).reduce(reduceFunMark, 0);
+        let assMark = assMarks?.filter(item => +item.student_id === +stu.id).reduce(reduceFunMark, 0);
+
         return {
           id: stu.id,
           name: stu.name,
@@ -35,7 +39,7 @@ const Leaderboard = () => {
         return b.grandTotal - a.grandTotal;
       });
 
-    // console.log(makeFild);
+    console.log(makeFild);
 
     return makeFild;
   }

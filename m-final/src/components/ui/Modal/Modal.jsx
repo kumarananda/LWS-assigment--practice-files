@@ -3,7 +3,6 @@
 import React, { useEffect, useRef } from "react";
 import "./Modal.css";
 
-
 const Modal = ({ children, modalOpen = false, setModalOpen, MBoxWidth, outCickHide, ZIndex }) => {
   // modal state
   const ref = useRef(null);

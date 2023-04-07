@@ -6,6 +6,7 @@ import { GoX } from "react-icons/go";
 import { useGetVideosQuery } from "../../../../features/api/videos/videosApi";
 import Option from "./Option";
 import { useAddQuizMutation } from "../../../../features/api/quizzes/quizzesApi";
+import swal from "sweetalert";
 
 const QuizAddForm = ({ setStatus }) => {
   // video query for selection
@@ -47,7 +48,7 @@ const QuizAddForm = ({ setStatus }) => {
       options: [options1, options2, options3, options4],
     };
     if (!options1.isCorrect && !options2.isCorrect && !options3.isCorrect && !options4.isCorrect) {
-      alert("Need select at least one correct option.");
+      swal("Need select at least one correct option.", "error");
     } else {
       addQuizMutation(data);
     }
@@ -64,7 +65,7 @@ const QuizAddForm = ({ setStatus }) => {
 
   return (
     <>
-      <div className="fromWraper">
+      <div className="fromWraper" style={{ maxHeight: "95vh", overflow: "scroll" }}>
         <div className="fromHeader">
           <div className="formTitle">
             <h3>Add New Quiz</h3>

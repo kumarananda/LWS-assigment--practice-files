@@ -3,6 +3,7 @@
 import React, { useEffect, useState } from "react";
 import { showDateDetails } from "../../../utils/date";
 import { useGetAssignmentMarkQuery, useUpdateAssignmentMarkMutation } from "../../../features/api/assignmentMark/assignmentMarkApi";
+import swal from "sweetalert";
 
 const SingleAssMark = ({ assMark }) => {
   const { id, student_id, student_name, assignment_id, title, createdAt, totalMark, mark, repo_link, status } = assMark || {};
@@ -15,22 +16,26 @@ const SingleAssMark = ({ assMark }) => {
   // handle mark submit
   const handleMarkSubmit = e => {
     e.preventDefault();
+    let mark = Number(addMark);
+
+    console.log(typeof addMark);
+    console.log(typeof mark);
     const data = {
       ...assMark,
-      mark: +addMark,
+      mark,
     };
     updateAssignmentMark({ id, data });
   };
 
   useEffect(() => {
     if (isError) {
-      alert("Mark Update filed!");
+      swal("Mark Update filed!", "error");
     }
   }, [isError]);
 
   useEffect(() => {
     if (isSuccess) {
-      // alert("Mark Update Successful.");
+      swal({ title: "Mark Update Successful.", closeModal: true, dangerMode: false });
     }
   }, [isSuccess]);
 

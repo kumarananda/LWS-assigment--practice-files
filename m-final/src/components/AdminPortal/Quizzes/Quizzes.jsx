@@ -72,7 +72,7 @@ const Quizzes = () => {
     <>
       <div className="px-3 py-20 bg-opacity-10">
         <div className="w-full flex">
-          <button onClick={() => setAddStatus(true)} className="btn ml-auto">
+          <button disabled={isLoading || videoQuery?.isLoading} onClick={() => setAddStatus(true)} className="btn ml-auto">
             Add Quiz
           </button>
         </div>

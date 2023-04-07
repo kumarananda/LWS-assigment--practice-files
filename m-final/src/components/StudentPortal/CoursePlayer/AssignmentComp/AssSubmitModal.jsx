@@ -24,7 +24,7 @@ const AssSubmitModal = ({ student_id, student_name, assignment, setStatus, assMa
         repo_link: repoLink,
         totalMark: assignment.totalMark,
         status: "pending",
-        mark: undefined,
+        mark: 0,
         createdAt,
       };
       addAssignmentMark(data);

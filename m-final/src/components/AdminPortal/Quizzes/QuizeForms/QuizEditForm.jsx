@@ -5,6 +5,7 @@ import "../../../../forms.css";
 import { GoX } from "react-icons/go";
 import Option from "./Option";
 import { useEditQuizMutation } from "../../../../features/api/quizzes/quizzesApi";
+import swal from "sweetalert";
 
 const QuizEditForm = ({ setStatus, editQuiz, videoQuery }) => {
   const { data: videos, isLoading, isError, isSuccess } = videoQuery || {};
@@ -47,7 +48,7 @@ const QuizEditForm = ({ setStatus, editQuiz, videoQuery }) => {
       options: [options1, options2, options3, options4],
     };
     if (!options1.isCorrect && !options2.isCorrect && !options3.isCorrect && !options4.isCorrect) {
-      alert("Need select at least one correct option.");
+      swal("Need select at least one correct option.", "error");
     } else {
       editQuizMutation({ id, data });
     }
@@ -64,7 +65,7 @@ const QuizEditForm = ({ setStatus, editQuiz, videoQuery }) => {
 
   return (
     <>
-      <div className="fromWraper">
+      <div className="fromWraper" style={{ maxHeight: "95vh", overflow: "scroll" }}>
         <div className="fromHeader">
           <div className="formTitle">
             <h3>Edit Quiz</h3>
