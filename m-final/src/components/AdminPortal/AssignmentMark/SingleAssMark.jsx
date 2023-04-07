@@ -17,7 +17,7 @@ const SingleAssMark = ({ assMark }) => {
     e.preventDefault();
     const data = {
       ...assMark,
-      mark: addMark,
+      mark: +addMark,
     };
     updateAssignmentMark({ id, data });
   };
