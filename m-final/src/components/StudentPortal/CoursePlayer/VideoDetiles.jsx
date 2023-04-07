@@ -145,8 +145,10 @@ const VideoDetiles = ({ firstId }) => {
   //////  /////
   return (
     <>
+      {/* content */}
       <div className="col-span-full w-full space-y-8 lg:col-span-2">{content}</div>
-      {/* Assingment Submit */}
+
+      {/* Assingment Submit Modal */}
       <Modal modalOpen={assSubmit} setModalOpen={setAssSubmit} MBoxWidth={600} outCickHide={true}>
         <AssSubmitModal
           assRefetch={assRefetch}
@@ -157,7 +159,7 @@ const VideoDetiles = ({ firstId }) => {
           setStatus={setAssSubmit}
         />
       </Modal>
-      {/* Show submited assignment */}
+      {/* Show submited assignment Modal */}
       <Modal modalOpen={showSubmit} setModalOpen={setShowSubmit} MBoxWidth={600} outCickHide={true}>
         <ShowSubmitedModal assignment={submitedAss?.length ? submitedAss[0] : {}} setStatus={setShowSubmit} />
       </Modal>

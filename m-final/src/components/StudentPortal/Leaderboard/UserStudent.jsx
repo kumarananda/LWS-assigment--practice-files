@@ -16,15 +16,13 @@ const UserStudent = ({ students = [], ranking = [] }) => {
 
   return (
     <>
-      <tbody>
-        <tr className="border-2 border-cyan">
-          <td className="table-td text-center font-bold">{makeRanking(findUserStudent.grandTotal)}</td>
-          <td className="table-td text-center font-bold">{findUserStudent.name}</td>
-          <td className="table-td text-center font-bold">{findUserStudent.totalQuizMark}</td>
-          <td className="table-td text-center font-bold">{findUserStudent.totalAssMark}</td>
-          <td className="table-td text-center font-bold">{findUserStudent.grandTotal}</td>
-        </tr>
-      </tbody>
+      <tr className="border-2 border-cyan">
+        <td className="table-td text-center font-bold">{makeRanking(findUserStudent.grandTotal)}</td>
+        <td className="table-td text-center font-bold">{findUserStudent.name}</td>
+        <td className="table-td text-center font-bold">{findUserStudent.totalQuizMark}</td>
+        <td className="table-td text-center font-bold">{findUserStudent.totalAssMark}</td>
+        <td className="table-td text-center font-bold">{findUserStudent.grandTotal}</td>
+      </tr>
     </>
   );
 };

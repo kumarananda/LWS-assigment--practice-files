@@ -44,12 +44,20 @@ const Leaderboard = () => {
   let allStudentContent = null;
   let userStudentContent = null;
   if (stuLoading || qLoading || amLoading) {
-    allStudentContent = "Loading...";
-    userStudentContent = "Loading...";
+    allStudentContent = (
+      <tr>
+        <td> Loading...</td>
+      </tr>
+    );
+    userStudentContent = (
+      <tr className="border-2 border-cyan">
+        <td> Loading...</td>
+      </tr>
+    );
   } else {
     if (stuError || qError || amError) {
-      allStudentContent = "Thare was an error";
-      userStudentContent = "Thare was an error";
+      allStudentContent = <tr>Thare was an error</tr>;
+      userStudentContent = <tr>Thare was an error</tr>;
     } else {
       if (stuSuccess && qSuccess && amSuccess) {
         // filtered result
@@ -63,8 +71,16 @@ const Leaderboard = () => {
         allStudentContent = <AllStudents students={filteredStudents} ranking={ranking} />;
         userStudentContent = <UserStudent students={filteredStudents} ranking={ranking} />;
       } else {
-        allStudentContent = "Loading...";
-        userStudentContent = "Loading...";
+        allStudentContent = (
+          <tr>
+            <td> Loading...</td>
+          </tr>
+        );
+        userStudentContent = (
+          <tr className="border-2 border-cyan">
+            <td> Loading...</td>
+          </tr>
+        );
       }
     }
   }
@@ -83,7 +99,7 @@ const Leaderboard = () => {
               <th className="table-th !text-center">Total</th>
             </tr>
           </thead>
-          {userStudentContent}
+          <tbody>{userStudentContent}</tbody>
         </table>
       </div>
 
@@ -100,7 +116,7 @@ const Leaderboard = () => {
             </tr>
           </thead>
 
-          {allStudentContent}
+          <tbody>{allStudentContent}</tbody>
         </table>
       </div>
     </>

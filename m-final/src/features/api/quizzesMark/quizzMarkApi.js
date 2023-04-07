@@ -9,19 +9,16 @@ export const quizMarkApi = apiSlice.injectEndpoints({
                 method: "GET",
             }),
         }),
-        // getStuQuizMarks : builder.query({
-        //     query: (student_id) => ({
-        //         url: `/quizMark?student_id_like=${student_id}`,
-        //         method: "GET",
-        //     }),
-        //     providesTags : (result, error, student_id) => [{ type: 'QuizMark', stuId : student_id }],
-        // }),
+
         getStuVideoQuizMarks : builder.query({
             query: ({student_id, video_id}) => ({
                 url: `/quizMark?student_id_like=${student_id}&video_id_like=${video_id}`,
                 method: "GET",
             }),
-            providesTags :  ['QuizMark'],
+            // providesTags :  ['QuizMark'],
+            providesTags: (result, error, arg) => [
+                { type: "QuizMark", video_id: arg.video_id },
+            ],
         }),
 
         addVidoeQuizMark : builder.mutation({
@@ -30,51 +27,18 @@ export const quizMarkApi = apiSlice.injectEndpoints({
                 method: "POST",
                 body: data
             }),
-            invalidatesTags : ["QuizMark"],
-   
+            invalidatesTags : (result, error, arg) => [
+                { type: "QuizMark", video_id: arg.video_id },
+            ],
             async onQueryStarted(arg, { queryFulfilled, dispatch }) {
-                
-
                 try {
                     const quizMark = await queryFulfilled;
 
-                    // this.invalidatesTags = (result, error, {student_id, video_id}) => [{ type: 'QuizMark', stuId : student_id, vidId: video_id }],
-
-                    console.log(quizMark.data);
-
-                    if (quizMark?.data?.id) {
-
-                        // update assignment cache pessimistically start
-                        dispatch(
-                            apiSlice.util.updateQueryData(
-                                "getStuVideoQuizMarks",
-                                undefined, // point , is not undfind
-                                (draft) => {
-                                    const updateIndex = draft.findIndex(item => item.id == arg.id);
-                                    draft = [{...quizMark.data}]
-                                }
-                                
-                            )
-                        )
-
-                        // dispatch(
-                        //     apiSlice.util.updateQueryData(
-                        //         "getAssignmentMarks",
-                        //         arg.id.toString(),
-                        //         (draft) => {
-                        //         //    return draft = assignment.data
-                        //         //    return assignment.data
-                        //             Object.assign(draft, assignmentMark.data)
-                        //         }
-                                
-                        //     )
-                        // );
-                        // update assignment cache pessimistically end
-                    }
                 } catch (err) {
                     console.log(err);
                 }
             },
+
         }),
         
 
@@ -84,7 +48,8 @@ export const quizMarkApi = apiSlice.injectEndpoints({
 
 export const {
     useGetAllQuizzesMarksQuery,
-    // useGetStuQuizMarksQuery,
     useGetStuVideoQuizMarksQuery,
     useAddVidoeQuizMarkMutation,
 } = quizMarkApi;
+
+// useGetStuVideoQuizMarksQuery
