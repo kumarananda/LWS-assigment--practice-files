@@ -85,10 +85,7 @@ const Quizzes = () => {
 
   useEffect(() => {
     if (addSuccess) {
-      // navigate("/course-player");
-      setTimeout(() => {
-        navigate("/leaderboard");
-      }, 200);
+      navigate("/leaderboard");
     }
   }, [addSuccess]);
 

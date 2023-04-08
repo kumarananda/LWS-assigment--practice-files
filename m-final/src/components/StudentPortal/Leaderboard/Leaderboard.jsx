@@ -6,8 +6,11 @@ import { useGetAllStudentsQuery } from "../../../features/api/students/studentsA
 import { useGetAllQuizzesMarksQuery } from "../../../features/api/quizzesMark/quizzMarkApi";
 import UserStudent from "./UserStudent";
 import AllStudents from "./AllStudents";
+import { useSelector } from "react-redux";
 
 const Leaderboard = () => {
+  // user data
+  const { id: student_id } = useSelector(state => state.auth.user);
   // students data
   const { data: students, isLoading: stuLoading, isError: stuError, isSuccess: stuSuccess, error: stuErrorData } = useGetAllStudentsQuery();
   // all students quizzis marks
@@ -21,11 +24,11 @@ const Leaderboard = () => {
     const makeFild = students
       ?.map(stu => {
         const reduceFunMark = (acc, curr) => {
-          console.log(curr.mark);
-          return acc + +curr.mark;
+          let mark = Number(curr?.mark);
+          return acc + mark ? mark : 0;
         };
-        let quizMark = quizzesMarks?.filter(item => +item.student_id === +stu.id).reduce(reduceFunMark, 0);
-        let assMark = assMarks?.filter(item => +item.student_id === +stu.id).reduce(reduceFunMark, 0);
+        let quizMark = quizzesMarks?.filter(item => Number(item.student_id) == Number(stu.id)).reduce(reduceFunMark, 0);
+        let assMark = assMarks?.filter(item => Number(item.student_id) == Number(stu.id)).reduce(reduceFunMark, 0);
 
         return {
           id: stu.id,
@@ -36,7 +39,7 @@ const Leaderboard = () => {
         };
       })
       ?.sort((a, b) => {
-        return b.grandTotal - a.grandTotal;
+        return Number(b.grandTotal) - Number(a.grandTotal);
       });
 
     console.log(makeFild);
@@ -70,12 +73,12 @@ const Leaderboard = () => {
         const filteredStudents = filteringWithNewValue(students, quizzesMarks, assMarks);
         const unique = [];
         filteredStudents.map(x => (unique.filter(a => a.grandTotal == x.grandTotal).length > 0 ? null : unique.push(x)));
-        const ranking = unique.map(u => u.grandTotal.toString());
+        const ranking = unique.map(u => u.grandTotal);
 
         // console.log(ranking);
 
-        allStudentContent = <AllStudents students={filteredStudents} ranking={ranking} />;
-        userStudentContent = <UserStudent students={filteredStudents} ranking={ranking} />;
+        allStudentContent = <AllStudents student_id={student_id} students={filteredStudents} ranking={ranking} />;
+        userStudentContent = <UserStudent student_id={student_id} students={filteredStudents} ranking={ranking} />;
       } else {
         allStudentContent = (
           <tr>

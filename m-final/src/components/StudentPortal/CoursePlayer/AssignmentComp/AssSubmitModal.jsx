@@ -3,6 +3,7 @@
 import React, { useEffect, useState } from "react";
 import { GoX } from "react-icons/go";
 import { useAddAssignmentMarkMutation } from "../../../../features/api/assignmentMark/assignmentMarkApi";
+import swal from "sweetalert";
 
 const AssSubmitModal = ({ student_id, student_name, assignment, setStatus, assMarkRefetch, assRefetch }) => {
   const [addAssignmentMark, { isLoading, isError, isSuccess }] = useAddAssignmentMarkMutation();
@@ -13,7 +14,7 @@ const AssSubmitModal = ({ student_id, student_name, assignment, setStatus, assMa
   const HandleAssignmentSubmit = e => {
     e.preventDefault();
     if (!repoLink) {
-      alert("Input Git Repo Link");
+      swal("Input Git Repo Link", "error");
     } else {
       let createdAt = new Date();
       let data = {
@@ -27,12 +28,13 @@ const AssSubmitModal = ({ student_id, student_name, assignment, setStatus, assMa
         mark: 0,
         createdAt,
       };
+
       addAssignmentMark(data);
     }
   };
   useEffect(() => {
     if (isError) {
-      alert("error");
+      swal("Thare was an error", "error");
     }
   }, [isError]);
 
@@ -60,7 +62,7 @@ const AssSubmitModal = ({ student_id, student_name, assignment, setStatus, assMa
         <div className="fromBody">
           <form onSubmit={HandleAssignmentSubmit} method="POST">
             <div className="input_box">
-              <label htmlFor="question_title">Question</label>
+              <label htmlFor="question_title">Git Repositorie</label>
               <input value={repoLink} onChange={e => setRepoLink(e.target.value)} id="repo_link" name="repo_link" placeholder="Git Repo Link" />
             </div>
 

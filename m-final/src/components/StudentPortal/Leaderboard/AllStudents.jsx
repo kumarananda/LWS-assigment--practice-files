@@ -1,15 +1,15 @@
 /** @format */
 
 import React from "react";
-import { useSelector } from "react-redux";
+// import { useSelector } from "react-redux";
 
-const AllStudents = ({ students, ranking }) => {
-  // user data
-  const { id: student_id, name: student_name } = useSelector(state => state.auth.user);
+const AllStudents = ({ students, ranking, student_id }) => {
+  console.log(student_id);
 
   const makeRanking = totalMark => {
-    return ranking?.indexOf(totalMark.toString()) + 1;
+    return ranking?.indexOf(totalMark) + 1;
   };
+
   return (
     <>
       {students.map(stu => {
