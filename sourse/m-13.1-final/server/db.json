@@ -181,6 +181,41 @@
       "name": "ggggge",
       "role": "student",
       "id": 26
+    },
+    {
+      "email": "dfgd@hjgkk",
+      "password": "$2a$10$RPibQxCjFJjNr3BZ2eWfMepcbv6JtRd.tfNWlPIoUfhuddHRrQnB.",
+      "name": "hfdsh",
+      "role": "student",
+      "id": 27
+    },
+    {
+      "email": "rtghjl@fggg",
+      "password": "$2a$10$ImauQwPHKu2JaBt3w.uvdeSkYwag7hfG4/z/hPbU7wfL/KXwB/oce",
+      "name": "lljgdsa",
+      "role": "student",
+      "id": 28
+    },
+    {
+      "email": "yyyyy@hhhh",
+      "password": "$2a$10$cJFt/u3YHAkxMwWGLWl3qOAh5q8tYX9DhAPvhBKrkm6WKJQZcAKLi",
+      "name": "yyyyy",
+      "role": "student",
+      "id": 29
+    },
+    {
+      "email": "ppp@ppp",
+      "password": "$2a$10$yzh.bGIu5KFUWTI6noe5ouRdnS4R0NDSYHChJtFCJz30BoWa0b5Lq",
+      "name": "ppp",
+      "role": "student",
+      "id": 30
+    },
+    {
+      "email": "eeeee@dsfds",
+      "password": "$2a$10$9tIiUMnkFoDEcLNGV/4MI.3PwgoZvhTMG3kAr.lYDHfxEJ5AqOwC6",
+      "name": "wwww",
+      "role": "student",
+      "id": 31
     }
   ],
   "videos": [
@@ -791,10 +826,58 @@
       "title": "Assignment 1 - Implement Debounce Function",
       "repo_link": "ghgfv",
       "totalMark": 100,
-      "status": "pending",
-      "mark": 0,
+      "status": "published",
+      "mark": 29,
       "createdAt": "2023-04-08T12:24:46.730Z",
       "id": 33
+    },
+    {
+      "student_id": 27,
+      "student_name": "hfdsh",
+      "assignment_id": 1,
+      "title": "Assignment 1 - Implement Debounce Function",
+      "repo_link": "gsgsg",
+      "totalMark": 100,
+      "status": "published",
+      "mark": 28,
+      "createdAt": "2023-04-08T12:39:27.257Z",
+      "id": 34
+    },
+    {
+      "student_id": 28,
+      "student_name": "lljgdsa",
+      "assignment_id": 1,
+      "title": "Assignment 1 - Implement Debounce Function",
+      "repo_link": "635fuytdsrzgfh",
+      "totalMark": 100,
+      "status": "published",
+      "mark": 27,
+      "createdAt": "2023-04-08T12:40:42.283Z",
+      "id": 35
+    },
+    {
+      "student_id": 29,
+      "student_name": "yyyyy",
+      "assignment_id": 1,
+      "title": "Assignment 1 - Implement Debounce Function",
+      "repo_link": "fdtghrdsterdf",
+      "totalMark": 100,
+      "status": "published",
+      "mark": 26,
+      "createdAt": "2023-04-08T12:42:56.801Z",
+      "id": 36
+    },
+    {
+      "student_id": 31,
+      "student_name": "wwww",
+      "assignment_id": 1,
+      "title": "Assignment 1 - Implement Debounce Function",
+      "repo_link": "gdfgfd",
+      "totalMark": 100,
+      "status": "pending",
+      "mark": 0,
+      "createdAt": "2023-04-08T12:47:56.130Z",
+      "id": 37
     }
   ],
   "quizMark": [
@@ -1337,6 +1420,18 @@
       "totalMark": 5,
       "mark": 0,
       "id": 45
+    },
+    {
+      "student_id": 27,
+      "student_name": "hfdsh",
+      "video_id": "1",
+      "video_title": "Debounce Function in JavaScript - JavaScript Job Interview question",
+      "totalQuiz": 1,
+      "totalCorrect": 0,
+      "totalWrong": 1,
+      "totalMark": 5,
+      "mark": 0,
+      "id": 46
     }
   ]
 }
