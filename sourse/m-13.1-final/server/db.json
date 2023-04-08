@@ -174,6 +174,13 @@
       "name": "Ananda Kumar Saha",
       "role": "student",
       "id": 25
+    },
+    {
+      "email": "fffffffhd@jjjj",
+      "password": "$2a$10$vc0JTOCtDyy2h.vJmb9rJ.Z4ug0mWhqvyHzLgmq6BXTLOaFqS/Q9a",
+      "name": "ggggge",
+      "role": "student",
+      "id": 26
     }
   ],
   "videos": [
@@ -724,8 +731,8 @@
       "title": "Assignment 1 - Implement Debounce Function",
       "repo_link": "check",
       "totalMark": 100,
-      "status": "pending",
-      "mark": 0,
+      "status": "published",
+      "mark": 60,
       "createdAt": "2023-04-08T10:23:49.425Z",
       "id": 28
     },
@@ -736,8 +743,8 @@
       "title": "3.10 Task - Batch 2 - Product Cart Application",
       "repo_link": "TGWSTGERWT",
       "totalMark": "100",
-      "status": "pending",
-      "mark": 0,
+      "status": "published",
+      "mark": 57,
       "createdAt": "2023-04-08T10:24:23.147Z",
       "id": 29
     },
@@ -748,8 +755,8 @@
       "title": "Assignment 1 - Implement Debounce Function",
       "repo_link": "SDFGHDFGHFDHD",
       "totalMark": 100,
-      "status": "pending",
-      "mark": 0,
+      "status": "published",
+      "mark": 66,
       "createdAt": "2023-04-08T10:27:24.496Z",
       "id": 30
     },
@@ -760,8 +767,8 @@
       "title": "Assignment 1 - Implement Debounce Function",
       "repo_link": "VDSG",
       "totalMark": 100,
-      "status": "pending",
-      "mark": 0,
+      "status": "published",
+      "mark": 67,
       "createdAt": "2023-04-08T11:02:15.828Z",
       "id": 31
     },
@@ -772,10 +779,22 @@
       "title": "Assignment 1 - Implement Debounce Function",
       "repo_link": "JJKJJKKJ",
       "totalMark": 100,
-      "status": "pending",
-      "mark": 0,
+      "status": "published",
+      "mark": 99,
       "createdAt": "2023-04-08T11:03:24.564Z",
       "id": 32
+    },
+    {
+      "student_id": 26,
+      "student_name": "ggggge",
+      "assignment_id": 1,
+      "title": "Assignment 1 - Implement Debounce Function",
+      "repo_link": "ghgfv",
+      "totalMark": 100,
+      "status": "pending",
+      "mark": 0,
+      "createdAt": "2023-04-08T12:24:46.730Z",
+      "id": 33
     }
   ],
   "quizMark": [
@@ -1306,6 +1325,18 @@
       "totalMark": 5,
       "mark": 0,
       "id": 44
+    },
+    {
+      "student_id": 26,
+      "student_name": "ggggge",
+      "video_id": "1",
+      "video_title": "Debounce Function in JavaScript - JavaScript Job Interview question",
+      "totalQuiz": 1,
+      "totalCorrect": 0,
+      "totalWrong": 1,
+      "totalMark": 5,
+      "mark": 0,
+      "id": 45
     }
   ]
 }
