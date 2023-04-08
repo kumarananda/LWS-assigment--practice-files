@@ -216,6 +216,13 @@
       "name": "wwww",
       "role": "student",
       "id": 31
+    },
+    {
+      "email": "hi@fjdsafs",
+      "password": "$2a$10$aa9H4AZhT7Cp3ivf0NeqIe/V/q4gBsNtPic3l/U6n8pcy1cGkIvpO",
+      "name": "hi",
+      "role": "student",
+      "id": 32
     }
   ],
   "videos": [
@@ -878,6 +885,30 @@
       "mark": 0,
       "createdAt": "2023-04-08T12:47:56.130Z",
       "id": 37
+    },
+    {
+      "student_id": 32,
+      "student_name": "hi",
+      "assignment_id": 1,
+      "title": "Assignment 1 - Implement Debounce Function",
+      "repo_link": "jnhkasdh",
+      "totalMark": 100,
+      "status": "pending",
+      "mark": 0,
+      "createdAt": "2023-04-08T13:12:33.320Z",
+      "id": 38
+    },
+    {
+      "student_id": 32,
+      "student_name": "hi",
+      "assignment_id": 2,
+      "title": "Assignment 2 - Implement Best Practices",
+      "repo_link": "gjhsdfkgjsdf",
+      "totalMark": 100,
+      "status": "pending",
+      "mark": 0,
+      "createdAt": "2023-04-08T13:12:55.396Z",
+      "id": 39
     }
   ],
   "quizMark": [
@@ -1432,6 +1463,18 @@
       "totalMark": 5,
       "mark": 0,
       "id": 46
+    },
+    {
+      "student_id": 32,
+      "student_name": "hi",
+      "video_id": "1",
+      "video_title": "Debounce Function in JavaScript - JavaScript Job Interview question",
+      "totalQuiz": 1,
+      "totalCorrect": 0,
+      "totalWrong": 1,
+      "totalMark": 5,
+      "mark": 0,
+      "id": 47
     }
   ]
 }
