@@ -1,10 +1,10 @@
 {
   "users": [
     {
-      "email": "admin@learnwithsumit.com",
+      "email": "admin@aks.com",
       "password": "$2a$10$/TDPCTU28mFzKnSsW2pHSu512mpMKxLf8eiPbcTFLSNL87tbZBp3W",
       "role": "admin",
-      "name": "LWS Admin",
+      "name": "AKS Admin",
       "id": 1
     },
     {

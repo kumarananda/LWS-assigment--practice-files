@@ -58,7 +58,7 @@ const VideoDetiles = ({ firstId }) => {
   // create assignment button
   let assButton = null;
   if (assLoading) {
-    assButton = <AssButton>No Assignment</AssButton>; // লোডিং // Loading
+    assButton = <AssButton>Loading...</AssButton>; // Loading
   }
   if (!assLoading && assError) {
     assButton = <AssButton>No Assignment</AssButton>;
@@ -82,7 +82,7 @@ const VideoDetiles = ({ firstId }) => {
   // make quize button
   let quizButton = null;
   if (isLoading) {
-    quizButton = <AssButton>No Quiz</AssButton>;
+    quizButton = <AssButton>Loading...</AssButton>;
   }
   if (!isLoading && isError) {
     quizButton = <AssButton>No Quiz</AssButton>;
@@ -142,7 +142,6 @@ const VideoDetiles = ({ firstId }) => {
     }
   }
 
-  //////  /////
   return (
     <>
       {/* content */}

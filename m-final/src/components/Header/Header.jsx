@@ -2,7 +2,7 @@
 
 import React from "react";
 import { Link, useLocation } from "react-router-dom";
-import learningportalImg from "../../assets/image/learningportal.svg";
+import learningportalImg from "../../assets/image/aks-learning-portal.png";
 import Logout from "../ui/Logout/Logout";
 import { useSelector } from "react-redux";
 
@@ -19,7 +19,7 @@ const Header = () => {
             // if not loged in
             <>
               <Link to={"/"}>
-                <img className="h-10" src={learningportalImg} alt="Learning Portal" />
+                <img className="h-8" src={learningportalImg} alt="Learning Portal" />
               </Link>
               <div className="flex items-center gap-4 text-lg">
                 {(pathname === "/admin" || pathname === "/admin/" || pathname === "/registration" || pathname === "/registration/") && (
@@ -30,7 +30,7 @@ const Header = () => {
 
                 {pathname === "/" && (
                   <Link to={"/admin"}>
-                    <span className="text-lg text-blue-600"> Admin Login</span>
+                    <span className="text-lg text-blue-600"> Go as admin</span>
                   </Link>
                 )}
               </div>
@@ -39,7 +39,7 @@ const Header = () => {
             // if user is admin and logdIn
             <>
               <Link to={"/admin/dashbord"}>
-                <img className="h-10" src={learningportalImg} alt="Learning Portal" />
+                <img className="h-8" src={learningportalImg} alt="Learning Portal" />
               </Link>
               <div className="flex items-center gap-4 text-lg">
                 <Link to={"/admin/dashbord"}>Dashboard</Link>
@@ -57,7 +57,7 @@ const Header = () => {
             // if user is Student and logdIn
             <>
               <Link to={"/course-player"}>
-                <img className="h-10" src={learningportalImg} alt="Learning Portal" />
+                <img className="h-8" src={learningportalImg} alt="Learning Portal" />
               </Link>
               <div className="flex items-center gap-4 text-lg">
                 <Link className="font-medium" to={"/course-player"}>
