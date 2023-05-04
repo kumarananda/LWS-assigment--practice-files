@@ -53,7 +53,7 @@
       "email": "anandasaha484@gmail.com",
       "password": "$2a$10$UiKVWp4NtY9B84vQcGQMp.w.kOKdF0NN4QoQW9ar46KjSW3NfOxTa",
       "name": "Ananda Kumar Saha",
-      "role": "student",
+      "role": "student1",
       "id": 8
     },
     {
@@ -108,63 +108,56 @@
     {
       "email": "sss1@gmail.com",
       "password": "$2a$10$tr69WUdlu/aQfFDYhIBx1Ol98riopTp4GzXc2UBtzFOx86ik6oH1K",
-      "name": "sss1",
+      "name": "student12",
       "role": "student",
       "id": 16
     },
     {
       "email": "ggg@gmail.com",
       "password": "$2a$10$K3//NTjNAcHj8mxHqi7QVuKRRWx0Qu6FKHQwVxL67LrbvyvTQO8Ja",
-      "name": "ggg",
+      "name": "student11",
       "role": "student",
       "id": 17
     },
     {
       "email": "fffff@gmail.com",
       "password": "$2a$10$MYfAmYFyCTOTRWZxIxkoceHpsKYrSmWlsYVIw5GCstFBf7pTlVo4i",
-      "name": "ffff",
+      "name": "student13",
       "role": "student",
       "id": 18
     },
     {
       "email": "qqq@kkkk",
       "password": "$2a$10$o3JjsQKxM73uFE8JIEgF2ez2nYLss4JuIJF.qiSlbkD1bAiKi6AP2",
-      "name": "qqqqq",
+      "name": "student14",
       "role": "student",
       "id": 19
     },
     {
       "email": "sddsgsd@hgfhfd",
       "password": "$2a$10$i8l94z9GrTeH72rd6fqcgOCr.In2d74sGOoJBOINtyifXc.FgraGe",
-      "name": "gfdgfdsgds",
+      "name": "student15",
       "role": "student",
       "id": 20
     },
     {
       "email": "HHHH@HHH",
       "password": "$2a$10$NKKgUAvSlJPdkB/gGPZzZeAPcRBVbAwpKC126BEFNZXxZ8IqGPDk6",
-      "name": "HHHHH",
+      "name": "student16",
       "role": "student",
       "id": 21
     },
     {
       "email": "DDDDD@GFFDGDF",
       "password": "$2a$10$HK6BcXEEZatVErARYx8AJOALq4bO8MO3hs6xsiY07XXc/lqGRqIYu",
-      "name": "GTRG",
+      "name": "student17",
       "role": "student",
       "id": 22
     },
     {
-      "email": "NNNN@MMMM",
-      "password": "$2a$10$pQ5j5j.i1zX/LDXY1ldcs.khCV4AnqG1frUMtPn4mM8q/tlKtO5LK",
-      "name": "NNNN",
-      "role": "student",
-      "id": 23
-    },
-    {
       "email": "LLLL@LLLL",
       "password": "$2a$10$9BHORbDBEMM2cdpN8wAqvuFMCM8iG6FiU3hj2uEgvRx2TiW.EKe/O",
-      "name": "LLLL",
+      "name": "student18",
       "role": "student",
       "id": 24
     },
@@ -178,56 +171,56 @@
     {
       "email": "fffffffhd@jjjj",
       "password": "$2a$10$vc0JTOCtDyy2h.vJmb9rJ.Z4ug0mWhqvyHzLgmq6BXTLOaFqS/Q9a",
-      "name": "ggggge",
+      "name": "student21",
       "role": "student",
       "id": 26
     },
     {
       "email": "dfgd@hjgkk",
       "password": "$2a$10$RPibQxCjFJjNr3BZ2eWfMepcbv6JtRd.tfNWlPIoUfhuddHRrQnB.",
-      "name": "hfdsh",
+      "name": "student20",
       "role": "student",
       "id": 27
     },
     {
       "email": "rtghjl@fggg",
       "password": "$2a$10$ImauQwPHKu2JaBt3w.uvdeSkYwag7hfG4/z/hPbU7wfL/KXwB/oce",
-      "name": "lljgdsa",
+      "name": "student22",
       "role": "student",
       "id": 28
     },
     {
       "email": "yyyyy@hhhh",
       "password": "$2a$10$cJFt/u3YHAkxMwWGLWl3qOAh5q8tYX9DhAPvhBKrkm6WKJQZcAKLi",
-      "name": "yyyyy",
+      "name": "student23",
       "role": "student",
       "id": 29
     },
     {
       "email": "ppp@ppp",
       "password": "$2a$10$yzh.bGIu5KFUWTI6noe5ouRdnS4R0NDSYHChJtFCJz30BoWa0b5Lq",
-      "name": "ppp",
+      "name": "student24",
       "role": "student",
       "id": 30
     },
     {
       "email": "eeeee@dsfds",
       "password": "$2a$10$9tIiUMnkFoDEcLNGV/4MI.3PwgoZvhTMG3kAr.lYDHfxEJ5AqOwC6",
-      "name": "wwww",
+      "name": "student25",
       "role": "student",
       "id": 31
     },
     {
       "email": "hi@fjdsafs",
       "password": "$2a$10$aa9H4AZhT7Cp3ivf0NeqIe/V/q4gBsNtPic3l/U6n8pcy1cGkIvpO",
-      "name": "hi",
+      "name": "student26",
       "role": "student",
       "id": 32
     },
     {
       "email": "ffff@eere",
       "password": "$2a$10$theSVyie7xmVe1xIZk9Fvuy.YdOniw.w7eZ5hX.rLHbVIdB59iShG",
-      "name": "tttttttt",
+      "name": "student27",
       "role": "student",
       "id": 33
     }

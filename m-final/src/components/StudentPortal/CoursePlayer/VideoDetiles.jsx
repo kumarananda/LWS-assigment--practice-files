@@ -58,22 +58,22 @@ const VideoDetiles = ({ firstId }) => {
   // create assignment button
   let assButton = null;
   if (assLoading) {
-    assButton = <AssButton>এসাইনমেন্ট নেই</AssButton>; // লোডিং // Loading
+    assButton = <AssButton>No Assignment</AssButton>; // লোডিং // Loading
   }
   if (!assLoading && assError) {
-    assButton = <AssButton>এসাইনমেন্ট নেই</AssButton>;
+    assButton = <AssButton>No Assignment</AssButton>;
   }
   if (!assLoading && !assError && assSuccess) {
     if (!submitedAss || !submitedAss?.length) {
       assButton = (
         <AssButton action={setAssSubmit} value={true}>
-          এসাইনমেন্ট জমাদিন
+          Submit Assignment
         </AssButton>
       );
     } else if (submitedAss?.length > 0) {
       assButton = (
         <AssButton action={setShowSubmit} value={true}>
-          আপনি যা জমা দিয়েছেন
+          Submitted Assignment
         </AssButton>
       );
     }
@@ -82,14 +82,14 @@ const VideoDetiles = ({ firstId }) => {
   // make quize button
   let quizButton = null;
   if (isLoading) {
-    quizButton = <AssButton>কুইজ নেই</AssButton>;
+    quizButton = <AssButton>No Quiz</AssButton>;
   }
   if (!isLoading && isError) {
-    quizButton = <AssButton>কুইজ নেই</AssButton>;
+    quizButton = <AssButton>No Quiz</AssButton>;
   }
   if (!isLoading && !isError && isSuccess) {
     if (!quizdata?.length) {
-      quizButton = <AssButton>কুইজ নেই</AssButton>;
+      quizButton = <AssButton>No Quiz</AssButton>;
     } else if (quizdata?.length > 0) {
       if (qMarkSuccess) {
         if (stuVideoQuizzs.length > 0) {
@@ -98,7 +98,7 @@ const VideoDetiles = ({ firstId }) => {
               to={`/quiz/${queryId}`}
               className="px-3 font-bold py-1 border border-cyan text-cyan rounded-full text-sm hover:bg-cyan hover:text-primary"
             >
-              কুইজ মাৰ্ক দেখুন
+              View Quiz Marks
             </Link>
           );
         } else {
@@ -107,7 +107,7 @@ const VideoDetiles = ({ firstId }) => {
               to={`/quiz/${queryId}`}
               className="px-3 font-bold py-1 border border-cyan text-cyan rounded-full text-sm hover:bg-cyan hover:text-primary"
             >
-              কুইজে অংশগ্রহণ করুন
+              Participate Quiz
             </Link>
           );
         }
@@ -118,7 +118,7 @@ const VideoDetiles = ({ firstId }) => {
             onClick={e => e.preventDefault()}
             className="px-3 font-bold py-1 border border-cyan text-cyan rounded-full text-sm hover:bg-cyan hover:text-primary"
           >
-            কুইজে অংশগ্রহণ করুন
+            Participate Quiz
           </Link>
         );
       }
